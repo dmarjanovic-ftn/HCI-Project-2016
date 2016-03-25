@@ -1,0 +1,27 @@
+﻿<Window x:Class="HCI_2016_Project.UserInterface.Dialogs.AddManifestationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddManifestationDialog" Height="300" Width="300">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label>Name:</Label>
+        <TextBox Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5" />
+        <Label Grid.Row="1" >E-mail:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5" />
+        <Label Grid.Row="2">Comment:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+
+        <Button Grid.Row="3" Grid.Column="1" Margin="0,2,1,2">Sačuvaj</Button>
+        <Button Grid.Row="3" Grid.Column="2" Margin="1,2,0,2">Odustani</Button>
+    </Grid>
+</Window>

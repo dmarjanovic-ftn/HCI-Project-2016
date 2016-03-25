@@ -8,10 +8,27 @@ namespace HCI_2016_Project.DataClasses
 {
     public class ManifestationType
     {
-        public String label { get; set; }
-        public String name { get; set; }
-        public String description { get; set; }
-        public String iconSrc { get; set; }
+        public String label;
+        public String name;
+        public String description;
+        public String iconSrc;
+
+        public String Label
+        {
+            get
+            {
+                return label;
+            }
+
+            set
+            {
+                if (value != label)
+                {
+                    label = value;
+                    //OnPropertyChanged("Label");
+                }
+            }
+        }
 
         public ManifestationType(String label, String name, String description, String iconSrc)
         {
