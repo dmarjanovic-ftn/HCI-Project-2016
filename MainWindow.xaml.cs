@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_2016_Project.UserInterface.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace HCI_2016_Project
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new AddManifestationDialog();
+            window.Show();
         }
     }
 }

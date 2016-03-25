@@ -17,6 +17,8 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     /// <summary>
     /// Interaction logic for AddManifestationDialog.xaml
     /// </summary>
+    /// 
+
     public partial class AddManifestationDialog : Window
     {
         public AddManifestationDialog()
