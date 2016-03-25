@@ -11,5 +11,10 @@ namespace HCI_2016_Project.DataClasses
         private String mark;
         private String description;
         //private 
+
+        public Tag(string mark)
+        {
+            this.mark = mark;
+        }
     }
 }
