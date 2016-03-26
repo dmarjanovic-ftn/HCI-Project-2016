@@ -65,7 +65,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="C:\Users\DMG\Desktop\info.png" Width="64" Margin="8,8,8,8"></Image>
+                <Image Source="..\..\Images\Icons\info.png" Width="64" Margin="8,8,8,8"></Image>
             <TextBlock Grid.Column="2" TextWrapping="Wrap" Padding="8,8,8,8" Foreground="#34495E" TextAlignment="Center" FontSize="11pt">
                 Ovo je dijalog za unos manifestacije. Potrebno je unijeti sve podatke osim ikonice manifestacije koja nije obavezna. 
             </TextBlock>

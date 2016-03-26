@@ -33,8 +33,8 @@
                 <MenuItem InputGestureText="F2" Header="Demo mod"/>
             </MenuItem>
         </Menu>
-        <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            
+        <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Right">
+            <Image Source="Images\bn-map.png"/>
         </Grid>
     </DockPanel>
 </Window>

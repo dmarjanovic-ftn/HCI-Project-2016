@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Image Source="C:\Users\DMG\Desktop\info.png" Width="64" Margin="8,8,8,8"></Image>
+            <Image Source="..\..\Images\Icons\info.png" Width="64" Margin="8,8,8,8"></Image>
             <TextBlock Grid.Column="2" TextWrapping="Wrap" Padding="8,8,8,8" Foreground="#34495E" TextAlignment="Center" FontSize="11pt">
                 Ovo je dijalog za definisanje taga manifestacije. Svaki tag se sastoji od jedinstvene oznake, boje i opisa.
                 Ispod možete vidjeti izgled taga koji trenutno definišete. 
@@ -48,7 +48,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Image Source="C:\Users\DMG\Desktop\tag.png" Width="24" Margin="8,8,8,8"></Image>
+            <Image Source="..\..\Images\Icons\tag.png" Width="24" Margin="8,8,8,8"></Image>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" Padding="8,8,8,8" Foreground="#FFFFFF" TextAlignment="Center" FontSize="11pt" Text="{Binding ElementName=TagName, Path=Text, UpdateSourceTrigger=PropertyChanged}">
             </TextBlock>
         </Grid>
