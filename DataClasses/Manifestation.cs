@@ -17,14 +17,19 @@ namespace HCI_2016_Project.DataClasses
     public class Manifestation : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #region PropertyChangedNotifier
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+            Console.Write("Test");
         }
+        #endregion
 
+        #region Attributes
         private string label;
         private string name;
         private string descripition;
@@ -36,7 +41,9 @@ namespace HCI_2016_Project.DataClasses
         private AlcoholStatus alcoholStatus;
         private PriceCategory priceCategory;
         private int guestsExpected;
+        #endregion
 
+        #region Label Getter and Setter
         public string Label
         {
             get
@@ -53,5 +60,7 @@ namespace HCI_2016_Project.DataClasses
                 }
             }
         }
+        #endregion 
+
     }
 }

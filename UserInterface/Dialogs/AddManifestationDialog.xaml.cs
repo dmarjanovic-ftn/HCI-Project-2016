@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using HCI_2016_Project.DataClasses;
+
 namespace HCI_2016_Project.UserInterface.Dialogs
 {
     /// <summary>
@@ -24,6 +26,9 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         public AddManifestationDialog()
         {
             InitializeComponent();
+
+            Manifestation viewModel = new Manifestation();
+            this.DataContext = viewModel;
 
             Loaded += delegate
             {

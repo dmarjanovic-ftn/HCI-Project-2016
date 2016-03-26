@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using HCI_2016_Project.DataClasses;
+
 namespace HCI_2016_Project
 {
     /// <summary>
