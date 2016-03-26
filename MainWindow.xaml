@@ -1,8 +1,40 @@
 ﻿<Window x:Class="HCI_2016_Project.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Button Margin="160,160,160,130" Click="Button_Click"></Button>
-    </Grid>
+        Title="MainWindow" Height="480" Width="640">
+    <DockPanel>
+        <Menu DockPanel.Dock ="Top">
+            <Menu.ItemsPanel>
+                <!--Podkontrola koja određuje kako se item-i prikazuju.-->
+                <ItemsPanelTemplate>
+                    <!-- Specificiramo ne šta je u kontroli nego template koji je formira-->
+                    <DockPanel HorizontalAlignment="Stretch"></DockPanel>
+                    <!-- Prikazujemo preko Dock Panela koji preuzme sav prostor -->
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="_Manifestacija">
+                <MenuItem Header="_Dodaj manifestaciju" Click="MenuItem_Click_0"></MenuItem>
+                <MenuItem Header="_Izmijeni manifestaciju" Click="MenuItem_Click_1"></MenuItem>
+                <MenuItem Header="_Prikaži manifestaciju" Click="MenuItem_Click_2"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Tag">
+                <MenuItem Header="_Dodaj tag" Click="MenuItem_Click_3"></MenuItem>
+                <MenuItem Header="_Izmijeni tag" Click="MenuItem_Click_4"></MenuItem>
+                <MenuItem Header="_Prikaži tag" Click="MenuItem_Click_5"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Tip manifestacije">
+                <MenuItem Header="_Dodaj tip manifestacije" Click="MenuItem_Click_6"></MenuItem>
+                <MenuItem Header="_Izmijeni tip manifestacije" Click="MenuItem_Click_7"></MenuItem>
+                <MenuItem Header="_Prikaži tip manifestacije" Click="MenuItem_Click_8"></MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="_Pomoć" HorizontalAlignment="Right">
+                <!-- Poravnano udesno -->
+                <MenuItem InputGestureText="F2" Header="Demo mod"/>
+            </MenuItem>
+        </Menu>
+        <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            
+        </Grid>
+    </DockPanel>
 </Window>

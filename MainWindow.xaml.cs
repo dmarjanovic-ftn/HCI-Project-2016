@@ -31,5 +31,51 @@ namespace HCI_2016_Project
             Window window = new AddManifestationDialog();
             window.Show();
         }
+
+        private void MenuItem_Click_0(object sender, RoutedEventArgs e)
+        {
+            var s = new HCI_2016_Project.UserInterface.Dialogs.AddManifestationDialog();
+            s.Show();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_8(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

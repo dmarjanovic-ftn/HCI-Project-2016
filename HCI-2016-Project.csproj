@@ -56,7 +56,7 @@
     <Compile Include="UserInterface\Dialogs\AddManifestationDialog.xaml.cs">
       <DependentUpon>AddManifestationDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\TokenizingControl.cs" />
+    <Compile Include="UserInterface\UserControls\TokenizingControl.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

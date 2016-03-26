@@ -34,8 +34,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             {
                 if (text.EndsWith(" "))
                 {
-                    // Remove the ';'
-                    return text.Substring(0, text.Length - 1).Trim().ToUpper();
+                    return text.Substring(0, text.Length - 1).Trim().ToLower();
                 }
 
                 return null;
