@@ -56,8 +56,20 @@
     <Compile Include="UserInterface\Dialogs\AddManifestationDialog.xaml.cs">
       <DependentUpon>AddManifestationDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\Dialogs\AddManifestationTypeDialog.xaml.cs">
+      <DependentUpon>AddManifestationTypeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Dialogs\AddTagDialog.xaml.cs">
       <DependentUpon>AddTagDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Dialogs\EditManifestationDialog.xaml.cs">
+      <DependentUpon>EditManifestationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Dialogs\EditManifestationTypeDialog.xaml.cs">
+      <DependentUpon>EditManifestationTypeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Dialogs\EditTagDialog.xaml.cs">
+      <DependentUpon>EditTagDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\UserControls\TokenizingControl.cs" />
     <Page Include="MainWindow.xaml">
@@ -79,7 +91,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserInterface\Dialogs\AddManifestationTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserInterface\Dialogs\AddTagDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\EditManifestationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\EditManifestationTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\EditTagDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

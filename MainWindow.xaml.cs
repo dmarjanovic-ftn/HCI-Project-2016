@@ -40,7 +40,8 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-
+            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationDialog();
+            s.Show();
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
@@ -56,7 +57,8 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
-
+            var s = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog();
+            s.Show();
         }
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
@@ -66,12 +68,14 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_6(object sender, RoutedEventArgs e)
         {
-
+            var s = new HCI_2016_Project.UserInterface.Dialogs.AddManifestationTypeDialog();
+            s.Show();
         }
 
         private void MenuItem_Click_7(object sender, RoutedEventArgs e)
         {
-
+            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationTypeDialog();
+            s.Show();
         }
 
         private void MenuItem_Click_8(object sender, RoutedEventArgs e)
