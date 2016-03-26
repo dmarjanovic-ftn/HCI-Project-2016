@@ -8,16 +8,15 @@ using System.ComponentModel;
 
 namespace HCI_2016_Project.DataClasses
 {
-    enum AlcoholStatus 
+    public enum AlcoholStatusEnum 
         { NO_ALCOHOL, CAN_BUY, CAN_BRING }
 
-    enum PriceCategory
+    public enum PriceCategoryEnum
         { FREE, LOW_PRICE, MEDIUM_PRICE, HIGH_PRICE }
 
     public class Manifestation : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
         #region PropertyChangedNotifier
         protected virtual void OnPropertyChanged(string name)
         {
@@ -27,20 +26,6 @@ namespace HCI_2016_Project.DataClasses
             }
             Console.Write("Test");
         }
-        #endregion
-
-        #region Attributes
-        private string label;
-        private string name;
-        private string descripition;
-        private ManifestationType type;
-        private DateTime date;
-        private string iconSrc;
-
-        private bool accessible;
-        private AlcoholStatus alcoholStatus;
-        private PriceCategory priceCategory;
-        private int guestsExpected;
         #endregion
 
         #region Label Getter and Setter
@@ -61,6 +46,39 @@ namespace HCI_2016_Project.DataClasses
             }
         }
         #endregion 
+
+        #region AlcoholStatus Getter and Setter
+        public AlcoholStatusEnum AlcoholStatus
+        {
+            get
+            {
+                return alcoholStatus;
+            }
+
+            set
+            {
+                if (value != alcoholStatus)
+                {
+                    alcoholStatus = value;
+                    OnPropertyChanged("AlcoholStatus");
+                }
+            }
+        }
+        #endregion
+
+        #region Attributes
+        private string label;
+        private string name;
+        private string descripition;
+        private ManifestationType type;
+        private DateTime date;
+        private string iconSrc;
+
+        private bool accessible;
+        private AlcoholStatusEnum alcoholStatus;
+        private PriceCategoryEnum priceCategory;
+        private int guestsExpected;
+        #endregion
 
     }
 }
