@@ -45,12 +45,13 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
-
+            var s = new HCI_2016_Project.UserInterface.Dialogs.AddTagDialog();
+            s.Show();
         }
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
