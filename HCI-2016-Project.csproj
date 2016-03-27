@@ -71,6 +71,12 @@
     <Compile Include="UserInterface\Dialogs\EditTagDialog.xaml.cs">
       <DependentUpon>EditTagDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\Dialogs\ShowManifestationsDialog.xaml.cs">
+      <DependentUpon>ShowManifestationsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Dialogs\ShowTagsDialog.xaml.cs">
+      <DependentUpon>ShowTagsDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UserControls\TokenizingControl.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +114,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Dialogs\EditTagDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\ShowManifestationsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\ShowTagsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

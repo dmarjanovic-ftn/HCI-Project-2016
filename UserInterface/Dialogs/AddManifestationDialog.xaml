@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:HCI_2016_Project.Properties"
         xmlns:local="clr-namespace:HCI_2016_Project.UserControls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-        Title="AddManifestationDialog" Height="580" Width="980">
+        Title="Dodaj manifestaciju" Height="580" Width="980">
     
     <Window.Resources>
 		<DataTemplate x:Key="NameTokenTemplate">
