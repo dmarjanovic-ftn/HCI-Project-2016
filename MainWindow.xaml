@@ -2,8 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="480" Width="640">
+    <Window.Resources>
+        <BitmapImage x:Key="View" UriSource="/Images/Icons/view_inverse.png"/>
+        <BitmapImage x:Key="Add"  UriSource="/Images/Icons/add_circle.png"/>
+    </Window.Resources>
     <DockPanel>
-        <Menu DockPanel.Dock ="Top">
+        <Menu DockPanel.Dock ="Top" Background="#ddd">
             <Menu.ItemsPanel>
                 <!--Podkontrola koja određuje kako se item-i prikazuju.-->
                 <ItemsPanelTemplate>
@@ -33,8 +37,52 @@
                 <MenuItem InputGestureText="F2" Header="Demo mod"/>
             </MenuItem>
         </Menu>
-        <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Right">
-            <Image Source="Images\bn-map.png"/>
-        </Grid>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top" Background="#eee">
+                <ToolBar>
+                    <!-- Toolbar sekcija za manifestacije -->
+                    <StackPanel Orientation="Vertical" Background="#eee">
+                        <Label Background="#eee">Manifestacija</Label>
+                        <StackPanel Orientation="Horizontal" Height="32">
+                            <!-- Toolbar manifestacija dugmad -->
+                            <Button ToolTip="Dodaj novu manifestaciju">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource ResourceKey=Add}"/>
+                                    <TextBlock VerticalAlignment="Center">Dodaj</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button ToolTip="Pregled detalja o manifestacijama">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource ResourceKey=View}"/>
+                                    <TextBlock VerticalAlignment="Center">Pogledaj</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <!-- Toolbar sekcija za manifestacije -->
+                    <StackPanel Orientation="Vertical" Background="#eee">
+                        <Label Background="#eee">Kategorija</Label>
+                        <StackPanel Orientation="Horizontal" Height="32">
+                            <!-- Toolbar manifestacija dugmad -->
+                            <Button ToolTip="Dodaj novu manifestaciju">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource ResourceKey=Add}"/>
+                                    <TextBlock VerticalAlignment="Center">Dodaj</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button ToolTip="Pregled detalja o manifestacijama">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource ResourceKey=View}"/>
+                                    <TextBlock VerticalAlignment="Center">Pogledaj</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </ToolBar>
+            </ToolBarTray>
+            <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                <Image Source="Images\bn-map.png"/>
+            </Grid>
+        </DockPanel>
     </DockPanel>
 </Window>
