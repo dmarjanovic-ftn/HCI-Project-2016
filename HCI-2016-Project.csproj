@@ -78,6 +78,7 @@
       <DependentUpon>ShowTagsDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\UserControls\TokenizingControl.cs" />
+    <Compile Include="ValidationRules\LabelValidationRule.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

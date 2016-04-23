@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:HCI_2016_Project.Properties"
         xmlns:local="clr-namespace:HCI_2016_Project.UserControls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+
+        xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
         Title="Dodaj manifestaciju" Height="580" Width="980">
     
     <Window.Resources>
@@ -72,12 +74,51 @@
         </Grid>
 
         <!-- Polje za unos oznake manifestacije -->
-        <Label Grid.Row="1" HorizontalAlignment="Right">Oznaka manifestacije:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5" Text="{Binding Path=Label, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Grid.Row="1" HorizontalAlignment="Right">
+            <TextBlock>
+            <Run Text="Oznaka manifestacije:"/>
+            <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <!-- Validaciona pravila za unos oznake manifestacije -->
+        <TextBox Name="ManifestationLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <TextBox.ToolTip>
+                e.g. LBL-1337
+            </TextBox.ToolTip>
+            <TextBox.Text>
+                <Binding Path="Label" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. LBL-1337" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationLabel}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za unos naziva manifestacije -->
         <Label Grid.Row="2" HorizontalAlignment="Right">Naziv manifestacije:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5" />
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
 
         <!-- Polje za unos opisa manifestacije -->
         <Label Grid.Row="3" HorizontalAlignment="Right">Opis:</Label>
