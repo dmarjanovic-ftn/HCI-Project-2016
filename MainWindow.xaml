@@ -5,6 +5,11 @@
     <Window.Resources>
         <BitmapImage x:Key="View" UriSource="/Images/Icons/view_inverse.png"/>
         <BitmapImage x:Key="Add"  UriSource="/Images/Icons/add_circle.png"/>
+
+        <Style TargetType="Button" x:Key="ToolbarButton" >
+            <Setter Property="Margin" Value="1,2,1,2"/>
+            <Setter Property="Padding" Value="4"/>
+        </Style>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock ="Top" Background="#ddd">
@@ -38,46 +43,72 @@
             </MenuItem>
         </Menu>
         <DockPanel>
-            <ToolBarTray DockPanel.Dock="Top" Background="#eee">
-                <ToolBar>
+            <ToolBarTray DockPanel.Dock="Top" Background="#eee" IsLocked="True">
+                <ToolBar Loaded="ToolBar_Loaded">
+                    
                     <!-- Toolbar sekcija za manifestacije -->
-                    <StackPanel Orientation="Vertical" Background="#eee">
-                        <Label Background="#eee">Manifestacija</Label>
-                        <StackPanel Orientation="Horizontal" Height="32">
-                            <!-- Toolbar manifestacija dugmad -->
-                            <Button ToolTip="Dodaj novu manifestaciju">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{StaticResource ResourceKey=Add}"/>
-                                    <TextBlock VerticalAlignment="Center">Dodaj</TextBlock>
-                                </StackPanel>
-                            </Button>
-                            <Button ToolTip="Pregled detalja o manifestacijama">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{StaticResource ResourceKey=View}"/>
-                                    <TextBlock VerticalAlignment="Center">Pogledaj</TextBlock>
-                                </StackPanel>
-                            </Button>
+                    <Border BorderBrush="#ccc" BorderThickness="1">
+                        <StackPanel Orientation="Vertical" Background="#eee">
+                            <Label Background="#eee">Manifestacija</Label>
+                            <StackPanel Orientation="Horizontal" Height="32">
+                                <!-- Toolbar manifestacija dugmad -->
+                                <Button ToolTip="Dodaj novu manifestaciju" Style="{StaticResource ToolbarButton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource ResourceKey=Add}"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button ToolTip="Pregled detalja o manifestacijama" Style="{StaticResource ToolbarButton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource ResourceKey=View}"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                    </Border>
                     <!-- Toolbar sekcija za manifestacije -->
-                    <StackPanel Orientation="Vertical" Background="#eee">
-                        <Label Background="#eee">Kategorija</Label>
-                        <StackPanel Orientation="Horizontal" Height="32">
-                            <!-- Toolbar manifestacija dugmad -->
-                            <Button ToolTip="Dodaj novu manifestaciju">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{StaticResource ResourceKey=Add}"/>
-                                    <TextBlock VerticalAlignment="Center">Dodaj</TextBlock>
-                                </StackPanel>
-                            </Button>
-                            <Button ToolTip="Pregled detalja o manifestacijama">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{StaticResource ResourceKey=View}"/>
-                                    <TextBlock VerticalAlignment="Center">Pogledaj</TextBlock>
-                                </StackPanel>
-                            </Button>
+                    <Border BorderBrush="#ccc" BorderThickness="1">
+                        <StackPanel Orientation="Vertical" Background="#eee">
+                            <Label Background="#eee">Kategorija</Label>
+                            <StackPanel Orientation="Horizontal" Height="32">
+                                <!-- Toolbar manifestacija dugmad -->
+                                <Button ToolTip="Dodaj novu manifestaciju" Style="{StaticResource ToolbarButton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource ResourceKey=Add}"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button ToolTip="Pregled detalja o manifestacijama" Style="{StaticResource ToolbarButton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource ResourceKey=View}"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                    </Border>
+                    <!-- Toolbar sekcija za manifestacije -->
+                    <Border BorderBrush="#ccc" BorderThickness="1">
+                        <StackPanel Orientation="Vertical" Background="#eee">
+                            <Label Background="#eee">Oznaka</Label>
+                            <StackPanel Orientation="Horizontal" Height="32">
+                                <!-- Toolbar manifestacija dugmad -->
+                                <Button ToolTip="Dodaj novu manifestaciju" Style="{StaticResource ToolbarButton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource ResourceKey=Add}"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button ToolTip="Pregled detalja o manifestacijama" Style="{StaticResource ToolbarButton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource ResourceKey=View}"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
                 </ToolBar>
             </ToolBarTray>
             <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Right">
