@@ -164,6 +164,44 @@ namespace HCI_2016_Project.DataClasses
         }
         #endregion 
 
+        #region SmokingAllowed Getter and Setter
+        public bool SmokingAllowed
+        {
+            get
+            {
+                return smokingAllowed;
+            }
+
+            set
+            {
+                if (value != smokingAllowed)
+                {
+                    smokingAllowed = value;
+                    OnPropertyChanged("SmokingAllowed");
+                }
+            }
+        }
+        #endregion 
+
+        #region OutsideManifestation Getter and Setter
+        public bool OutsideManifestation
+        {
+            get
+            {
+                return outsideManifestation;
+            }
+
+            set
+            {
+                if (value != outsideManifestation)
+                {
+                    outsideManifestation = value;
+                    OnPropertyChanged("OutsideManifestation");
+                }
+            }
+        }
+        #endregion 
+
         #region AlcoholStatus Getter and Setter
         public AlcoholStatusEnum AlcoholStatus
         {
@@ -267,6 +305,8 @@ namespace HCI_2016_Project.DataClasses
         private DateTime date;
         private string iconSrc;
         private bool accessible;
+        private bool smokingAllowed;
+        private bool outsideManifestation;
         private AlcoholStatusEnum alcoholStatus;
         private PriceCategoryEnum priceCategory;
         private int guestsExpected;
