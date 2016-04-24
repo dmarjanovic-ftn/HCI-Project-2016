@@ -27,6 +27,7 @@ namespace HCI_2016_Project.DataClasses
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+            Console.WriteLine("Changed" + name);
         }
         #endregion
 
