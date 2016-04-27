@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Runtime.Serialization;
+
 namespace HCI_2016_Project.DataClasses
 {
+    [Serializable]
     public class ManifestationType
     {
         public String label;

@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using HCI_2016_Project.DataClasses;
+
+namespace HCI_2016_Project.Utils
+{
+    public class Serialization
+    {
+        private const String MANIFESTATIONS_FILENAME = "data/data.manifestations.dmg";
+        private const String MANIFESTATION_TYPES_FILENAME = "data/data.manifestation_types.dmg";
+        private const String TAGS_FILENAME = "data/data.tags.dmg";
+
+        #region Method for Manifestations serialization
+        public static void SerializeManifestations()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = null;
+
+            try
+            {
+                stream = File.Open(MANIFESTATIONS_FILENAME, FileMode.OpenOrCreate);
+                formatter.Serialize(stream, AppData.GetInstance().Manifestations);
+            }
+            catch {}
+            finally
+            {
+                if (stream != null) stream.Dispose();
+            }
+        }
+        #endregion
+
+        #region Method for Manifestations deserialization
+        public static void DeserializeManifestations()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = null;
+
+            if (File.Exists(MANIFESTATIONS_FILENAME))
+            {
+                try
+                {
+                    stream = File.Open(MANIFESTATIONS_FILENAME, FileMode.Open);
+                    AppData.GetInstance().Manifestations = (List<Manifestation>)formatter.Deserialize(stream);
+                }
+                catch {}
+                finally
+                {
+                    if (stream != null) stream.Dispose();
+                }
+            }
+            else
+            {
+                AppData.GetInstance().Manifestations = new List<Manifestation>();
+            }
+        }
+        #endregion
+
+    }
+}

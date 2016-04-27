@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace HCI_2016_Project.DataClasses
 {
+    [Serializable]
     public class Tag : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

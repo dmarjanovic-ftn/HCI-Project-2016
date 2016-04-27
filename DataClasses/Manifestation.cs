@@ -5,17 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.ComponentModel;
+using System.Runtime.Serialization;
+
 
 namespace HCI_2016_Project.DataClasses
 {
     // Enumeracija koja opisuje moguce vrijednosti za status alkohola
+    [Serializable]
     public enum AlcoholStatusEnum 
         { NO_ALCOHOL, CAN_BUY, CAN_BRING }
 
     // Enumeracija koja opisuje moguce kategorije cijena
+    [Serializable]
     public enum PriceCategoryEnum
         { FREE, LOW_PRICE, MEDIUM_PRICE, HIGH_PRICE }
 
+    [Serializable]
     public class Manifestation : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -49,6 +54,14 @@ namespace HCI_2016_Project.DataClasses
             }
         }
         #endregion 
+
+        #region Manifestation Default Constructor
+        public Manifestation()
+        {
+            this.x = -1;
+            this.y = -1;
+        }
+        #endregion
 
         #region Name Getter and Setter
         public string Name

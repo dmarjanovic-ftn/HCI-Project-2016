@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using HCI_2016_Project.DataClasses;
+using HCI_2016_Project.Utils;
 
 namespace HCI_2016_Project
 {
@@ -26,6 +27,8 @@ namespace HCI_2016_Project
         public MainWindow()
         {
             InitializeComponent();
+
+            Serialization.DeserializeManifestations();
         }
 
         private void MenuItem_Click_0(object sender, RoutedEventArgs e)
