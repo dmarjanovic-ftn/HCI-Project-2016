@@ -61,5 +61,94 @@ namespace HCI_2016_Project.Utils
         }
         #endregion
 
+        #region Method for Manifestation Types serialization
+        public static void SerializeManifestationTypes()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = null;
+
+            try
+            {
+                stream = File.Open(MANIFESTATION_TYPES_FILENAME, FileMode.OpenOrCreate);
+                formatter.Serialize(stream, AppData.GetInstance().ManifestationTypes);
+            }
+            catch { }
+            finally
+            {
+                if (stream != null) stream.Dispose();
+            }
+        }
+        #endregion
+
+        #region Method for Manifestation Types deserialization
+        public static void DeserializeManifestationTypes()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = null;
+
+            if (File.Exists(MANIFESTATION_TYPES_FILENAME))
+            {
+                try
+                {
+                    stream = File.Open(MANIFESTATION_TYPES_FILENAME, FileMode.Open);
+                    AppData.GetInstance().ManifestationTypes = (List<ManifestationType>)formatter.Deserialize(stream);
+                }
+                catch { }
+                finally
+                {
+                    if (stream != null) stream.Dispose();
+                }
+            }
+            else
+            {
+                AppData.GetInstance().ManifestationTypes = new List<ManifestationType>();
+            }
+        }
+        #endregion
+
+        #region Method for Tags serialization
+        public static void SerializeTags()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = null;
+
+            try
+            {
+                stream = File.Open(TAGS_FILENAME, FileMode.OpenOrCreate);
+                formatter.Serialize(stream, AppData.GetInstance().Tags);
+            }
+            catch { }
+            finally
+            {
+                if (stream != null) stream.Dispose();
+            }
+        }
+        #endregion
+
+        #region Method for Tags deserialization
+        public static void DeserializeTags()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = null;
+
+            if (File.Exists(TAGS_FILENAME))
+            {
+                try
+                {
+                    stream = File.Open(TAGS_FILENAME, FileMode.Open);
+                    AppData.GetInstance().Tags = (List<Tag>)formatter.Deserialize(stream);
+                }
+                catch { }
+                finally
+                {
+                    if (stream != null) stream.Dispose();
+                }
+            }
+            else
+            {
+                AppData.GetInstance().Tags = new List<Tag>();
+            }
+        }
+        #endregion
     }
 }

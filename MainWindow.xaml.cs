@@ -28,7 +28,12 @@ namespace HCI_2016_Project
         {
             InitializeComponent();
 
+            #region Deserialization of Data
+            Serialization.DeserializeManifestationTypes();
+            Serialization.DeserializeTags();
             Serialization.DeserializeManifestations();
+            #endregion
+
         }
 
         private void MenuItem_Click_0(object sender, RoutedEventArgs e)
