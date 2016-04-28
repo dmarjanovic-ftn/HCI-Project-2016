@@ -23,6 +23,11 @@ namespace HCI_2016_Project.DataClasses
         }
         #endregion
 
+        public Tag()
+        {
+
+        }
+
         #region Mark Getter and Setter
         public string Mark
         {

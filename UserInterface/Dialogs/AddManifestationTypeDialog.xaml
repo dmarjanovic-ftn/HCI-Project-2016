@@ -21,7 +21,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-
         <Grid Name="Information" Grid.ColumnSpan="4" Background="#EEEEEE" Margin="0,0,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -56,6 +55,18 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. Obrazovna" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationTypeLabel}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za unos naziva tipa manifestacije -->
         <Label Grid.Row="2" HorizontalAlignment="Right">
@@ -75,6 +86,18 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. Manifestacija obrazovnog tipa" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationTypeName}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za odabir ikonice -->
         <Label Grid.Row="3" HorizontalAlignment="Right" >Odaberi ikonicu tipa manifestacije:</Label>

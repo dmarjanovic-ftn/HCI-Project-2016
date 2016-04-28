@@ -31,9 +31,7 @@ namespace HCI_2016_Project
             // AppData.MakeFiles();
 
             #region Deserialization of Data
-            Serialization.DeserializeManifestationTypes();
-            Serialization.DeserializeTags();
-            Serialization.DeserializeManifestations();
+            
             #endregion
 
         }
@@ -105,6 +103,13 @@ namespace HCI_2016_Project
             {
                 mainPanelBorder.Margin = new Thickness(0);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Serialization.DeserializeManifestationTypes();
+            Serialization.DeserializeTags();
+            Serialization.DeserializeManifestations();
         }
     }
 }

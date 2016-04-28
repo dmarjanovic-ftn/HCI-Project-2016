@@ -101,6 +101,10 @@ namespace HCI_2016_Project.DataClasses
         }
         #endregion
 
+        public ManifestationType()
+        {
+        }
+
         #region Public Constructor with parameters
         public ManifestationType(String label, String name, String description, String iconSrc)
         {
@@ -110,11 +114,6 @@ namespace HCI_2016_Project.DataClasses
             this.iconSrc = iconSrc;
         }
         #endregion
-
-        public ManifestationType()
-        {
-
-        }
 
         public override string ToString()
         {

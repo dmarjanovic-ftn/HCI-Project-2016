@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 using System.IO;
 using HCI_2016_Project.DataClasses;
 
@@ -12,25 +13,17 @@ namespace HCI_2016_Project.Utils
 {
     public class Serialization
     {
-        private const String MANIFESTATIONS_FILENAME = "data.manifestations.dmg";
-        private const String MANIFESTATION_TYPES_FILENAME = "data.manifestation_types.dmg";
-        private const String TAGS_FILENAME = "data.tags.dmg";
+        private const String MANIFESTATIONS_FILENAME = "data.manifestations.xml";
+        private const String MANIFESTATION_TYPES_FILENAME = "data.manifestation_types.xml";
+        private const String TAGS_FILENAME = "data.tags.xml";
 
         #region Method for Manifestations serialization
         public static void SerializeManifestations()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = null;
-
-            try
+            var serializer = new XmlSerializer(typeof(List<Manifestation>));
+            using (var stream = File.OpenWrite(MANIFESTATIONS_FILENAME))
             {
-                stream = File.Open(MANIFESTATIONS_FILENAME, FileMode.OpenOrCreate);
-                formatter.Serialize(stream, AppData.GetInstance().Manifestations);
-            }
-            catch {}
-            finally
-            {
-                if (stream != null) stream.Dispose();
+                serializer.Serialize(stream, AppData.GetInstance().Manifestations);
             }
         }
         #endregion
@@ -38,25 +31,11 @@ namespace HCI_2016_Project.Utils
         #region Method for Manifestations deserialization
         public static void DeserializeManifestations()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = null;
-
-            if (File.Exists(MANIFESTATIONS_FILENAME))
+            var serializer = new XmlSerializer(typeof(List<Manifestation>));
+            using (var stream = File.OpenRead(MANIFESTATIONS_FILENAME))
             {
-                try
-                {
-                    stream = File.Open(MANIFESTATIONS_FILENAME, FileMode.Open);
-                    AppData.GetInstance().Manifestations = (List<Manifestation>)formatter.Deserialize(stream);
-                }
-                catch {}
-                finally
-                {
-                    if (stream != null) stream.Dispose();
-                }
-            }
-            else
-            {
-                AppData.GetInstance().Manifestations = new List<Manifestation>();
+                var manifestations = (List<Manifestation>)(serializer.Deserialize(stream));
+                AppData.GetInstance().Manifestations = manifestations;
             }
         }
         #endregion
@@ -64,18 +43,10 @@ namespace HCI_2016_Project.Utils
         #region Method for Manifestation Types serialization
         public static void SerializeManifestationTypes()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = null;
-
-            try
+            var serializer = new XmlSerializer(typeof(List<ManifestationType>));
+            using (var stream = File.OpenWrite(MANIFESTATION_TYPES_FILENAME))
             {
-                stream = File.Open(MANIFESTATION_TYPES_FILENAME, FileMode.OpenOrCreate);
-                formatter.Serialize(stream, AppData.GetInstance().ManifestationTypes);
-            }
-            catch { }
-            finally
-            {
-                if (stream != null) stream.Dispose();
+                serializer.Serialize(stream, AppData.GetInstance().ManifestationTypes);
             }
         }
         #endregion
@@ -83,25 +54,11 @@ namespace HCI_2016_Project.Utils
         #region Method for Manifestation Types deserialization
         public static void DeserializeManifestationTypes()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = null;
-
-            if (File.Exists(MANIFESTATION_TYPES_FILENAME))
+            var serializer = new XmlSerializer(typeof(List<ManifestationType>));
+            using (var stream = File.OpenRead(MANIFESTATION_TYPES_FILENAME))
             {
-                try
-                {
-                    stream = File.Open(MANIFESTATION_TYPES_FILENAME, FileMode.Open);
-                    AppData.GetInstance().ManifestationTypes = (List<ManifestationType>)formatter.Deserialize(stream);
-                }
-                catch { }
-                finally
-                {
-                    if (stream != null) stream.Dispose();
-                }
-            }
-            else
-            {
-                AppData.GetInstance().ManifestationTypes = new List<ManifestationType>();
+                var types = (List<ManifestationType>)(serializer.Deserialize(stream));
+                AppData.GetInstance().ManifestationTypes = types;
             }
         }
         #endregion
@@ -109,18 +66,10 @@ namespace HCI_2016_Project.Utils
         #region Method for Tags serialization
         public static void SerializeTags()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = null;
-
-            try
+            var serializer = new XmlSerializer(typeof(List<Tag>));
+            using (var stream = File.OpenWrite(TAGS_FILENAME))
             {
-                stream = File.Open(TAGS_FILENAME, FileMode.OpenOrCreate);
-                formatter.Serialize(stream, AppData.GetInstance().Tags);
-            }
-            catch { }
-            finally
-            {
-                if (stream != null) stream.Dispose();
+                serializer.Serialize(stream, AppData.GetInstance().Tags);
             }
         }
         #endregion
@@ -128,25 +77,11 @@ namespace HCI_2016_Project.Utils
         #region Method for Tags deserialization
         public static void DeserializeTags()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = null;
-
-            if (File.Exists(TAGS_FILENAME))
+            var serializer = new XmlSerializer(typeof(List<Tag>));
+            using (var stream = File.OpenRead(TAGS_FILENAME))
             {
-                try
-                {
-                    stream = File.Open(TAGS_FILENAME, FileMode.Open);
-                    AppData.GetInstance().Tags = (List<Tag>)formatter.Deserialize(stream);
-                }
-                catch { }
-                finally
-                {
-                    if (stream != null) stream.Dispose();
-                }
-            }
-            else
-            {
-                AppData.GetInstance().Tags = new List<Tag>();
+                var tags = (List<Tag>)(serializer.Deserialize(stream));
+                AppData.GetInstance().Tags = tags;
             }
         }
         #endregion
