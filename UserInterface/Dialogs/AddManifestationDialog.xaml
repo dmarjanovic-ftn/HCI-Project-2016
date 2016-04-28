@@ -165,7 +165,7 @@
         </Grid>
         <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,10,5">
             <TextBox.Text>
-                <Binding Path="Description" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="Manifestation.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
                         <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
@@ -202,9 +202,11 @@
             <Run Text="*" Foreground="Red"/>
             </TextBlock>
         </Grid>
-        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
-            <ComboBoxItem> TIP 1 </ComboBoxItem>
-            <ComboBoxItem> TIP 2 </ComboBoxItem>
+        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5"
+                  ItemsSource="{Binding Path=Types}" 
+                  DisplayMemberPath="Name" 
+                  SelectedValuePath="Name" 
+                  SelectedValue="{Binding Path=Manifestation.Type}">
         </ComboBox>
 
         <!-- Polje za odabir datuma odrzavanja manifestacije -->

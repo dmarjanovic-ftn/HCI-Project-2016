@@ -33,6 +33,23 @@ namespace HCI_2016_Project.DataClasses
             }
         }
 
+        public String Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    //OnPropertyChanged("Label");
+                }
+            }
+        }
+
         public ManifestationType(String label, String name, String description, String iconSrc)
         {
             this.label = label;

@@ -26,7 +26,7 @@ namespace HCI_2016_Project.DataClasses
 
         private AppData()
         {
-
+           
         }
 
         public static AppData GetInstance()

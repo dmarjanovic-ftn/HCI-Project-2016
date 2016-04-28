@@ -24,14 +24,25 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
     public partial class AddManifestationDialog : Window
     {
-        private Manifestation manifestation;
+
+        private AddManifestationViewModel vm;
+
+        public class AddManifestationViewModel
+        {
+            public Manifestation Manifestation      { get; set; }
+            public List<ManifestationType> Types    { get; set; }
+        }
 
         public AddManifestationDialog()
         {
             InitializeComponent();
 
-            manifestation = new Manifestation();
-            this.DataContext = manifestation;
+            vm = new AddManifestationViewModel();
+
+            vm.Types = AppData.GetInstance().ManifestationTypes;
+            vm.Manifestation = new Manifestation();
+
+            this.DataContext = vm;
 
             Loaded += delegate
             {
@@ -52,7 +63,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         // Save Manifestation Button
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            AppData.GetInstance().Manifestations.Add(manifestation);
+            AppData.GetInstance().Manifestations.Add(vm.Manifestation);
             Serialization.SerializeManifestations();
             this.Close();
         }
