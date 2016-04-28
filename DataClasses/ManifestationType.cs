@@ -111,6 +111,11 @@ namespace HCI_2016_Project.DataClasses
         }
         #endregion
 
+        public ManifestationType()
+        {
+
+        }
+
         public override string ToString()
         {
             return this.Name;

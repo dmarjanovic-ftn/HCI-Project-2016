@@ -28,6 +28,8 @@ namespace HCI_2016_Project
         {
             InitializeComponent();
 
+            // AppData.MakeFiles();
+
             #region Deserialization of Data
             Serialization.DeserializeManifestationTypes();
             Serialization.DeserializeTags();

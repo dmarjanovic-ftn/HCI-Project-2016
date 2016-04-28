@@ -26,7 +26,9 @@ namespace HCI_2016_Project.DataClasses
 
         private AppData()
         {
-           
+            this.manifestations = new List<Manifestation>();
+            this.manifestationTypes = new List<ManifestationType>();
+            this.tags = new List<Tag>();
         }
 
         public static AppData GetInstance()
@@ -36,6 +38,13 @@ namespace HCI_2016_Project.DataClasses
                 instance = new AppData();
             }
             return instance;
+        }
+
+        public static void MakeFiles()
+        {
+            Serialization.SerializeManifestationTypes();
+            Serialization.SerializeTags();
+            Serialization.SerializeManifestations();
         }
 
         #region Manifestations Getter and Setter
