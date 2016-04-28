@@ -47,6 +47,25 @@ namespace HCI_2016_Project.DataClasses
         }
         #endregion 
 
+        #region Color Getter and Setter
+        public string Color
+        {
+            get
+            {
+                return color;
+            }
+
+            set
+            {
+                if (value != color)
+                {
+                    color = value;
+                    OnPropertyChanged("Color");
+                }
+            }
+        }
+        #endregion 
+
         #region Description Getter and Setter
         public string Description
         {
@@ -68,6 +87,7 @@ namespace HCI_2016_Project.DataClasses
 
         #region Attributes
         private String mark;
+        private String color;
         private String description;
         #endregion
     }
