@@ -80,14 +80,14 @@
         <!-- Polje za unos oznake manifestacije -->
         <Label Grid.Row="1" HorizontalAlignment="Right">
             <TextBlock>
-            <Run Text="Oznaka manifestacije:"/>
-            <Run Text="*" Foreground="Red"/>
+                <Run Text="Oznaka manifestacije:"/>
+                <Run Text="*" Foreground="Red"/>
             </TextBlock>
         </Label>
         <!-- Validaciona pravila za unos oznake manifestacije -->
         <TextBox Name="ManifestationLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
             <TextBox.Text>
-                <Binding Path="Label" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="Manifestation.Label" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
                         <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
@@ -118,15 +118,15 @@
         </TextBlock>
 
         <!-- Polje za unos naziva manifestacije -->
-        <Grid Grid.Row="2" HorizontalAlignment="Right">
-            <TextBlock>
+        <Label Grid.Row="2" HorizontalAlignment="Right">
+            <TextBlock >
                 <Run Text="Naziv manifestacije:"/>
                 <Run Text="*" Foreground="Red"/>
             </TextBlock>
-        </Grid>
+        </Label>
         <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
             <TextBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="Manifestation.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
                         <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
@@ -157,12 +157,12 @@
         </TextBlock>
         
         <!-- Polje za unos opisa manifestacije -->
-        <Grid Grid.Row="3" HorizontalAlignment="Right">
+        <Label Grid.Row="3" HorizontalAlignment="Right">
             <TextBlock>
                 <Run Text="Opis manifestacije:"/>
                 <Run Text="*" Foreground="Red"/>
             </TextBlock>
-        </Grid>
+        </Label>
         <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,10,5">
             <TextBox.Text>
                 <Binding Path="Manifestation.Description" UpdateSourceTrigger="PropertyChanged">
@@ -196,39 +196,37 @@
         </TextBlock>
         
         <!-- Polje za odabir tipa manifestacije -->
-        <Grid Grid.Row="4" HorizontalAlignment="Right">
+        <Label Grid.Row="4" HorizontalAlignment="Right">
             <TextBlock>
             <Run Text="Odaberite tip manifestacije:"/>
             <Run Text="*" Foreground="Red"/>
             </TextBlock>
-        </Grid>
+        </Label>
         <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5"
                   ItemsSource="{Binding Path=Types}" 
-                  DisplayMemberPath="Name" 
-                  SelectedValuePath="Name" 
                   SelectedValue="{Binding Path=Manifestation.Type}">
         </ComboBox>
 
         <!-- Polje za odabir datuma odrzavanja manifestacije -->
-        <Grid Grid.Row="5" HorizontalAlignment="Right">
+        <Label Grid.Row="5" HorizontalAlignment="Right">
             <TextBlock>
             <Run Text="Odaberite datum održavanja:"/>
             <Run Text="*" Foreground="Red"/>
             </TextBlock>
-        </Grid>
+        </Label>
         <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5" 
-                    SelectedDate="{Binding Path=Date}"/>
+                    SelectedDate="{Binding Path=Manifestation.Date}"/>
 
         <!-- Polje za unos broja očekivanih gostiju -->
-        <Grid Grid.Row="6" HorizontalAlignment="Right">
+        <Label Grid.Row="6" HorizontalAlignment="Right">
             <TextBlock>
                 <Run Text="Broj očekivanih gostiju:"/>
                 <Run Text="*" Foreground="Red"/>
             </TextBlock>
-        </Grid>
+        </Label>
         <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
             <TextBox.Text>
-                <Binding Path="GuestsExpected" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="Manifestation.GuestsExpected" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validation:IsIntegerValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
@@ -269,8 +267,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,10,5"
-                Text="{Binding Path=IconSrc, UpdateSourceTrigger=PropertyChanged}" />
-            <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Click="ChooseIcon_Click">
+                Text="{Binding Path=Manifestation.IconSrc, UpdateSourceTrigger=PropertyChanged}" />
+            <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Click="ChooseIcon_Click" Margin="0,0,10,5">
                 Odaberite ikonicu
             </Button>
         </Grid>
@@ -289,9 +287,9 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <RadioButton Grid.Column="0" GroupName="AlcoholStatus" IsChecked="{Binding Path=AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=NO_ALCOHOL}">Nema alkohola</RadioButton>
-                <RadioButton Grid.Column="1" GroupName="AlcoholStatus" IsChecked="{Binding Path=AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BRING}">Može se donijeti</RadioButton>
-                <RadioButton Grid.Column="2" GroupName="AlcoholStatus" IsChecked="{Binding Path=AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BUY}">Može se kupiti</RadioButton>
+                <RadioButton Grid.Column="0" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=NO_ALCOHOL}">Nema alkohola</RadioButton>
+                <RadioButton Grid.Column="1" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BRING}">Može se donijeti</RadioButton>
+                <RadioButton Grid.Column="2" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BUY}">Može se kupiti</RadioButton>
             </Grid>
         </GroupBox>
         
@@ -310,10 +308,10 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <RadioButton Grid.Column="0" GroupName="PriceCategory" IsChecked="{Binding Path=PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=FREE}">Besplatno</RadioButton>
-                <RadioButton Grid.Column="1" GroupName="PriceCategory" IsChecked="{Binding Path=PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=LOW_PRICE}">Niske cijene</RadioButton>
-                <RadioButton Grid.Column="2" GroupName="PriceCategory" IsChecked="{Binding Path=PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=MEDIUM_PRICE}">Srednje cijene</RadioButton>
-                <RadioButton Grid.Column="3" GroupName="PriceCategory" IsChecked="{Binding Path=PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=HIGH_PRICE}">Visoke cijene</RadioButton>
+                <RadioButton Grid.Column="0" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=FREE}">Besplatno</RadioButton>
+                <RadioButton Grid.Column="1" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=LOW_PRICE}">Niske cijene</RadioButton>
+                <RadioButton Grid.Column="2" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=MEDIUM_PRICE}">Srednje cijene</RadioButton>
+                <RadioButton Grid.Column="3" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=HIGH_PRICE}">Visoke cijene</RadioButton>
             </Grid>
         </GroupBox>
 
@@ -329,15 +327,20 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                
-                <CheckBox Grid.Column="0" IsChecked="{Binding Path=Accessible}">Dostupno za hendikepirane</CheckBox>
-                <CheckBox Grid.Column="1" IsChecked="{Binding Path=SmokingAllowed}">Dozvoljeno pušenje</CheckBox>
-                <CheckBox Grid.Column="2" IsChecked="{Binding Path=OutsideManifestation}">Manifestacija se održava napolju</CheckBox>
+
+                <CheckBox Grid.Column="0" IsChecked="{Binding Path=Manifestation.Accessible}">Dostupno za hendikepirane</CheckBox>
+                <CheckBox Grid.Column="1" IsChecked="{Binding Path=Manifestation.SmokingAllowed}">Dozvoljeno pušenje</CheckBox>
+                <CheckBox Grid.Column="2" IsChecked="{Binding Path=Manifestation.OutsideManifestation}">Manifestacija se održava napolju</CheckBox>
             </Grid>
         </GroupBox>
 
         <!-- Polje za unos TAGOVA za manifestaciju -->
-        <Label Grid.Row="11" HorizontalAlignment="Right">Unesite tagove za manifestaciju:</Label>
+        <Label Grid.Row="11" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Unesite tagove za manifestaciju:"/>
+                <Run Foreground="Red" Text="*"/>
+            </TextBlock>
+        </Label>
         <local:TokenizingControl Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" x:Name="Tokenizer" Margin="0,0,10,5" TokenTemplate="{DynamicResource NameTokenTemplate}" VerticalScrollBarVisibility="Auto">
             <FlowDocument>
                 <Paragraph>

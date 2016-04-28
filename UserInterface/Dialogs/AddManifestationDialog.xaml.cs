@@ -25,9 +25,9 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     public partial class AddManifestationDialog : Window
     {
 
-        private AddManifestationViewModel vm;
+        private ViewModel vm;
 
-        public class AddManifestationViewModel
+        public class ViewModel
         {
             public Manifestation Manifestation      { get; set; }
             public List<ManifestationType> Types    { get; set; }
@@ -37,7 +37,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         {
             InitializeComponent();
 
-            vm = new AddManifestationViewModel();
+            vm = new ViewModel();
 
             vm.Types = AppData.GetInstance().ManifestationTypes;
             vm.Manifestation = new Manifestation();
