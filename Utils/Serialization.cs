@@ -12,9 +12,9 @@ namespace HCI_2016_Project.Utils
 {
     public class Serialization
     {
-        private const String MANIFESTATIONS_FILENAME = "data/data.manifestations.dmg";
-        private const String MANIFESTATION_TYPES_FILENAME = "data/data.manifestation_types.dmg";
-        private const String TAGS_FILENAME = "data/data.tags.dmg";
+        private const String MANIFESTATIONS_FILENAME = "data.manifestations.dmg";
+        private const String MANIFESTATION_TYPES_FILENAME = "data.manifestation_types.dmg";
+        private const String TAGS_FILENAME = "data.tags.dmg";
 
         #region Method for Manifestations serialization
         public static void SerializeManifestations()

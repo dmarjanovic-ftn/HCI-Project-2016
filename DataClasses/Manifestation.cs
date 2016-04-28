@@ -323,6 +323,7 @@ namespace HCI_2016_Project.DataClasses
         private AlcoholStatusEnum alcoholStatus;
         private PriceCategoryEnum priceCategory;
         private int guestsExpected;
+        // private List<Tag> tags;
         private int x;
         private int y;
         #endregion

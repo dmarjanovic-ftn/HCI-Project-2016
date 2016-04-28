@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="UserInterface\UserControls\TokenizingControl.cs" />
     <Compile Include="Utils\Serialization.cs" />
+    <Compile Include="ValidationRules\GuestsExpectedValidationRules.cs" />
     <Compile Include="ValidationRules\LabelValidationRule.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
