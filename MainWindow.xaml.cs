@@ -44,7 +44,7 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationDialog();
+            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationDialog(new Manifestation());
             s.Show();
         }
 

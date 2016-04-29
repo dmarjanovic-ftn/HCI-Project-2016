@@ -24,7 +24,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
     public partial class AddManifestationDialog : Window
     {
-
         private ViewModel vm;
 
         public class ViewModel

@@ -80,14 +80,15 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         // Edit Manifestation Button
         private void EditManifestation_Click(object sender, RoutedEventArgs e)
         {
-
+            var manifestationEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationDialog(SelectedManifestation);
+            manifestationEditDialog.Show();
         }
 
         // View Details Manifestation Button
         private void ViewDetailsManifestation_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(SelectedManifestation.Name);
-            Console.WriteLine(SelectedManifestation.Label);
+            var showDetailDialog = new HCI_2016_Project.UserInterface.Dialogs.ManifestationDetailsWindow(SelectedManifestation);
+            showDetailDialog.Show();
         }
 
         private void ManifestationsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)

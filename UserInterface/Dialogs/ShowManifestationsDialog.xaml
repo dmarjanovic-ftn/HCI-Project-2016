@@ -18,6 +18,19 @@
             <Setter Property="Padding" Value="4"/>
             <Setter Property="IsEnabled" Value="{Binding Path=ButtonEnabled, UpdateSourceTrigger=PropertyChanged}"/>
         </Style>
+
+        <Style x:Key="DataGridCellStyle"
+        TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     
     <Grid>
@@ -65,7 +78,22 @@
                   ItemsSource="{Binding Path=Manifestations}" 
                   SelectedItem="{Binding Path=SelectedManifestation, UpdateSourceTrigger=PropertyChanged}"
                   SelectionChanged="ManifestationsTable_SelectionChanged"
+                  AutoGenerateColumns="False"
+                  CellStyle="{StaticResource DataGridCellStyle}"
                   IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Ikonica" MinWidth="48" MaxWidth="48">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding IconSrc}" Height="32" Width="32" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Oznaka manifestacije" MinWidth="128" Width="SizeToCells" Binding="{Binding Label}"/>
+                <DataGridTextColumn Header="Naziv manifestacije"  MinWidth="128" Width="SizeToCells" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Tip manifestacije"    MinWidth="128" Width="SizeToCells" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Opis manifestacije"   MinWidth="256" Width="SizeToCells" Binding="{Binding Description}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

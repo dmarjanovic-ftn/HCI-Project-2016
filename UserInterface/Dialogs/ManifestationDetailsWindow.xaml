@@ -1,0 +1,139 @@
+﻿<Window x:Class="HCI_2016_Project.UserInterface.Dialogs.ManifestationDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalji o manifestaciji" Height="300" Width="300">
+    
+    <Window.Resources>
+        <BitmapImage x:Key="Man_Date"   UriSource="/Images/Icons/date.png"/>
+        <BitmapImage x:Key="Man_Guests" UriSource="/Images/Icons/guests_expected.png"/>
+        <BitmapImage x:Key="Man_Type"   UriSource="/Images/Icons/category.png"/>
+        <BitmapImage x:Key="Man_Price"  UriSource="/Images/Icons/price_range.png"/>
+        <BitmapImage x:Key="Man_Alchl"  UriSource="/Images/Icons/drink.png"/>
+        <BitmapImage x:Key="Man_Access_Yes" UriSource="/Images/Icons/accessible_yes.png"/>
+        <BitmapImage x:Key="Man_Access_No"  UriSource="/Images/Icons/accessible_no.png"/>
+        <BitmapImage x:Key="Man_Inside_Yes" UriSource="/Images/Icons/manifestation_in.png"/>
+        <BitmapImage x:Key="Man_Inside_No"  UriSource="/Images/Icons/manifestation_out.png"/>
+        <BitmapImage x:Key="Man_Smoke_Yes"  UriSource="/Images/Icons/smoking_yes.png"/>
+        <BitmapImage x:Key="Man_Smoke_No"   UriSource="/Images/Icons/smoking_no.png"/>
+        <BitmapImage x:Key="Delete"  UriSource="/Images/Icons/delete.png"/>
+    </Window.Resources>
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Image Source="{Binding Manifestation.IconSrc}" Width="96" Height="96"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Path=Manifestation.Label }"/>
+                <TextBlock Text="{Binding Path=Manifestation.Name }"/>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <TextBlock Text="{Binding Path=Manifestation.Description}"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Date}" Height="32"/>
+            
+                <StackPanel Orientation="Vertical">
+                    <Label>Datum održavanja:</Label>
+                    <TextBlock Text="{Binding Manifestation.Date}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Guests}" Height="32"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Label>Broj očekivanih gostiju:</Label>
+                    <TextBlock Text="{Binding Manifestation.GuestsExpected}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Type}" Height="32"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Label>Tip manifestacije:</Label>
+                    <TextBlock Text="{Binding Manifestation.Type}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Access_Yes}" Height="32"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Label>Dostupno za hendikepirane:</Label>
+                    <TextBlock Text="{Binding Manifestation.Accessible}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Smoke_Yes}" Height="32"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Label>Dozvoljeno pušenje:</Label>
+                    <TextBlock Text="{Binding Manifestation.SmokingAllowed}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Inside_Yes}" Height="32"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Label>Održava se napolju:</Label>
+                    <TextBlock Text="{Binding Manifestation.OutsideManifestation}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Alchl}" Height="32"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Label>Status alkohola:</Label>
+                    <TextBlock Text="{Binding Manifestation.AlcoholStatus}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource ResourceKey=Man_Price}" Height="32"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Label>Status cijena:</Label>
+                    <TextBlock Text="{Binding Manifestation.PriceCategory}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>

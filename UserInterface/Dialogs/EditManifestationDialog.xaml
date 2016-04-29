@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:HCI_2016_Project.Properties"
         xmlns:local="clr-namespace:HCI_2016_Project.UserControls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-        Title="Izmijeni manifestaciju" Height="480" Width="640">
+        
+        xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
+        xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
+        Title="Izmijeni manifestaciju" Height="580" Width="980">
 
     <Window.Resources>
         <DataTemplate x:Key="NameTokenTemplate">
@@ -32,6 +35,10 @@
 
     <Grid Margin="0">
 
+        <Grid.Resources>
+            <binder:EnumBooleanConverter x:Key="enumBinder"/>
+        </Grid.Resources>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="1*" />
@@ -73,38 +80,203 @@
         </Grid>
 
         <!-- Polje za unos oznake manifestacije -->
-        <Label Grid.Row="1">Oznaka manifestacije:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" />
+        <Label Grid.Row="1" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Oznaka manifestacije:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <!-- Validaciona pravila za unos oznake manifestacije -->
+        <TextBox Name="ManifestationLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="Manifestation.Label" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. LBL-1337" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationLabel}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za unos naziva manifestacije -->
-        <Label Grid.Row="2" >Naziv manifestacije:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" />
+        <Label Grid.Row="2" HorizontalAlignment="Right">
+            <TextBlock >
+                <Run Text="Naziv manifestacije:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="Manifestation.Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. Belgrade Beer Fest" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationName}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za unos opisa manifestacije -->
-        <Label Grid.Row="3">Opis:</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,5" />
+        <Label Grid.Row="3" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Opis manifestacije:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="Manifestation.Description" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="Unesite detaljan opis manifestacije..." VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationDescription}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za odabir tipa manifestacije -->
-        <Label Grid.Row="4">Odaberite tip manifestacije:</Label>
-        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5">
-            <ComboBoxItem>TIP 1</ComboBoxItem>
-            <ComboBoxItem>TIP 2</ComboBoxItem>
+        <Label Grid.Row="4" HorizontalAlignment="Right">
+            <TextBlock>
+            <Run Text="Odaberite tip manifestacije:"/>
+            <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5"
+                  ItemsSource="{Binding Path=Types}" 
+                  SelectedValue="{Binding Path=Manifestation.Type}">
         </ComboBox>
 
         <!-- Polje za odabir datuma odrzavanja manifestacije -->
-        <Label Grid.Row="5">Odaberite datum održavanja:</Label>
-        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5"/>
+        <Label Grid.Row="5" HorizontalAlignment="Right">
+            <TextBlock>
+            <Run Text="Odaberite datum održavanja:"/>
+            <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5" 
+                    SelectedDate="{Binding Path=Manifestation.Date}"/>
 
         <!-- Polje za unos broja očekivanih gostiju -->
-        <Label Grid.Row="6">Broj očekivanih gostiju:</Label>
-        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5"/>
+        <Label Grid.Row="6" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Broj očekivanih gostiju:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="Manifestation.GuestsExpected" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:IsIntegerValidationRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. 73600" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationGuestsExpected}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
-        <!-- Polje za unos ikonica -->
-        <Label Grid.Row="7">Odaberite ikonicu</Label>
-        <DatePicker Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5"/>
+        <!-- Polje za odabir ikonice -->
+        <Label Grid.Row="7" HorizontalAlignment="Right">Odaberite ikonicu:</Label>
+        <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,10,5"
+                Text="{Binding Path=Manifestation.IconSrc, UpdateSourceTrigger=PropertyChanged}" />
+            <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Click="ChooseIcon_Click" Margin="0,0,10,5">
+                Odaberite ikonicu
+            </Button>
+        </Grid>
 
         <!-- Izbor statusa alkohola -->
-        <GroupBox Header="Status alkohola" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3">
+        <GroupBox Header="Status alkohola" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,10,5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -117,15 +289,15 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <RadioButton Grid.Column="0" GroupName="AlcoholStatus">Nema alkohola</RadioButton>
-                <RadioButton Grid.Column="1" GroupName="AlcoholStatus">Može se donijeti</RadioButton>
-                <RadioButton Grid.Column="2" GroupName="AlcoholStatus">Može se kupiti</RadioButton>
+                <RadioButton Grid.Column="0" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=NO_ALCOHOL}">Nema alkohola</RadioButton>
+                <RadioButton Grid.Column="1" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BRING}">Može se donijeti</RadioButton>
+                <RadioButton Grid.Column="2" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BUY}">Može se kupiti</RadioButton>
             </Grid>
         </GroupBox>
 
 
         <!-- Izbor kategorija cijene -->
-        <GroupBox Header="Kategorija cijene" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3">
+        <GroupBox Header="Kategorija cijene" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,10,5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -138,14 +310,14 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <RadioButton Grid.Column="0" GroupName="PriceCategory">Besplatno</RadioButton>
-                <RadioButton Grid.Column="1" GroupName="PriceCategory">Niske cijene</RadioButton>
-                <RadioButton Grid.Column="2" GroupName="PriceCategory">Srednje cijene</RadioButton>
-                <RadioButton Grid.Column="3" GroupName="PriceCategory">Visoke cijene</RadioButton>
+                <RadioButton Grid.Column="0" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=FREE}">Besplatno</RadioButton>
+                <RadioButton Grid.Column="1" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=LOW_PRICE}">Niske cijene</RadioButton>
+                <RadioButton Grid.Column="2" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=MEDIUM_PRICE}">Srednje cijene</RadioButton>
+                <RadioButton Grid.Column="3" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=HIGH_PRICE}">Visoke cijene</RadioButton>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Dodatne informacije" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3">
+        <GroupBox Header="Dodatne informacije" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,10,5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -158,15 +330,20 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <CheckBox Grid.Column="0">Dostupno za hendikepirane</CheckBox>
-                <CheckBox Grid.Column="1">Dozvoljeno pušenje</CheckBox>
-                <CheckBox Grid.Column="2">Manifestacija se održava napolju</CheckBox>
+                <CheckBox Grid.Column="0" IsChecked="{Binding Path=Manifestation.Accessible}">Dostupno za hendikepirane</CheckBox>
+                <CheckBox Grid.Column="1" IsChecked="{Binding Path=Manifestation.SmokingAllowed}">Dozvoljeno pušenje</CheckBox>
+                <CheckBox Grid.Column="2" IsChecked="{Binding Path=Manifestation.OutsideManifestation}">Manifestacija se održava napolju</CheckBox>
             </Grid>
         </GroupBox>
 
         <!-- Polje za unos TAGOVA za manifestaciju -->
-        <Label Grid.Row="11">Unesite tagove za manifestaciju:</Label>
-        <local:TokenizingControl Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" x:Name="Tokenizer" Margin="0,0,0,5" TokenTemplate="{DynamicResource NameTokenTemplate}" VerticalScrollBarVisibility="Auto">
+        <Label Grid.Row="11" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Unesite tagove za manifestaciju:"/>
+                <Run Foreground="Red" Text="*"/>
+            </TextBlock>
+        </Label>
+        <local:TokenizingControl Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" x:Name="Tokenizer" Margin="0,0,10,5" TokenTemplate="{DynamicResource NameTokenTemplate}" VerticalScrollBarVisibility="Auto">
             <FlowDocument>
                 <Paragraph>
                     <Run />
@@ -174,7 +351,7 @@
             </FlowDocument>
         </local:TokenizingControl>
 
-        <Button Grid.Row="12" Grid.Column="2" Margin="0,2,2,0" Padding="4,4,4,4">Sačuvaj</Button>
-        <Button Grid.Row="12" Grid.Column="3" Margin="2,2,0,0" Padding="4,4,4,4">Odustani</Button>
+        <Button Name="Save"   Grid.Row="12" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">Sačuvaj</Button>
+        <Button Name="Cancel" Grid.Row="12" Grid.Column="3" Margin="2,2,10,10" Padding="4,4,4,4" Click="Cancel_Click">Odustani</Button>
     </Grid>
 </Window>

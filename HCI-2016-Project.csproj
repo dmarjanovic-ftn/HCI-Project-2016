@@ -78,6 +78,9 @@
     <Compile Include="UserInterface\Dialogs\EditTagDialog.xaml.cs">
       <DependentUpon>EditTagDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\Dialogs\ManifestationDetailsWindow.xaml.cs">
+      <DependentUpon>ManifestationDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Dialogs\ShowManifestationsDialog.xaml.cs">
       <DependentUpon>ShowManifestationsDialog.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Dialogs\EditTagDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\ManifestationDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +190,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icons\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\accessible_no.png" />
+    <Resource Include="Images\Icons\accessible_yes.png" />
+    <Resource Include="Images\Icons\category.png" />
+    <Resource Include="Images\Icons\date.png" />
+    <Resource Include="Images\Icons\drink.png" />
+    <Resource Include="Images\Icons\guests_expected.png" />
+    <Resource Include="Images\Icons\manifestation_in.png" />
+    <Resource Include="Images\Icons\manifestation_out.png" />
+    <Resource Include="Images\Icons\price_range.png" />
+    <Resource Include="Images\Icons\smoking_no.png" />
+    <Resource Include="Images\Icons\smoking_yes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
