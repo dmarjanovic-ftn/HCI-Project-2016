@@ -62,7 +62,7 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog();
+            var s = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog(new Tag());
             s.Show();
         }
 

@@ -38,7 +38,7 @@
         </Grid>
 
         <!-- Polje za prikaz definisanog taga -->
-        <Grid Margin="12"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="{Binding ElementName=TagColor, Path=Text, UpdateSourceTrigger=PropertyChanged}">
+        <Grid Margin="12"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Width="200" HorizontalAlignment="Center" Background="{Binding Path=Tag.Color, UpdateSourceTrigger=PropertyChanged}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -54,22 +54,51 @@
         </Grid>
 
         <!-- Polje za unos oznake taga -->
-        <Label Grid.Row="2">Jedinstvena oznaka taga:</Label>
-        <TextBox Name="TagName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" />
+        <Label Grid.Row="2" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Jedinstvena oznaka taga:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <TextBox Name="TagName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="Tag.Mark" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <!-- Polje za odabir boje taga -->
-        <Label Grid.Row="3">Odaberite boju taga:</Label>
-        <ComboBox Name="TagColor" Grid.Row="3" SelectedIndex="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" >
-            <ComboBoxItem>#F44336</ComboBoxItem>
-            <ComboBoxItem>#3F51B5</ComboBoxItem>
-            <ComboBoxItem>#43A047</ComboBoxItem>
+        <Label Grid.Row="3" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Odaberite boju taga:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <ComboBox Name="TagColor" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5"
+                  ItemsSource="{Binding Path=Colors}"
+                  SelectedValue="{Binding Path=Tag.Color}"
+                  SelectedIndex="0">
         </ComboBox>
 
         <!-- Polje za unos opisa taga -->
-        <Label Grid.Row="4">Opis taga:</Label>
-        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,5" />
+        <Label Grid.Row="4" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Opis taga:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="Tag.Description" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <Button Grid.Row="5" Grid.Column="2" Margin="0,2,2,0" Padding="4,4,4,4">Sačuvaj</Button>
-        <Button Grid.Row="5" Grid.Column="3" Margin="2,2,0,0" Padding="4,4,4,4">Odustani</Button>
+        <Button Name="Save"   Grid.Row="5" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">Sačuvaj</Button>
+        <Button Name="Cancel" Grid.Row="5" Grid.Column="3" Margin="2,0,10,10" Padding="4,4,4,4" Click="Cancel_Click">Odustani</Button>
     </Grid>
 </Window>

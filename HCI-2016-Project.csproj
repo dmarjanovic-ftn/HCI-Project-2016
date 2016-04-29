@@ -87,6 +87,9 @@
     <Compile Include="UserInterface\Dialogs\ShowTagsDialog.xaml.cs">
       <DependentUpon>ShowTagsDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\Dialogs\TagDetailsWindow.xaml.cs">
+      <DependentUpon>TagDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UserControls\TokenizingControl.cs" />
     <Compile Include="Utils\Serialization.cs" />
     <Compile Include="ValidationRules\GuestsExpectedValidationRules.cs" />
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Dialogs\ShowTagsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\TagDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -66,14 +66,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         private void EditTag_Click(object sender, RoutedEventArgs e)
         {
-            //var tagEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog(SelectedTag);
-            //tagEditDialog.Show();
+            var tagEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog(SelectedTag);
+            tagEditDialog.Show();
         }
 
         private void ViewDetailsTag_Click(object sender, RoutedEventArgs e)
         {
-            //var showDetailDialog = new HCI_2016_Project.UserInterface.Dialogs.TagDetailsWindow(SelectedTag);
-            //showDetailDialog.Show();
+            var showDetailDialog = new HCI_2016_Project.UserInterface.Dialogs.TagDetailsWindow(SelectedTag);
+            showDetailDialog.Show();
         }
 
         private void TagsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)

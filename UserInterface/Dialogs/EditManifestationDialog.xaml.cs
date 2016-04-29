@@ -53,6 +53,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 if (manifestation.Label == vm.ManifestationOldLabel)
                 {
                     manifestations.Add(vm.Manifestation);
+                    break;
                 }
                 else
                 {

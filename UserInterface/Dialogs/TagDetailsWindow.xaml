@@ -1,0 +1,28 @@
+﻿<Window x:Class="HCI_2016_Project.UserInterface.Dialogs.TagDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TagDetailsWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="0">
+            <StackPanel Orientation="Horizontal" Width="200" HorizontalAlignment="Center" Background="{Binding Path=Tag.Color, UpdateSourceTrigger=PropertyChanged}">
+                <Image Source="..\..\Images\Icons\tag.png" Width="24" Margin="8,8,8,8"></Image>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Padding="8,8,8,8" Foreground="#FFFFFF" TextAlignment="Center" FontSize="11pt" Text="{Binding Path=Tag.Mark, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Label Grid.Row="1">
+            <TextBlock Text="{Binding Path=Tag.Description}"/>
+        </Label>
+
+    </Grid>
+</Window>
