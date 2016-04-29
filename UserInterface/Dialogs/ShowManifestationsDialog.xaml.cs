@@ -41,7 +41,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             {
                 Manifestations.Add(m);
             }
-
             
         }
 

@@ -86,7 +86,8 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_8(object sender, RoutedEventArgs e)
         {
-
+            var s = new HCI_2016_Project.UserInterface.Dialogs.ShowManifestationsTypeDialog();
+            s.Show();
         }
 
         private void ToolBar_Loaded(object sender, RoutedEventArgs e)

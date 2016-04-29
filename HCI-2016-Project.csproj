@@ -84,6 +84,9 @@
     <Compile Include="UserInterface\Dialogs\ShowManifestationsDialog.xaml.cs">
       <DependentUpon>ShowManifestationsDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\Dialogs\ShowManifestationsTypeDialog.xaml.cs">
+      <DependentUpon>ShowManifestationsTypeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Dialogs\ShowTagsDialog.xaml.cs">
       <DependentUpon>ShowTagsDialog.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Dialogs\ShowManifestationsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\ShowManifestationsTypeDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
