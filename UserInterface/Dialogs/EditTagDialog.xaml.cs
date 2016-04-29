@@ -57,7 +57,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 if (tag.Mark == vm.TagOldMark)
                 {
                     tags.Add(vm.Tag);
-                    break;
                 }
                 else
                 {

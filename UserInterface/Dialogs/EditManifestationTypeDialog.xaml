@@ -37,23 +37,102 @@
         </Grid>
 
         <!-- Polje za unos oznake tipa manifestacije -->
-        <Label Grid.Row="1">Oznaka tipa manifestacije:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" />
+        <Label Grid.Row="1" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Oznaka tipa manifestacije:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <TextBox Name="ManifestationTypeLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="ManifestationType.Label" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. Obrazovna" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationTypeLabel}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za unos naziva tipa manifestacije -->
-        <Label Grid.Row="2" >Naziv tipa manifestacije:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" />
+        <Label Grid.Row="2" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Naziv tipa manifestacije:"/>
+                <Run Foreground="Red" Text="*"/>
+            </TextBlock>
+        </Label>
+        <TextBox Name="ManifestationTypeName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="ManifestationType.Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. Manifestacija obrazovnog tipa" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ManifestationTypeName}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Polje za odabir ikonice -->
-        <Label Grid.Row="3" >Odabari ikonicu tipa manifestacije:</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" />
+        <Label Grid.Row="3" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Odaberi ikonicu tipa manifestacije:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,10,5"
+                Text="{Binding Path=ManifestationType.IconSrc, UpdateSourceTrigger=PropertyChanged}" />
+            <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Margin="0,0,10,5" Click="ChooseIcon_Click">
+                Odaberite ikonicu
+            </Button>
+        </Grid>
 
         <!-- Polje za unos opisa tipa manifestacije -->
-        <Label Grid.Row="4">Opis:</Label>
-        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,5" />
+        <Label Grid.Row="4" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Opis tipa manifestacije:"/>
+                <Run Foreground="Red" Text="*"/>
+            </TextBlock>
+        </Label>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,10,5">
+            <TextBox.Text>
+                <Binding Path="ManifestationType.Description" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <Button Grid.Row="5" Grid.Column="2" Margin="0,2,2,0" Padding="4,4,4,4">Sačuvaj</Button>
-        <Button Grid.Row="5" Grid.Column="3" Margin="2,2,0,0" Padding="4,4,4,4">Odustani</Button>
+        <Button Name="Save"   Grid.Row="5" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">Sačuvaj</Button>
+        <Button Name="Cancel" Grid.Row="5" Grid.Column="3" Margin="2,0,10,10" Padding="4,4,4,4" Click="Cancel_Click" Height="30" VerticalAlignment="Bottom">Odustani</Button>
     </Grid>
 </Window>
-

@@ -80,7 +80,7 @@ namespace HCI_2016_Project
 
         private void MenuItem_Click_7(object sender, RoutedEventArgs e)
         {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationTypeDialog();
+            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationTypeDialog(new ManifestationType());
             s.Show();
         }
 

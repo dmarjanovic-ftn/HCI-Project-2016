@@ -100,7 +100,12 @@
         </TextBlock>
 
         <!-- Polje za odabir ikonice -->
-        <Label Grid.Row="3" HorizontalAlignment="Right" >Odaberi ikonicu tipa manifestacije:</Label>
+        <Label Grid.Row="3" HorizontalAlignment="Right">
+            <TextBlock>
+                <Run Text="Odaberi ikonicu tipa manifestacije:"/>
+                <Run Text="*" Foreground="Red"/>
+            </TextBlock>
+        </Label>
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

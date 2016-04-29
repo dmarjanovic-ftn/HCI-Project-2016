@@ -55,12 +55,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         private void ViewDetailsManifestationType_Click(object sender, RoutedEventArgs e)
         {
-
+            var showDetailDialog = new HCI_2016_Project.UserInterface.Dialogs.ManifestationTypeDetailsWindow(SelectedManifestationType);
+            showDetailDialog.Show();
         }
 
         private void EditManifestationType_Click(object sender, RoutedEventArgs e)
         {
-
+            var manifestationTypeEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationTypeDialog(SelectedManifestationType);
+            manifestationTypeEditDialog.Show();
         }
 
         private void DeleteManifestationType_Click(object sender, RoutedEventArgs e)
