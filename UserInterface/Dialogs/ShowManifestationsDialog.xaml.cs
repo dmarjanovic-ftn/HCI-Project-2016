@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
+using HCI_2016_Project.Binders;
+using HCI_2016_Project.Utils;
 using HCI_2016_Project.DataClasses;
 
 namespace HCI_2016_Project.UserInterface.Dialogs
@@ -22,23 +24,79 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     /// </summary>
     public partial class ShowManifestationsDialog : Window
     {
-        public ObservableCollection<Manifestation> Manifestations
-        {
-            get;
-            set;
-        }
+        public ObservableCollection<Manifestation> Manifestations { get; set; }
+        public Manifestation SelectedManifestation { get; set; }
+        public Boolean ButtonEnabled { get; set; }
 
         public ShowManifestationsDialog()
         {
             InitializeComponent();
+
+            SelectedManifestation = null;
+
             this.DataContext = this;
 
             Manifestations = new ObservableCollection<Manifestation>();
-            Manifestations.Add(new Manifestation { Label = "SR4", AlcoholStatus=AlcoholStatusEnum.CAN_BRING });
-            Manifestations.Add(new Manifestation { Label = "IA2", AlcoholStatus=AlcoholStatusEnum.CAN_BUY });
-            Manifestations.Add(new Manifestation { Label = "RV2", AlcoholStatus=AlcoholStatusEnum.NO_ALCOHOL });
-            Manifestations.Add(new Manifestation { Label = "IC1", AlcoholStatus=AlcoholStatusEnum.NO_ALCOHOL });
-            Manifestations.Add(new Manifestation { Label = "CR7", AlcoholStatus=AlcoholStatusEnum.CAN_BUY });
+            foreach (Manifestation m in AppData.GetInstance().Manifestations)
+            {
+                Manifestations.Add(m);
+            }
+
+            
+        }
+
+        private void ManifestationsTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            DataGridTextColumn dgtc = e.Column as DataGridTextColumn;
+            if (dgtc != null)
+            {
+                StringToImageConverter con = new StringToImageConverter();
+                (dgtc.Binding as Binding).Converter = con;
+            }
+        }
+
+        // Delete Manifestation Button
+        private void DeleteManifestation_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBox = System.Windows.MessageBox.Show(
+                "Da li ste sigurni da želite da obrišete odabranu manifestaciju (" 
+                + SelectedManifestation.Label + " " + SelectedManifestation.Name + ")?", 
+                "Potvrda brisanja", System.Windows.MessageBoxButton.YesNo);
+
+            if (messageBox == MessageBoxResult.Yes)
+            {
+                Manifestations.Remove(SelectedManifestation);
+
+                List<Manifestation> manifestations = new List<Manifestation>();
+                foreach (Manifestation manifestation in Manifestations)
+                {
+                    manifestations.Add(manifestation);
+                }
+                AppData.GetInstance().Manifestations = manifestations;
+                Serialization.SerializeManifestations();
+            }
+        }
+
+        // Edit Manifestation Button
+        private void EditManifestation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // View Details Manifestation Button
+        private void ViewDetailsManifestation_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(SelectedManifestation.Name);
+            Console.WriteLine(SelectedManifestation.Label);
+        }
+
+        private void ManifestationsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ButtonEnabled = SelectedManifestation != null;
+
+            EditManifestation.IsEnabled = ButtonEnabled;
+            DeleteManifestation.IsEnabled = ButtonEnabled;
+            ViewDetailsManifestation.IsEnabled = ButtonEnabled;
         }
     }
 }

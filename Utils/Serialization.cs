@@ -21,7 +21,7 @@ namespace HCI_2016_Project.Utils
         public static void SerializeManifestations()
         {
             var serializer = new XmlSerializer(typeof(List<Manifestation>));
-            using (var stream = File.OpenWrite(MANIFESTATIONS_FILENAME))
+            using (var stream = File.Open(MANIFESTATIONS_FILENAME, FileMode.Create))
             {
                 serializer.Serialize(stream, AppData.GetInstance().Manifestations);
             }
@@ -44,7 +44,7 @@ namespace HCI_2016_Project.Utils
         public static void SerializeManifestationTypes()
         {
             var serializer = new XmlSerializer(typeof(List<ManifestationType>));
-            using (var stream = File.OpenWrite(MANIFESTATION_TYPES_FILENAME))
+            using (var stream = File.Open(MANIFESTATION_TYPES_FILENAME, FileMode.Create))
             {
                 serializer.Serialize(stream, AppData.GetInstance().ManifestationTypes);
             }
@@ -67,7 +67,7 @@ namespace HCI_2016_Project.Utils
         public static void SerializeTags()
         {
             var serializer = new XmlSerializer(typeof(List<Tag>));
-            using (var stream = File.OpenWrite(TAGS_FILENAME))
+            using (var stream = File.Open(TAGS_FILENAME, FileMode.Create))
             {
                 serializer.Serialize(stream, AppData.GetInstance().Tags);
             }
