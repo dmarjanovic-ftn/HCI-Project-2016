@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
         xmlns:binders="clr-namespace:HCI_2016_Project.Binders"
-        Title="ShowManifestationsDialog" Height="300" Width="300">
+        Title="ShowManifestationsDialog" Height="480" Width="640">
 
     <Window.Resources>
-        <!--binders:StringToImageConverter x:Key="StringToImageConverter"/-->
         <binders:NullToBooleanConverter x:Key="MyConverter"/>
         
         <BitmapImage x:Key="View" UriSource="/Images/Icons/view_inverse.png"/>

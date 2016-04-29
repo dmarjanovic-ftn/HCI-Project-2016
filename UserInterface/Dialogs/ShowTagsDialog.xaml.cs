@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
+using HCI_2016_Project.Utils;
+using HCI_2016_Project.Binders;
 using HCI_2016_Project.DataClasses;
 
 namespace HCI_2016_Project.UserInterface.Dialogs
@@ -22,23 +24,65 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     /// </summary>
     public partial class ShowTagsDialog : Window
     {
-        public ObservableCollection<Tag> Tags
-        {
-            get;
-            set;
-        }
+        public ObservableCollection<Tag> Tags { get; set; }
+        public Tag SelectedTag { get; set; }
+        public Boolean ButtonEnabled { get; set; }
 
         public ShowTagsDialog()
         {
             InitializeComponent();
 
+            SelectedTag = null;
+
             this.DataContext = this;
+
             Tags = new ObservableCollection<Tag>();
-            Tags.Add(new Tag { Mark = "SR4", Description = "Description" });
-            Tags.Add(new Tag { Mark = "IA2", Description = "Description" });
-            Tags.Add(new Tag { Mark = "RV2", Description = "Description" });
-            Tags.Add(new Tag { Mark = "IC1", Description = "Description" });
-            Tags.Add(new Tag { Mark = "CR7", Description = "Description" });
+            foreach (Tag t in AppData.GetInstance().Tags)
+            {
+                Tags.Add(t);
+            }
+        }
+
+        private void DeleteTag_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBox = System.Windows.MessageBox.Show(
+                "Da li ste sigurni da želite da obrišete odabrani tag ("
+                + SelectedTag.Mark + ")?",
+                "Potvrda brisanja", System.Windows.MessageBoxButton.YesNo);
+
+            if (messageBox == MessageBoxResult.Yes)
+            {
+                Tags.Remove(SelectedTag);
+
+                List<Tag> tags = new List<Tag>();
+                foreach (Tag tag in Tags)
+                {
+                    tags.Add(tag);
+                }
+                AppData.GetInstance().Tags = tags;
+                Serialization.SerializeTags();
+            }
+        }
+
+        private void EditTag_Click(object sender, RoutedEventArgs e)
+        {
+            //var tagEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog(SelectedTag);
+            //tagEditDialog.Show();
+        }
+
+        private void ViewDetailsTag_Click(object sender, RoutedEventArgs e)
+        {
+            //var showDetailDialog = new HCI_2016_Project.UserInterface.Dialogs.TagDetailsWindow(SelectedTag);
+            //showDetailDialog.Show();
+        }
+
+        private void TagsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ButtonEnabled = SelectedTag != null;
+
+            EditTag.IsEnabled = ButtonEnabled;
+            DeleteTag.IsEnabled = ButtonEnabled;
+            ViewDetailsTag.IsEnabled = ButtonEnabled;
         }
     }
 }
