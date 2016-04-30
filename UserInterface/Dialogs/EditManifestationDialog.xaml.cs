@@ -26,9 +26,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         public class ViewModel
         {
-            public Manifestation Manifestation { get; set; }
+            public Manifestation Manifestation   { get; set; }
             public List<ManifestationType> Types { get; set; }
-            public String ManifestationOldLabel { get; set; }
+            public String ManifestationOldLabel  { get; set; }
+            public List<Tag> AvailableTags       { get; set; }
+            public List<CheckBox> AllTags        { get; set; }
         }
 
         public EditManifestationDialog(Manifestation manifestation)
@@ -39,14 +41,67 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
             vm.Types = AppData.GetInstance().ManifestationTypes;
             vm.Manifestation = manifestation;
+            vm.AvailableTags = AppData.GetInstance().Tags;
+            vm.AllTags = new List<CheckBox>();
             vm.ManifestationOldLabel = manifestation.Label;
 
             this.DataContext = vm;
+
+            int tagNo = 0;
+            foreach (Tag tag in vm.AvailableTags)
+            {
+                if (tagNo % 6 == 0)
+                    ListOfTags.RowDefinitions.Add(new RowDefinition());
+
+                // Define StackPanel to CheckBox
+                StackPanel sp = new StackPanel();
+                System.Drawing.Color BackColor = System.Drawing.ColorTranslator.FromHtml(tag.Color);
+                sp.Background = new SolidColorBrush(Color.FromArgb(BackColor.A, BackColor.R, BackColor.G, BackColor.B));
+                sp.MinHeight = 28;
+                sp.MaxHeight = 28;
+                sp.Margin = new System.Windows.Thickness(5, 2, 5, 2);
+
+                // Define tag which is CheckVox
+                CheckBox cb = new CheckBox();
+                // cb.Name = tagNo.ToString();
+                cb.Margin = new System.Windows.Thickness(5, 5, 5, 5);
+                cb.Content = tag.Mark;
+                cb.Foreground = Brushes.White;
+                foreach (Tag markedTag in vm.Manifestation.Tags)
+                {
+                    if (markedTag.Mark == tag.Mark)
+                    {
+                        cb.IsChecked = true;
+                        break;
+                    }
+                }
+                vm.AllTags.Add(cb);
+
+                sp.Children.Add(cb);
+                Grid.SetColumn(sp, tagNo % 6);
+                Grid.SetRow(sp, tagNo / 6);
+                ListOfTags.Children.Add(sp);
+                ++tagNo;
+            }
         }
 
         // Save Edited Manifestation
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+
+            if (null == vm.Manifestation.IconSrc)
+            {
+                vm.Manifestation.IconSrc = vm.Manifestation.Type.IconSrc;
+            }
+
+            for (int i = 0; i < vm.AllTags.Count; ++i)
+            {
+                if (vm.AllTags[i].IsChecked == true)
+                {
+                    vm.Manifestation.Tags.Add(vm.AvailableTags[i]);
+                }
+            }
+
             List<Manifestation> manifestations = new List<Manifestation>();
             foreach (Manifestation manifestation in AppData.GetInstance().Manifestations)
             {

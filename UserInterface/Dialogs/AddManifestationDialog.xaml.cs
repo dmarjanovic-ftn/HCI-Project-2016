@@ -50,7 +50,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             int tagNo = 0;
             foreach (Tag tag in vm.AvailableTags)
             {
-                if (tagNo % 3 == 0)
+                if (tagNo % 6 == 0)
                     ListOfTags.RowDefinitions.Add(new RowDefinition());
 
                 // Define StackPanel to CheckBox
@@ -93,7 +93,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 }
             }
 
-                AppData.GetInstance().Manifestations.Add(vm.Manifestation);
+            AppData.GetInstance().Manifestations.Add(vm.Manifestation);
             Serialization.SerializeManifestations();
             this.Close();
         }
