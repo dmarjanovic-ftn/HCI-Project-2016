@@ -58,6 +58,7 @@ namespace HCI_2016_Project.DataClasses
         #region Manifestation Default Constructor
         public Manifestation()
         {
+            this.tags = new List<Tag>();
             this.x = -1;
             this.y = -1;
         }
@@ -272,6 +273,25 @@ namespace HCI_2016_Project.DataClasses
         }
         #endregion
 
+        #region Tags Getter and Setter
+        public List<Tag> Tags
+        {
+            get
+            {
+                return tags;
+            }
+
+            set
+            {
+                if (value != tags)
+                {
+                    tags = value;
+                    OnPropertyChanged("Tags");
+                }
+            }
+        }
+        #endregion
+
         #region X Coordinate Getter and Setter
         public int X
         {
@@ -323,7 +343,7 @@ namespace HCI_2016_Project.DataClasses
         private AlcoholStatusEnum alcoholStatus;
         private PriceCategoryEnum priceCategory;
         private int guestsExpected;
-        // private List<Tag> tags;
+        private List<Tag> tags;
         private int x;
         private int y;
         #endregion

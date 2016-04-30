@@ -4,35 +4,36 @@
         xmlns:p="clr-namespace:HCI_2016_Project.Properties"
         xmlns:local="clr-namespace:HCI_2016_Project.UserControls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 
+        xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
         Title="Dodaj manifestaciju" Height="580" Width="980">
-    
+
     <Window.Resources>
-		<DataTemplate x:Key="NameTokenTemplate">
-			<DataTemplate.Resources>
+        <DataTemplate x:Key="NameTokenTemplate">
+            <DataTemplate.Resources>
                 <Storyboard x:Key="OnLoaded1">
                 </Storyboard>
-			</DataTemplate.Resources>
+            </DataTemplate.Resources>
             <Border x:Name="border" Height="Auto" Margin="3,4,0,3" Padding="2,4">
                 <Border.Background>
                     <SolidColorBrush Color="#34495E"></SolidColorBrush>
                 </Border.Background>
                 <Grid HorizontalAlignment="Left" Width="Auto">
-					<Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-					<TextBlock TextWrapping="NoWrap" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,0" Foreground="#FFFFFF"/>
-				</Grid>
-			</Border>
-			<DataTemplate.Triggers>
-				<EventTrigger RoutedEvent="FrameworkElement.Loaded">
-					<BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
-				</EventTrigger>
-			</DataTemplate.Triggers>
-		</DataTemplate>
-	</Window.Resources>
-
+                    <TextBlock TextWrapping="NoWrap" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,0" Foreground="#FFFFFF"/>
+                </Grid>
+            </Border>
+            <DataTemplate.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
+                </EventTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid Margin="0">
         <Grid.Resources>
             <binder:EnumBooleanConverter x:Key="enumBinder"/>
@@ -337,17 +338,25 @@
         <!-- Polje za unos TAGOVA za manifestaciju -->
         <Label Grid.Row="11" HorizontalAlignment="Right">
             <TextBlock>
-                <Run Text="Unesite tagove za manifestaciju:"/>
+                <Run Text="Odaberi tagove za manifestaciju:"/>
                 <Run Foreground="Red" Text="*"/>
             </TextBlock>
         </Label>
-        <local:TokenizingControl Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" x:Name="Tokenizer" Margin="0,0,10,5" TokenTemplate="{DynamicResource NameTokenTemplate}" VerticalScrollBarVisibility="Auto">
-            <FlowDocument>
-                <Paragraph>
-                    <Run />
-                </Paragraph>
-            </FlowDocument>
-        </local:TokenizingControl>
+
+        <Grid Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+            <ScrollViewer>
+                <Grid Name="ListOfTags" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
 
         <Button Name="Save"   Grid.Row="12" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">Sačuvaj</Button>
         <Button Name="Cancel" Grid.Row="12" Grid.Column="3" Margin="2,2,10,10" Padding="4,4,4,4" Click="Cancel_Click">Odustani</Button>

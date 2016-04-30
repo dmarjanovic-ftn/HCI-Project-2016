@@ -28,8 +28,10 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         public class ViewModel
         {
-            public Manifestation Manifestation      { get; set; }
-            public List<ManifestationType> Types    { get; set; }
+            public Manifestation Manifestation   { get; set; }
+            public List<ManifestationType> Types { get; set; }
+            public List<Tag> AvailableTags       { get; set; }
+            public List<CheckBox> AllTags        { get; set; }
         }
 
         public AddManifestationDialog()
@@ -40,23 +42,39 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
             vm.Types = AppData.GetInstance().ManifestationTypes;
             vm.Manifestation = new Manifestation();
+            vm.AvailableTags = AppData.GetInstance().Tags;
+            vm.AllTags = new List<CheckBox>();
 
             this.DataContext = vm;
 
-            Loaded += delegate
+            int tagNo = 0;
+            foreach (Tag tag in vm.AvailableTags)
             {
-                Tokenizer.Focus();
-            };
+                if (tagNo % 3 == 0)
+                    ListOfTags.RowDefinitions.Add(new RowDefinition());
 
-            Tokenizer.TokenMatcher = text =>
-            {
-                if (text.EndsWith(" "))
-                {
-                    return text.Substring(0, text.Length - 1).Trim().ToLower();
-                }
+                // Define StackPanel to CheckBox
+                StackPanel sp = new StackPanel();
+                System.Drawing.Color BackColor = System.Drawing.ColorTranslator.FromHtml(tag.Color);
+                sp.Background = new SolidColorBrush(Color.FromArgb(BackColor.A, BackColor.R, BackColor.G, BackColor.B));
+                sp.MinHeight = 28;
+                sp.MaxHeight = 28;
+                sp.Margin = new System.Windows.Thickness(5, 2, 5, 2);
 
-                return null;
-            };
+                // Define tag which is CheckVox
+                CheckBox cb = new CheckBox();
+                // cb.Name = tagNo.ToString();
+                cb.Margin = new System.Windows.Thickness(5, 5, 5, 5); 
+                cb.Content = tag.Mark;
+                cb.Foreground = Brushes.White;
+                vm.AllTags.Add(cb);
+
+                sp.Children.Add(cb);
+                Grid.SetColumn(sp, tagNo % 6);
+                Grid.SetRow(sp, tagNo / 6);
+                ListOfTags.Children.Add(sp);
+                ++tagNo;
+            }
         }
 
         // Save Manifestation Button
@@ -67,7 +85,15 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 vm.Manifestation.IconSrc = vm.Manifestation.Type.IconSrc;
             }
 
-            AppData.GetInstance().Manifestations.Add(vm.Manifestation);
+            for (int i = 0; i < vm.AllTags.Count; ++i)
+            {
+                if (vm.AllTags[i].IsChecked == true)
+                {
+                    vm.Manifestation.Tags.Add(vm.AvailableTags[i]);
+                }
+            }
+
+                AppData.GetInstance().Manifestations.Add(vm.Manifestation);
             Serialization.SerializeManifestations();
             this.Close();
         }
