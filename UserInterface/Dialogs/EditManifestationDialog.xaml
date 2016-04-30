@@ -6,7 +6,7 @@
         
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
-        Title="Izmijeni manifestaciju" Height="580" Width="980">
+        Loaded="Window_Loaded" Title="Izmijeni manifestaciju" Height="580" Width="980">
 
     <Window.Resources>
         <DataTemplate x:Key="NameTokenTemplate">
@@ -205,8 +205,8 @@
             </TextBlock>
         </Label>
         <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5"
-                  ItemsSource="{Binding Path=Types}" 
-                  SelectedValue="{Binding Path=Manifestation.Type}">
+                  Name="ManifestationTypeCb" ItemsSource="{Binding Path=Types}" 
+                  SelectedValue="{Binding Path=Manifestation.Type, Mode=TwoWay}">
         </ComboBox>
 
         <!-- Polje za odabir datuma odrzavanja manifestacije -->

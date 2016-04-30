@@ -150,5 +150,18 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 IconPath.Text = filename;
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < vm.Types.Count; ++i)
+            {
+                if (vm.Types[i].Label == vm.Manifestation.Type.Label)
+                {
+                    Console.WriteLine("AAAA");
+                    ManifestationTypeCb.SelectedItem = ManifestationTypeCb.Items.GetItemAt(i);
+                    break;
+                }
+            }
+        }
     }
 }
