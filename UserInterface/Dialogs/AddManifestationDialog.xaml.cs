@@ -62,6 +62,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         // Save Manifestation Button
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if (null == vm.Manifestation.IconSrc)
+            {
+                vm.Manifestation.IconSrc = vm.Manifestation.Type.IconSrc;
+            }
+
             AppData.GetInstance().Manifestations.Add(vm.Manifestation);
             Serialization.SerializeManifestations();
             this.Close();

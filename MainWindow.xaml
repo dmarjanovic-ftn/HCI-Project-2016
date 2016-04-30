@@ -25,17 +25,17 @@
             <MenuItem Header="_Manifestacija">
                 <MenuItem Header="_Dodaj manifestaciju" Click="MenuItem_Click_0"></MenuItem>
                 <MenuItem Header="_Izmijeni manifestaciju" Click="MenuItem_Click_1"></MenuItem>
-                <MenuItem Header="_Prikaži manifestaciju" Click="MenuItem_Click_2"></MenuItem>
+                <MenuItem Header="_Prikaži manifestacije" Click="MenuItem_Click_2"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Tag">
                 <MenuItem Header="_Dodaj tag" Click="MenuItem_Click_3"></MenuItem>
                 <MenuItem Header="_Izmijeni tag" Click="MenuItem_Click_4"></MenuItem>
-                <MenuItem Header="_Prikaži tag" Click="MenuItem_Click_5"></MenuItem>
+                <MenuItem Header="_Prikaži tagove" Click="MenuItem_Click_5"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Tip manifestacije">
                 <MenuItem Header="_Dodaj tip manifestacije" Click="MenuItem_Click_6"></MenuItem>
                 <MenuItem Header="_Izmijeni tip manifestacije" Click="MenuItem_Click_7"></MenuItem>
-                <MenuItem Header="_Prikaži tip manifestacije" Click="MenuItem_Click_8"></MenuItem>
+                <MenuItem Header="_Prikaži tipove manifestacija" Click="MenuItem_Click_8"></MenuItem>
             </MenuItem>
 
             <MenuItem Header="_Pomoć" HorizontalAlignment="Right">
