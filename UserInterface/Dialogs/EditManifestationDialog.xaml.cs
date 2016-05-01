@@ -94,6 +94,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 vm.Manifestation.IconSrc = vm.Manifestation.Type.IconSrc;
             }
 
+            vm.Manifestation.Tags.Clear();
             for (int i = 0; i < vm.AllTags.Count; ++i)
             {
                 if (vm.AllTags[i].IsChecked == true)
@@ -157,7 +158,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             {
                 if (vm.Types[i].Label == vm.Manifestation.Type.Label)
                 {
-                    Console.WriteLine("AAAA");
                     ManifestationTypeCb.SelectedItem = ManifestationTypeCb.Items.GetItemAt(i);
                     break;
                 }
