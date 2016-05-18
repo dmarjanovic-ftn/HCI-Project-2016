@@ -112,8 +112,39 @@
                     </Border>
                 </ToolBar>
             </ToolBarTray>
-            <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                <Image Source="Images\bn-map.png"/>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid Name="MainWindowGrid" Background="LightSteelBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="192"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Toolbar left side with all manifestations -->
+                    <ItemsControl x:Name="ManifestationItems" Grid.Column="0" ItemsSource="{Binding Path=Manifestations}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Path=IconSrc}" Height="24" Width="24" Margin="4,4,4,4" Stretch="UniformToFill"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Path=Label}"/>
+                                        <TextBlock Text="{Binding Path=Name}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Drop Items area -->
+                    <Image Source="Images\bn-map.png" Grid.Column="1" Stretch="UniformToFill"/>
+                </Grid>
             </Grid>
         </DockPanel>
     </DockPanel>

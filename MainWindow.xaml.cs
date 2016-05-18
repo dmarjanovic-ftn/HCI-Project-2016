@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 using HCI_2016_Project.DataClasses;
 using HCI_2016_Project.Utils;
@@ -24,16 +25,18 @@ namespace HCI_2016_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel vm;
+
+        public class ViewModel
+        {
+            public ObservableCollection<Manifestation> Manifestations { get; set; }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
 
-            // AppData.MakeFiles();
-
-            #region Deserialization of Data
-            
-            #endregion
-
+            // this.DataContext = vm;
         }
 
         private void MenuItem_Click_0(object sender, RoutedEventArgs e)
@@ -111,6 +114,16 @@ namespace HCI_2016_Project
             Serialization.DeserializeManifestationTypes();
             Serialization.DeserializeTags();
             Serialization.DeserializeManifestations();
+
+            vm = new ViewModel();
+            vm.Manifestations = new ObservableCollection<Manifestation>();
+            foreach (Manifestation manifestation in AppData.GetInstance().Manifestations)
+            {
+                vm.Manifestations.Add(manifestation);
+            }
+
+            Console.WriteLine(vm.Manifestations.Count);
+            this.DataContext = vm;
         }
     }
 }
