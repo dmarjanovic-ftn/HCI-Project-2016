@@ -244,6 +244,31 @@
     <Resource Include="Images\Icons\eye.png" />
     <Resource Include="Images\Icons\pencil_small.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\basket.png" />
+    <Resource Include="Images\Icons\basket_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\book.png" />
+    <Resource Include="Images\Icons\book_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\calendar.png" />
+    <Resource Include="Images\Icons\calendar_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\tag_blue.png" />
+    <Resource Include="Images\Icons\tag_blue_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\bullet_go.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

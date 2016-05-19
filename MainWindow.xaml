@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:commands="clr-namespace:HCI_2016_Project.Commands"
         
+        Icon="Images/favicon.ico"
         Title="MainWindow" Height="480" Width="640"
         Loaded="Window_Loaded">
     
@@ -12,6 +13,16 @@
         <BitmapImage x:Key="Show"   UriSource="/Images/Icons/eye.png"/>
         <BitmapImage x:Key="Remove" UriSource="/Images/Icons/cross.png"/>
         <BitmapImage x:Key="Edit"   UriSource="/Images/Icons/pencil_small.png"/>
+        
+        <!-- Menu Icons -->
+        <BitmapImage x:Key="Menu_AddMan"  UriSource="/Images/Icons/calendar_add.png"/>
+        <BitmapImage x:Key="Menu_ViewMan" UriSource="/Images/Icons/calendar.png"/>
+        <BitmapImage x:Key="Menu_AddTag"  UriSource="/Images/Icons/tag_blue_add.png"/>
+        <BitmapImage x:Key="Menu_ViewTag" UriSource="/Images/Icons/tag_blue.png"/>
+        <BitmapImage x:Key="Menu_AddTyp"  UriSource="/Images/Icons/book_add.png"/>
+        <BitmapImage x:Key="Menu_ViewTyp" UriSource="/Images/Icons/book.png"/>
+        <BitmapImage x:Key="Menu_DemoMod" UriSource="/Images/Icons/bullet_go.png"/>
+        <BitmapImage x:Key="Menu_Help"    UriSource="/Images/Icons/help.png"/>
 
         <Style TargetType="Button" x:Key="ToolbarButton" >
             <Setter Property="Margin" Value="1,2,1,2"/>
@@ -19,9 +30,6 @@
         </Style>
     </Window.Resources>
     
-    <!--Window.CommandBindings>
-        <CommandBinding Command="commands:Commands."
-    </Window.CommandBindings-->
     <DockPanel>
         <Menu DockPanel.Dock ="Top" Background="#ddd">
             <Menu.ItemsPanel>
@@ -33,24 +41,54 @@
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="_Manifestacija">
-                <MenuItem Header="_Dodaj manifestaciju" Click="MenuItem_Click_0"></MenuItem>
-                <MenuItem Header="_Izmijeni manifestaciju" Click="MenuItem_Click_1"></MenuItem>
-                <MenuItem Header="_Prikaži manifestacije" Click="MenuItem_Click_2"></MenuItem>
+                <MenuItem Header="_Dodaj manifestaciju" Click="MenuItem_Click_0">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource Menu_AddMan}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Prikaži manifestacije" Click="MenuItem_Click_2">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ResourceKey=Menu_ViewMan}" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="_Tag">
-                <MenuItem Header="_Dodaj tag" Click="MenuItem_Click_3"></MenuItem>
-                <MenuItem Header="_Izmijeni tag" Click="MenuItem_Click_4"></MenuItem>
-                <MenuItem Header="_Prikaži tagove" Click="MenuItem_Click_5"></MenuItem>
+                <MenuItem Header="_Dodaj tag" Click="MenuItem_Click_3">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ResourceKey=Menu_AddTag}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Prikaži tagove" Click="MenuItem_Click_5">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ResourceKey=Menu_ViewTag}" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="_Tip manifestacije">
-                <MenuItem Header="_Dodaj tip manifestacije" Click="MenuItem_Click_6"></MenuItem>
-                <MenuItem Header="_Izmijeni tip manifestacije" Click="MenuItem_Click_7"></MenuItem>
-                <MenuItem Header="_Prikaži tipove manifestacija" Click="MenuItem_Click_8"></MenuItem>
+                <MenuItem Header="_Dodaj tip manifestacije" Click="MenuItem_Click_6">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ResourceKey=Menu_AddTyp}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Prikaži tipove manifestacija" Click="MenuItem_Click_8">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ResourceKey=Menu_ViewTyp}" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
 
-            <MenuItem Header="_Pomoć" HorizontalAlignment="Right">
+            <MenuItem Header="_Pomoć">
                 <!-- Poravnano udesno -->
-                <MenuItem InputGestureText="F2" Header="Demo mod"/>
+                <MenuItem InputGestureText="F5" Header="Demo mod">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ResourceKey=Menu_DemoMod}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem InputGestureText="F1" Header="Online pomoć">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ResourceKey=Menu_Help}" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <DockPanel>
@@ -60,7 +98,7 @@
                     <!-- Toolbar sekcija za manifestacije -->
                     <Border BorderBrush="#ccc" BorderThickness="1">
                         <StackPanel Orientation="Vertical" Background="#eee">
-                            <Label Background="#eee">Manifestacija</Label>
+                            <Label Background="#eee">Manifestacije</Label>
                             <StackPanel Orientation="Horizontal" Height="32">
                                 <!-- Toolbar manifestacija dugmad -->
                                 <Button ToolTip="Dodaj novu manifestaciju" Style="{StaticResource ToolbarButton}">
@@ -72,49 +110,49 @@
                                 <Button ToolTip="Pregled detalja o manifestacijama" Style="{StaticResource ToolbarButton}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=View}"/>
-                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj</TextBlock>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj sve</TextBlock>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
                     </Border>
-                    <!-- Toolbar sekcija za manifestacije -->
+                    <!-- Toolbar sekcija za tagove -->
                     <Border BorderBrush="#ccc" BorderThickness="1">
                         <StackPanel Orientation="Vertical" Background="#eee">
-                            <Label Background="#eee">Kategorija</Label>
+                            <Label Background="#eee">Tagovi</Label>
                             <StackPanel Orientation="Horizontal" Height="32">
-                                <!-- Toolbar manifestacija dugmad -->
-                                <Button ToolTip="Dodaj novu manifestaciju" Style="{StaticResource ToolbarButton}">
+                                <!-- Toolbar tagovi dugmad -->
+                                <Button ToolTip="Dodaj novi tag za manifestaciju" Style="{StaticResource ToolbarButton}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=Add}"/>
                                         <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button ToolTip="Pregled detalja o manifestacijama" Style="{StaticResource ToolbarButton}">
+                                <Button ToolTip="Pregled detalja o svim tagovima" Style="{StaticResource ToolbarButton}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=View}"/>
-                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj</TextBlock>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj sve</TextBlock>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
                     </Border>
-                    <!-- Toolbar sekcija za manifestacije -->
+                    <!-- Toolbar sekcija za tipove manifestacija -->
                     <Border BorderBrush="#ccc" BorderThickness="1">
                         <StackPanel Orientation="Vertical" Background="#eee">
-                            <Label Background="#eee">Oznaka</Label>
+                            <Label Background="#eee">Tipovi manifestacije</Label>
                             <StackPanel Orientation="Horizontal" Height="32">
-                                <!-- Toolbar manifestacija dugmad -->
-                                <Button ToolTip="Dodaj novu manifestaciju" Style="{StaticResource ToolbarButton}">
+                                <!-- Toolbar tipova manifestacija dugmad -->
+                                <Button ToolTip="Dodaj novi tip manifestacije" Style="{StaticResource ToolbarButton}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=Add}"/>
                                         <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button ToolTip="Pregled detalja o manifestacijama" Style="{StaticResource ToolbarButton}">
+                                <Button ToolTip="Pregled detalja o tipovima manifestacija" Style="{StaticResource ToolbarButton}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=View}"/>
-                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj</TextBlock>
+                                        <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Pogledaj sve</TextBlock>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>

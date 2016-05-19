@@ -53,12 +53,6 @@ namespace HCI_2016_Project
             s.Show();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationDialog(new Manifestation());
-            s.Show();
-        }
-
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
             var s = new HCI_2016_Project.UserInterface.Dialogs.ShowManifestationsDialog();
@@ -71,12 +65,6 @@ namespace HCI_2016_Project
             s.Show();
         }
 
-        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog(new Tag());
-            s.Show();
-        }
-
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
             var s = new HCI_2016_Project.UserInterface.Dialogs.ShowTagsDialog();
@@ -86,12 +74,6 @@ namespace HCI_2016_Project
         private void MenuItem_Click_6(object sender, RoutedEventArgs e)
         {
             var s = new HCI_2016_Project.UserInterface.Dialogs.AddManifestationTypeDialog();
-            s.Show();
-        }
-
-        private void MenuItem_Click_7(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationTypeDialog(new ManifestationType());
             s.Show();
         }
 
