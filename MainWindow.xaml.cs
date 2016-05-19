@@ -29,7 +29,7 @@ namespace HCI_2016_Project
         private const int OFFSET    = ICON_SIZE / 2;
 
         private const string FROM_SIDEBAR = "ManifestationDraggedFromSidebar";
-        private const string FROM_CANVAS = "ManifestationDraggedFromCanvas";
+        private const string FROM_CANVAS  = "ManifestationDraggedFromCanvas";
 
         private ViewModel vm;
 
@@ -39,6 +39,7 @@ namespace HCI_2016_Project
         {
             public ObservableCollection<Manifestation> Manifestations { get; set; }
             public ObservableCollection<Manifestation> DroppedManifestations { get; set; }
+            public Manifestation ClickedManifestation { get; set; }
         }
 
         public MainWindow()
@@ -314,14 +315,39 @@ namespace HCI_2016_Project
         private void ManifestationsMap_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point mousePosition = e.GetPosition(ManifestationsMap);
-            Manifestation clickedManifestation = ClickedManifestation((int)mousePosition.X, (int)mousePosition.Y);
+            vm.ClickedManifestation = ClickedManifestation((int)mousePosition.X, (int)mousePosition.Y);
             ContextMenu cm = ManifestationContextMenu;
 
-            if (clickedManifestation != null)
+            if (vm.ClickedManifestation != null)
             {
                 cm.PlacementTarget = sender as Canvas;
                 cm.IsOpen = true;
             }
+        }
+
+        // Click on Remove in ContextMenu
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            vm.DroppedManifestations.Remove(vm.ClickedManifestation);
+
+            vm.ClickedManifestation.X = -1;
+            vm.ClickedManifestation.Y = -1;
+
+            vm.Manifestations.Add(vm.ClickedManifestation);
+
+            AppData.ChangeDroppedManifestation(vm.ClickedManifestation);
+
+            Canvas canvas = ManifestationsMap;
+            UIElement remove = null;
+            foreach (UIElement elem in canvas.Children)
+            {
+                if (elem.Uid == vm.ClickedManifestation.Label)
+                {
+                    remove = elem;
+                    break;
+                }
+            }
+            canvas.Children.Remove(remove);
         }
     }
 }

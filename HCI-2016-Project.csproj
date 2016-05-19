@@ -71,6 +71,7 @@
     <Compile Include="Binders\EnumBooleanConverter.cs" />
     <Compile Include="Binders\NullToBooleanConverter.cs" />
     <Compile Include="Binders\StringToImageConverter.cs" />
+    <Compile Include="Commands\Commands.cs" />
     <Compile Include="DataClasses\AppData.cs" />
     <Compile Include="UserInterface\Dialogs\AddManifestationDialog.xaml.cs">
       <DependentUpon>AddManifestationDialog.xaml</DependentUpon>
