@@ -126,15 +126,15 @@
                     <ItemsControl x:Name="ManifestationItems" Grid.Column="0" ItemsSource="{Binding Path=Manifestations}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical"/>
+                                <StackPanel Orientation="Vertical" Background="#34495E"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Background="#EEEEEE" Margin="1,1,1,0" Cursor="Hand" Tag="{Binding Path=Label}" PreviewMouseLeftButtonDown="ManifestationItem_PreviewMouseLeftButtonDown" MouseMove="ManifestationItem_MouseMove">
                                     <Image Source="{Binding Path=IconSrc}" Height="24" Width="24" Margin="4,4,4,4" Stretch="UniformToFill"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Path=Label}"/>
+                                    <StackPanel Orientation="Vertical" Margin="0,4,2,4">
+                                        <TextBlock Text="{Binding Path=Label}" FontWeight="Bold"/>
                                         <TextBlock Text="{Binding Path=Name}"/>
                                     </StackPanel>
                                 </StackPanel>
@@ -143,7 +143,11 @@
                     </ItemsControl>
 
                     <!-- Drop Items area -->
-                    <Image Source="Images\bn-map.png" Grid.Column="1" Stretch="UniformToFill"/>
+                    <Canvas Name="ManifestationsMap" Grid.Column="1" AllowDrop="True" DragEnter="ManifestationsMap_DragEnter" Drop="ManifestationsMap_Drop">
+                        <Canvas.Background>
+                            <ImageBrush ImageSource="Images\bn-map.png" Stretch="UniformToFill"/>
+                        </Canvas.Background>
+                    </Canvas>
                 </Grid>
             </Grid>
         </DockPanel>
