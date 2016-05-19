@@ -47,42 +47,6 @@ namespace HCI_2016_Project
             InitializeComponent();
         }
 
-        private void MenuItem_Click_0(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.AddManifestationDialog();
-            s.Show();
-        }
-
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.ShowManifestationsDialog();
-            s.Show();
-        }
-
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.AddTagDialog();
-            s.Show();
-        }
-
-        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.ShowTagsDialog();
-            s.Show();
-        }
-
-        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.AddManifestationTypeDialog();
-            s.Show();
-        }
-
-        private void MenuItem_Click_8(object sender, RoutedEventArgs e)
-        {
-            var s = new HCI_2016_Project.UserInterface.Dialogs.ShowManifestationsTypeDialog();
-            s.Show();
-        }
-
         private void ToolBar_Loaded(object sender, RoutedEventArgs e)
         {
             ToolBar toolBar = sender as ToolBar;
