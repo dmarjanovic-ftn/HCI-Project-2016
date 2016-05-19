@@ -25,8 +25,11 @@ namespace HCI_2016_Project
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int ICON_SIZE  = 20;
-        private const int OFFSET     = ICON_SIZE / 2;
+        private const int ICON_SIZE = 20;
+        private const int OFFSET    = ICON_SIZE / 2;
+
+        private const string FROM_SIDEBAR = "ManifestationDraggedFromSidebar";
+        private const string FROM_CANVAS = "ManifestationDraggedFromCanvas";
 
         private ViewModel vm;
 
@@ -41,8 +44,6 @@ namespace HCI_2016_Project
         public MainWindow()
         {
             InitializeComponent();
-
-            // this.DataContext = vm;
         }
 
         private void MenuItem_Click_0(object sender, RoutedEventArgs e)
@@ -127,11 +128,47 @@ namespace HCI_2016_Project
 
             foreach (Manifestation manifestation in AppData.GetInstance().Manifestations)
             {
-                vm.Manifestations.Add(manifestation);
+                if (manifestation.X == -1 && manifestation.Y == -1)
+                {
+                    vm.Manifestations.Add(manifestation);
+                }
+                else
+                {
+                    Canvas canvas = ManifestationsMap;
+
+                    Image ManifestationIcon = new Image
+                    {
+                        Width = ICON_SIZE,
+                        Height = ICON_SIZE,
+                        Uid = manifestation.Label,
+                        Source = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute)),
+                    };
+
+                    canvas.Children.Add(ManifestationIcon);
+
+                    Canvas.SetLeft(ManifestationIcon, manifestation.X);
+                    Canvas.SetTop(ManifestationIcon, manifestation.Y);
+
+                    vm.DroppedManifestations.Add(manifestation);
+                }
             }
 
-            Console.WriteLine(vm.Manifestations.Count);
             this.DataContext = vm;
+        }
+
+        // Return clicked Manifestation on canvas. Otherwise return null.
+        private Manifestation ClickedManifestation(int x, int y)
+        {
+            foreach (Manifestation manifestation in vm.DroppedManifestations)
+            {
+                if (Math.Sqrt(Math.Pow((x - manifestation.X - OFFSET), 2) + 
+                    Math.Pow((y - manifestation.Y - OFFSET), 2)) < 1.5*OFFSET)
+                {
+                    return manifestation;
+                }
+            }
+
+            return null;
         }
 
         // Click on Manifestation on left sidebar
@@ -139,21 +176,12 @@ namespace HCI_2016_Project
         {
             start = e.GetPosition(null);
 
-            StackPanel test = sender as StackPanel;
-            
-            Console.WriteLine(test.Tag);
-        }
-
-        // Move Manifestation Item
-        private void ManifestationItem_MouseMove(object sender, MouseEventArgs e)
-        {
-            // Console.WriteLine("moving...");
-
             StackPanel manifestationPanel = sender as StackPanel;
             Manifestation dataObject = null;
+
             foreach (Manifestation manifestation in vm.Manifestations)
             {
-                if ((string) manifestationPanel.Tag == manifestation.Label)
+                if ((string)manifestationPanel.Tag == manifestation.Label)
                 {
                     dataObject = manifestation;
                     break;
@@ -161,28 +189,44 @@ namespace HCI_2016_Project
             }
 
             // Initialize the drag & drop operation
-            DataObject data = new DataObject("myFormat", dataObject);
+            DataObject data = new DataObject(FROM_SIDEBAR, dataObject);
             DragDrop.DoDragDrop(manifestationPanel, data, DragDropEffects.Move);
+        }
+
+        // Move Manifestation Item
+        private void ManifestationItem_MouseMove(object sender, MouseEventArgs e)
+        {
+            
         }
 
         // Drag Manifestation Item into Manifestations' Map
         private void ManifestationsMap_DragEnter(object sender, DragEventArgs e)
         {
-            Console.WriteLine("test");
+
         }
 
         // Drop Manifestation Item
         private void ManifestationsMap_Drop(object sender, DragEventArgs e)
         {
-            Console.WriteLine("dropped");
-
             Point dropPosition = e.GetPosition(ManifestationsMap);
 
-            if (e.Data.GetDataPresent("myFormat"))
+            // There's another manifestation on this position
+            if (ClickedManifestation((int)dropPosition.X, (int)dropPosition.Y) != null)
             {
-                Manifestation manifestation = e.Data.GetData("myFormat") as Manifestation;
+                return;
+            }
+
+            if (e.Data.GetDataPresent(FROM_SIDEBAR))
+            {
+                Manifestation manifestation = e.Data.GetData(FROM_SIDEBAR) as Manifestation;
+
                 vm.Manifestations.Remove(manifestation);
-                Console.WriteLine(manifestation.Name);
+                manifestation.X = (int) dropPosition.X - OFFSET;
+                manifestation.Y = (int) dropPosition.Y - OFFSET;
+
+                AppData.ChangeDroppedManifestation(manifestation);
+
+                vm.DroppedManifestations.Add(manifestation);
 
                 Canvas canvas = this.ManifestationsMap;
 
@@ -190,25 +234,93 @@ namespace HCI_2016_Project
                 {
                     Width  = ICON_SIZE,
                     Height = ICON_SIZE,
-                    //Name = manifestation.Name,
+                    Uid    = manifestation.Label,
                     Source = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute)),
                 };
-                /*BitmapImage icon = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute));
-                Image ManifestationIcon*/
-
-                /*Ellipse r = new Ellipse();
-                r.Height=10;
-                r.Width=10;
-                r.Stroke =Brushes.Black;*/
 
                 canvas.Children.Add(ManifestationIcon);
 
-                Canvas.SetLeft(ManifestationIcon, dropPosition.X - OFFSET);
-                Canvas.SetTop(ManifestationIcon, dropPosition.Y - OFFSET);
+                Canvas.SetLeft(ManifestationIcon, manifestation.X);
+                Canvas.SetTop(ManifestationIcon, manifestation.Y);
 
-                /*root.Children.Add(e);
-                Y +=10;*/
-                //Studenti2.Add(student);
+                return;
+            }
+            
+            if (e.Data.GetDataPresent(FROM_CANVAS))
+            {
+                Manifestation manifestation = e.Data.GetData(FROM_CANVAS) as Manifestation;
+
+                vm.DroppedManifestations.Remove(manifestation);
+                manifestation.X = (int)dropPosition.X - OFFSET;
+                manifestation.Y = (int)dropPosition.Y - OFFSET;
+
+                AppData.ChangeDroppedManifestation(manifestation);
+                vm.DroppedManifestations.Add(manifestation);
+
+                Canvas canvas = this.ManifestationsMap;
+
+                UIElement remove = null;
+                foreach (UIElement elem in canvas.Children) {
+                    if (elem.Uid == manifestation.Label)
+                    {
+                        remove = elem;
+                        break;
+                    }
+                }
+                canvas.Children.Remove(remove);
+
+                Image ManifestationIcon = new Image
+                {
+                    Width  = ICON_SIZE,
+                    Height = ICON_SIZE,
+                    Uid    = manifestation.Label,
+                    Source = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute)),
+                };
+
+                canvas.Children.Add(ManifestationIcon);
+
+                Canvas.SetLeft(ManifestationIcon, manifestation.X);
+                Canvas.SetTop(ManifestationIcon, manifestation.Y);
+
+                return;
+            }
+        }
+
+        // Click on Canvas of Manfestations' Map
+        private void ManifestationsMap_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            start = e.GetPosition(null);
+
+            Canvas map = sender as Canvas;
+            Manifestation dataObject = null;
+            Point mousePosition = e.GetPosition(ManifestationsMap);
+
+            dataObject = ClickedManifestation((int) mousePosition.X, (int) mousePosition.Y);
+
+            // Initialize the drag & drop operation
+            if (dataObject != null)
+            {
+                DataObject data = new DataObject(FROM_CANVAS, dataObject);
+                DragDrop.DoDragDrop(map, data, DragDropEffects.Move);
+            }
+        }
+
+        // Drag Manifestation on ManifestationsMap
+        private void ManifestationsMap_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void ManifestationsMap_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point mousePosition = e.GetPosition(ManifestationsMap);
+            Manifestation clickedManifestation = ClickedManifestation((int)mousePosition.X, (int)mousePosition.Y);
+            ContextMenu cm = ManifestationContextMenu;
+
+            if (clickedManifestation != null)
+            {
+                cm.PlacementTarget = sender as Canvas;
+                cm.IsOpen = true;
             }
         }
     }

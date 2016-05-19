@@ -40,6 +40,21 @@ namespace HCI_2016_Project.DataClasses
             return instance;
         }
 
+        public static void ChangeDroppedManifestation(Manifestation manifestation)
+        {
+            foreach (Manifestation m in instance.Manifestations)
+            {
+                if (m.Label == manifestation.Label)
+                {
+                    m.X = manifestation.X;
+                    m.Y = manifestation.Y;
+                    break;
+                }
+            }
+
+            Serialization.SerializeManifestations();
+        }
+
         public static void MakeFiles()
         {
             Serialization.SerializeManifestationTypes();

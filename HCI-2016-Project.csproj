@@ -238,6 +238,11 @@
     <Resource Include="Images\Icons\smoking_no.png" />
     <Resource Include="Images\Icons\smoking_yes.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\cross.png" />
+    <Resource Include="Images\Icons\eye.png" />
+    <Resource Include="Images\Icons\pencil_small.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

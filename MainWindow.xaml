@@ -4,8 +4,11 @@
         Title="MainWindow" Height="480" Width="640"
         Loaded="Window_Loaded">
     <Window.Resources>
-        <BitmapImage x:Key="View" UriSource="/Images/Icons/view_inverse.png"/>
-        <BitmapImage x:Key="Add"  UriSource="/Images/Icons/add_circle.png"/>
+        <BitmapImage x:Key="View"   UriSource="/Images/Icons/view_inverse.png"/>
+        <BitmapImage x:Key="Add"    UriSource="/Images/Icons/add_circle.png"/>
+        <BitmapImage x:Key="Show"   UriSource="/Images/Icons/eye.png"/>
+        <BitmapImage x:Key="Remove" UriSource="/Images/Icons/cross.png"/>
+        <BitmapImage x:Key="Edit"   UriSource="/Images/Icons/pencil_small.png"/>
 
         <Style TargetType="Button" x:Key="ToolbarButton" >
             <Setter Property="Margin" Value="1,2,1,2"/>
@@ -131,7 +134,8 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Background="#EEEEEE" Margin="1,1,1,0" Cursor="Hand" Tag="{Binding Path=Label}" PreviewMouseLeftButtonDown="ManifestationItem_PreviewMouseLeftButtonDown" MouseMove="ManifestationItem_MouseMove">
+                                <StackPanel Orientation="Horizontal" Background="#EEEEEE" Margin="1,1,1,0" Cursor="Hand" Tag="{Binding Path=Label}" 
+                                            PreviewMouseLeftButtonDown="ManifestationItem_PreviewMouseLeftButtonDown" MouseMove="ManifestationItem_MouseMove">
                                     <Image Source="{Binding Path=IconSrc}" Height="24" Width="24" Margin="4,4,4,4" Stretch="UniformToFill"/>
                                     <StackPanel Orientation="Vertical" Margin="0,4,2,4">
                                         <TextBlock Text="{Binding Path=Label}" FontWeight="Bold"/>
@@ -143,10 +147,31 @@
                     </ItemsControl>
 
                     <!-- Drop Items area -->
-                    <Canvas Name="ManifestationsMap" Grid.Column="1" AllowDrop="True" DragEnter="ManifestationsMap_DragEnter" Drop="ManifestationsMap_Drop">
+                    <Canvas Name="ManifestationsMap" Grid.Column="1" AllowDrop="True" ContextMenuService.IsEnabled="False"
+                            PreviewMouseLeftButtonDown="ManifestationsMap_PreviewMouseLeftButtonDown" MouseMove="ManifestationsMap_MouseMove"
+                            DragEnter="ManifestationsMap_DragEnter" Drop="ManifestationsMap_Drop" MouseRightButtonDown="ManifestationsMap_MouseRightButtonDown">
                         <Canvas.Background>
                             <ImageBrush ImageSource="Images\bn-map.png" Stretch="UniformToFill"/>
                         </Canvas.Background>
+                        <Canvas.ContextMenu>
+                            <ContextMenu Name="ManifestationContextMenu">
+                                <MenuItem Header="Prikaži detalje manifestacije">
+                                    <MenuItem.Icon>
+                                        <Image Source="{StaticResource ResourceKey=Show}" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="Izmijeni manifestaciju">
+                                    <MenuItem.Icon>
+                                        <Image Source="{StaticResource ResourceKey=Edit}" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="Ukloni manifestaciju sa mape">
+                                    <MenuItem.Icon>
+                                        <Image Source="{StaticResource ResourceKey=Remove}" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Canvas.ContextMenu>
                     </Canvas>
                 </Grid>
             </Grid>
