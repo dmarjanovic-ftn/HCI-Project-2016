@@ -51,10 +51,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="1*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -119,7 +119,7 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="npr. LBL-1337" HorizontalAlignment="Left" Foreground="DarkGray">
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="npr. LABEL1337" HorizontalAlignment="Left" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -143,9 +143,7 @@
             <TextBox.Text>
                 <Binding Path="Manifestation.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:NameLengthValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
@@ -195,9 +193,7 @@
             <TextBox.Text>
                 <Binding Path="Manifestation.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:DescLengthValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
@@ -255,11 +251,16 @@
             <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
+        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20" Focusable="False">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Text" Value="Odaberite datum manifestacije"/>
+                </Style>
+            </DatePicker.Resources>
             <DatePicker.SelectedDate>
                 <Binding Path="Manifestation.Date" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:MinDateValidationRule/>
+                        <validation:MinDateValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </DatePicker.SelectedDate>
@@ -323,7 +324,7 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="npr. 73600" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+        <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="npr. 73600" HorizontalAlignment="Left" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -348,7 +349,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,5,5"
+            <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,5,5" IsReadOnly="True"
                 Text="{Binding Path=Manifestation.IconSrc, UpdateSourceTrigger=PropertyChanged}" />
             <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Click="ChooseIcon_Click" Margin="0,0,5,5">
                 Odaberite ikonicu

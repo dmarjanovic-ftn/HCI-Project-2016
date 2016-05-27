@@ -111,9 +111,11 @@
     </Compile>
     <Compile Include="UserInterface\UserControls\TokenizingControl.cs" />
     <Compile Include="Utils\Serialization.cs" />
+    <Compile Include="ValidationRules\DescriptionValidationRules.cs" />
     <Compile Include="ValidationRules\GuestsExpectedValidationRules.cs" />
     <Compile Include="ValidationRules\LabelValidationRule.cs" />
     <Compile Include="ValidationRules\ManifestationDateValidationRules.cs" />
+    <Compile Include="ValidationRules\NameValidationRules.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

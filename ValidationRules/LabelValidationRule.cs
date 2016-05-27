@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Text.RegularExpressions;
+
+using HCI_2016_Project.DataClasses;
 
 namespace HCI_2016_Project.ValidationRules
 {
@@ -50,22 +53,17 @@ namespace HCI_2016_Project.ValidationRules
             try
             {
                 var text = value as string;
-                if (0 == text.Length)
+
+                Regex r = new Regex(@"[^0-9a-zA-Z]+", RegexOptions.IgnoreCase);
+
+                Match m = r.Match(text);
+
+                if (m.Success)
                 {
-                    return new ValidationResult(false, "Oznaka manifestacije je obavezna.");
+                    return new ValidationResult(false, "Labela može da sadrži samo cifre i slova.");
                 }
-                else if (text.Length < 5)
-                {
-                    return new ValidationResult(false, "Minimalna dužina polja je karaktera.");
-                }
-                else if (text.Length > 10)
-                {
-                    return new ValidationResult(false, "Maksimalna dužina polja je karaktera.");
-                }
-                else
-                {
-                    return new ValidationResult(true, null);
-                }
+
+                return new ValidationResult(true, null);
             }
             catch
             {
@@ -82,14 +80,16 @@ namespace HCI_2016_Project.ValidationRules
             try
             {
                 var text = value as string;
-                if ("ABCDEFGH123" == text)
+
+                foreach (Manifestation manifestation in AppData.GetInstance().Manifestations)
                 {
-                    return new ValidationResult(false, "Unesena oznaka već postoji. Polje mora biti jedinstveno.");
+                    if (manifestation.Label == text)
+                    {
+                        return new ValidationResult(false, "Unesena oznaka već postoji. Polje mora biti jedinstveno.");
+                    }
                 }
-                else
-                {
-                    return new ValidationResult(true, null);
-                }
+
+                return new ValidationResult(true, null);
             }
             catch
             {

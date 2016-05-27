@@ -42,6 +42,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
             vm.Types = AppData.GetInstance().ManifestationTypes;
             vm.Manifestation = new Manifestation();
+            vm.Manifestation.Date = DateTime.Now;
             vm.AvailableTags = AppData.GetInstance().Tags;
             vm.AllTags = new List<CheckBox>();
 
