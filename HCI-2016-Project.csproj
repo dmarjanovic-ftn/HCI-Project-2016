@@ -113,6 +113,7 @@
     <Compile Include="Utils\Serialization.cs" />
     <Compile Include="ValidationRules\GuestsExpectedValidationRules.cs" />
     <Compile Include="ValidationRules\LabelValidationRule.cs" />
+    <Compile Include="ValidationRules\ManifestationDateValidationRules.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
