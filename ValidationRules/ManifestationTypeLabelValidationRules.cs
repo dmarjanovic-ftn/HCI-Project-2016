@@ -11,7 +11,7 @@ using HCI_2016_Project.DataClasses;
 namespace HCI_2016_Project.ValidationRules
 {
     // Pravilo kojim provjeravamo da li je uneseno polje i duzinu unesenog polja
-    public class LengthValidationRule : ValidationRule
+    public class MTLengthValidationRule : ValidationRule
     {
         private static int MIN_LENGTH = 8;
         private static int MAX_LENGTH = 20;
@@ -23,7 +23,7 @@ namespace HCI_2016_Project.ValidationRules
                 var text = value as string;
                 if (0 == text.Length)
                 {
-                    return new ValidationResult(false, "Oznaka manifestacije je obavezna.");
+                    return new ValidationResult(false, "Oznaka tipa manifestacije je obavezna.");
                 }
                 else if (text.Length < MIN_LENGTH)
                 {
@@ -46,7 +46,7 @@ namespace HCI_2016_Project.ValidationRules
     }
 
     // Pravilo kojim provjeravamo sadrzaj koji je unesen u polje
-    public class ContentValidationRule : ValidationRule
+    public class MTContentValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
@@ -60,7 +60,7 @@ namespace HCI_2016_Project.ValidationRules
 
                 if (m.Success)
                 {
-                    return new ValidationResult(false, "Oznaka manifestacije može da sadrži samo cifre i slova.");
+                    return new ValidationResult(false, "Oznaka tipa manifestacije može da sadrži samo cifre i slova.");
                 }
 
                 return new ValidationResult(true, null);
@@ -73,7 +73,7 @@ namespace HCI_2016_Project.ValidationRules
     }
 
     // Pravilo kojim provjeravamo da li je uneseno polje jedinstveno
-    public class UniqueValidationRule : ValidationRule
+    public class MTUniqueValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
@@ -81,9 +81,9 @@ namespace HCI_2016_Project.ValidationRules
             {
                 var text = value as string;
 
-                foreach (Manifestation manifestation in AppData.GetInstance().Manifestations)
+                foreach (ManifestationType mt in AppData.GetInstance().ManifestationTypes)
                 {
-                    if (manifestation.Label == text)
+                    if (mt.Label == text)
                     {
                         return new ValidationResult(false, "Unesena oznaka već postoji. Polje mora biti jedinstveno.");
                     }

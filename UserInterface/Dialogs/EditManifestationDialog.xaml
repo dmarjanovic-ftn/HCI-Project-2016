@@ -235,6 +235,7 @@
             <DatePicker.Resources>
                 <Style TargetType="DatePickerTextBox">
                     <Setter Property="Text" Value="Odaberite datum manifestacije"/>
+                    <Setter Property="IsHitTestVisible" Value="False"/>
                 </Style>
             </DatePicker.Resources>
             <DatePicker.SelectedDate>
@@ -325,8 +326,8 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="128"/>
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,5,5" IsReadOnly="True"
