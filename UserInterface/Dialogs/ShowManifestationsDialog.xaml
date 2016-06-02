@@ -34,14 +34,67 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="36"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        
+        <!-- Search Form -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label>Oznaka manifestacije:</Label>
+            <TextBox Grid.Row="1" Name="ManifestationLabelField"/>
+            <Label Grid.Row="2">Naziv manifestacije:</Label>
+            <TextBox Grid.Row="3" Name="ManifestationNameField"/>
+            
+            <Label Grid.Column="1">Tip manifestacije:</Label>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Label>Oznaka:</Label>
+                <TextBox Grid.Column="1" Name="ManifestationTypeLabelField"></TextBox>
+                <Button Grid.Column="2" Margin="2,2,2,2">Odaberi</Button>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Source="..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
+                <TextBox Grid.Column="1" IsReadOnly="True" VerticalAlignment="Center">Naziv manifestacije</TextBox>
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -72,7 +125,7 @@
                 </Button>
             </Grid>
         </Grid>
-        <DataGrid Grid.Row="1" x:Name="ManifestationsTable" 
+        <DataGrid Grid.Row="2" x:Name="ManifestationsTable" 
                   AutoGeneratingColumn="ManifestationsTable_AutoGeneratingColumn" 
                   ItemsSource="{Binding Path=Manifestations}" 
                   SelectedItem="{Binding Path=SelectedManifestation, UpdateSourceTrigger=PropertyChanged}"

@@ -11,28 +11,6 @@
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../Images/Icons/hci_error_icon.png" />
-        <DataTemplate x:Key="NameTokenTemplate">
-            <DataTemplate.Resources>
-                <Storyboard x:Key="OnLoaded1">
-                </Storyboard>
-            </DataTemplate.Resources>
-            <Border x:Name="border" Height="Auto" Margin="3,4,0,3" Padding="2,4">
-                <Border.Background>
-                    <SolidColorBrush Color="#34495E"></SolidColorBrush>
-                </Border.Background>
-                <Grid HorizontalAlignment="Left" Width="Auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock TextWrapping="NoWrap" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,0" Foreground="#FFFFFF"/>
-                </Grid>
-            </Border>
-            <DataTemplate.Triggers>
-                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                    <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
-                </EventTrigger>
-            </DataTemplate.Triggers>
-        </DataTemplate>
     </Window.Resources>
     
     <Grid Margin="0">
@@ -112,7 +90,7 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="..\..\Images\Icons\hci_error_icon.png" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
@@ -162,7 +140,7 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="..\..\Images\Icons\hci_error_icon.png" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
@@ -212,7 +190,7 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="..\..\Images\Icons\hci_error_icon.png" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
@@ -279,7 +257,7 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="datePicker"/>
-                            <Image Grid.Column="1" Source="..\..\Images\Icons\hci_error_icon.png" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
@@ -317,7 +295,7 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="..\..\Images\Icons\hci_error_icon.png" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>

@@ -9,28 +9,7 @@
         Loaded="Window_Loaded" Title="Izmijeni manifestaciju" Height="580" Width="980">
 
     <Window.Resources>
-        <DataTemplate x:Key="NameTokenTemplate">
-            <DataTemplate.Resources>
-                <Storyboard x:Key="OnLoaded1">
-                </Storyboard>
-            </DataTemplate.Resources>
-            <Border x:Name="border" Height="Auto" Margin="3,4,0,3" Padding="2,4">
-                <Border.Background>
-                    <SolidColorBrush Color="#34495E"></SolidColorBrush>
-                </Border.Background>
-                <Grid HorizontalAlignment="Left" Width="Auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock TextWrapping="NoWrap" Text="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,0" Foreground="#FFFFFF"/>
-                </Grid>
-            </Border>
-            <DataTemplate.Triggers>
-                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                    <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
-                </EventTrigger>
-            </DataTemplate.Triggers>
-        </DataTemplate>
+        <BitmapImage x:Key="ErrorIcon" UriSource="../../Images/Icons/hci_error_icon.png" />
     </Window.Resources>
 
     <Grid Margin="0">
@@ -44,6 +23,7 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="29"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -62,7 +42,7 @@
         </Grid.RowDefinitions>
 
 
-        <Grid Name="Information" Grid.ColumnSpan="4" Background="#EEEEEE">
+        <Grid Name="Information" Grid.ColumnSpan="5" Background="#EEEEEE" Margin="0,0,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -83,11 +63,11 @@
         <Label Grid.Row="1" HorizontalAlignment="Right">
             <TextBlock>
                 <Run Text="Oznaka manifestacije:"/>
-                <Run Text="*" Foreground="Red"/>
+                <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
         <!-- Validaciona pravila za unos oznake manifestacije -->
-        <TextBox Name="ManifestationLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+        <TextBox Name="ManifestationLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
             <TextBox.Text>
                 <Binding Path="Manifestation.Label" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -100,13 +80,26 @@
             <Validation.ErrorTemplate>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
-                        <AdornedElementPlaceholder x:Name="textBox"/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="29"/>
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
+                        </Grid>
                     </StackPanel>
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. LBL-1337" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="npr. LABEL1337" HorizontalAlignment="Left" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -123,29 +116,40 @@
         <Label Grid.Row="2" HorizontalAlignment="Right">
             <TextBlock >
                 <Run Text="Naziv manifestacije:"/>
-                <Run Text="*" Foreground="Red"/>
+                <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+        <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
             <TextBox.Text>
                 <Binding Path="Manifestation.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:NameLengthValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
             <Validation.ErrorTemplate>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
-                        <AdornedElementPlaceholder x:Name="textBox"/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="29"/>
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
+                        </Grid>
                     </StackPanel>
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. Belgrade Beer Fest" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="npr. Belgrade Beer Fest" HorizontalAlignment="Left" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -162,29 +166,40 @@
         <Label Grid.Row="3" HorizontalAlignment="Right">
             <TextBlock>
                 <Run Text="Opis manifestacije:"/>
-                <Run Text="*" Foreground="Red"/>
+                <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,10,5">
+        <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,20">
             <TextBox.Text>
                 <Binding Path="Manifestation.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:LengthValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:ContentValidationRule ValidationStep="RawProposedValue"/>
-                        <validation:UniqueValidationRule ValidationStep="RawProposedValue"/>
+                        <validation:DescLengthValidationRule ValidationStep="RawProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
             <Validation.ErrorTemplate>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
-                        <AdornedElementPlaceholder x:Name="textBox"/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="29"/>
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
+                        </Grid>
                     </StackPanel>
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="Unesite detaljan opis manifestacije..." VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="Unesite detaljan opis manifestacije..." HorizontalAlignment="Left" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -201,10 +216,10 @@
         <Label Grid.Row="4" HorizontalAlignment="Right">
             <TextBlock>
             <Run Text="Odaberite tip manifestacije:"/>
-            <Run Text="*" Foreground="Red"/>
+            <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5"
+        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,5"
                   Name="ManifestationTypeCb" ItemsSource="{Binding Path=Types}" 
                   SelectedValue="{Binding Path=Manifestation.Type, Mode=TwoWay}">
         </ComboBox>
@@ -213,20 +228,53 @@
         <Label Grid.Row="5" HorizontalAlignment="Right">
             <TextBlock>
             <Run Text="Odaberite datum održavanja:"/>
-            <Run Text="*" Foreground="Red"/>
+            <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5" 
-                    SelectedDate="{Binding Path=Manifestation.Date}"/>
+        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20" Focusable="False">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Text" Value="Odaberite datum manifestacije"/>
+                </Style>
+            </DatePicker.Resources>
+            <DatePicker.SelectedDate>
+                <Binding Path="Manifestation.Date" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:MinDateValidationRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </DatePicker.SelectedDate>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="29"/>
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder x:Name="datePicker"/>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
+                        </Grid>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </DatePicker>
 
         <!-- Polje za unos broja očekivanih gostiju -->
         <Label Grid.Row="6" HorizontalAlignment="Right">
             <TextBlock>
                 <Run Text="Broj očekivanih gostiju:"/>
-                <Run Text="*" Foreground="Red"/>
+                <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+        <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
             <TextBox.Text>
                 <Binding Path="Manifestation.GuestsExpected" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -237,13 +285,26 @@
             <Validation.ErrorTemplate>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
-                        <AdornedElementPlaceholder x:Name="textBox"/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="29"/>
+                            </Grid.ColumnDefinitions>
+
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
+                        </Grid>
                     </StackPanel>
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,10,5" IsHitTestVisible="False" Text="npr. 73600" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray">
+        <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,3,10,5" IsHitTestVisible="False" Text="npr. 73600" HorizontalAlignment="Left" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -268,15 +329,15 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,10,5"
+            <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,5,5" IsReadOnly="True"
                 Text="{Binding Path=Manifestation.IconSrc, UpdateSourceTrigger=PropertyChanged}" />
-            <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Click="ChooseIcon_Click" Margin="0,0,10,5">
+            <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Click="ChooseIcon_Click" Margin="0,0,5,5">
                 Odaberite ikonicu
             </Button>
         </Grid>
 
         <!-- Izbor statusa alkohola -->
-        <GroupBox Header="Status alkohola" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,10,5">
+        <GroupBox Header="Status alkohola" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,5,5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -297,7 +358,7 @@
 
 
         <!-- Izbor kategorija cijene -->
-        <GroupBox Header="Kategorija cijene" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,10,5">
+        <GroupBox Header="Kategorija cijene" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,5,5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -317,7 +378,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Dodatne informacije" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,10,5">
+        <GroupBox Header="Dodatne informacije" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Padding="5,5,5,5" Margin="0,0,5,5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -340,10 +401,10 @@
         <Label Grid.Row="11" HorizontalAlignment="Right">
             <TextBlock>
                 <Run Text="Unesite tagove za manifestaciju:"/>
-                <Run Foreground="Red" Text="*"/>
+                <Run Foreground="#D50000" Text="*"/>
             </TextBlock>
         </Label>
-        <Grid Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,5">
+        <Grid Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,5">
             <ScrollViewer>
                 <Grid Name="ListOfTags" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <Grid.ColumnDefinitions>
@@ -359,6 +420,6 @@
         </Grid>
 
         <Button Name="Save"   Grid.Row="12" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">Sačuvaj</Button>
-        <Button Name="Cancel" Grid.Row="12" Grid.Column="3" Margin="2,2,10,10" Padding="4,4,4,4" Click="Cancel_Click">Odustani</Button>
+        <Button Name="Cancel" Grid.Row="12" Grid.Column="3" Margin="2,2,5,10" Padding="4,4,4,4" Click="Cancel_Click">Odustani</Button>
     </Grid>
 </Window>
