@@ -27,7 +27,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         public class ViewModel
         {
             public Tag Tag { get; set; }
-            public List<String> Colors { get; set; }
         }
 
         public AddTagDialog()
@@ -35,12 +34,9 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             InitializeComponent();
 
             vm = new ViewModel();
-            vm.Colors = new List<String>();
-            vm.Colors.Add("#F44336");
-            vm.Colors.Add("#3F51B5");
-            vm.Colors.Add("#43A047");
 
             vm.Tag = new Tag();
+            vm.Tag.Color = "#FFFFFF";
 
             this.DataContext = vm;
         }
@@ -61,6 +57,12 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             {
                 this.Close();
             }
+        }
+
+        private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            String color = ClrPcker_Background.SelectedColor.ToString().Remove(1, 2);
+            vm.Tag.Color = color;
         }
     }
 }

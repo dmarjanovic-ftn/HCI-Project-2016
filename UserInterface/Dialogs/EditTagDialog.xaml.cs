@@ -77,5 +77,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 this.Close();
             }
         }
+
+        private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            String color = ClrPcker_Background.SelectedColor.ToString().Remove(1, 2);
+            vm.Tag.Color = color;
+        }
     }
 }
