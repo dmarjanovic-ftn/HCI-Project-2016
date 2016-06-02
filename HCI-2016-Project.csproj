@@ -74,6 +74,7 @@
     <Compile Include="Binders\BooleanToStringConverter.cs" />
     <Compile Include="Binders\EnumBooleanConverter.cs" />
     <Compile Include="Binders\EnumToStringConverter.cs" />
+    <Compile Include="Binders\LengthToBooleanConverter.cs" />
     <Compile Include="Binders\NullToBooleanConverter.cs" />
     <Compile Include="Binders\StringToImageConverter.cs" />
     <Compile Include="Commands\Commands.cs" />

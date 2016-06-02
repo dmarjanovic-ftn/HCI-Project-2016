@@ -11,6 +11,7 @@
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../Images/Icons/hci_error_icon.png" />
+        <binder:LengthToBooleanConverter x:Key="LengthToBoolean"/>
     </Window.Resources>
     
     <Grid Margin="0">
@@ -229,7 +230,7 @@
             <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20" Focusable="False">
+        <DatePicker Name="ManifestationDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20" Focusable="False">
             <DatePicker.Resources>
                 <Style TargetType="DatePickerTextBox">
                     <Setter Property="Text" Value="Odaberite datum manifestacije"/>
@@ -419,7 +420,29 @@
             </ScrollViewer>
         </Grid>
 
-        <Button Name="Save"   Grid.Row="12" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">Sačuvaj</Button>
+        <Button Name="Save"   Grid.Row="12" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">
+            Sačuvaj
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationLabel}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=ManifestationLabel, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationName}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=ManifestationName, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationDescription}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=ManifestationDescription, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationGuestsExpected}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationDate}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Name="Cancel" Grid.Row="12" Grid.Column="3" Margin="2,2,5,10" Padding="4,4,4,4" Click="Cancel_Click">Odustani</Button>
     </Grid>
 </Window>
