@@ -3,11 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         
+        xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
         Title="Dodaj tag" Height="480" Width="640">
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../Images/Icons/hci_error_icon.png" />
+        <binder:LengthToBooleanConverter x:Key="LengthToBoolean"/>
     </Window.Resources>
 
     <Grid Margin="0">
@@ -175,7 +177,25 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Button Name="Save"   Grid.Row="5" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">Sačuvaj</Button>
+        <Button Name="Save"   Grid.Row="5" Grid.Column="2" Margin="0,2,2,10"  Padding="4,4,4,4" Click="Save_Click">
+            Sačuvaj
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TagName}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=TagName, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TagDescription}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=TagDescription, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
+                             </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Name="Cancel" Grid.Row="5" Grid.Column="3" Margin="2,0,5,10" Padding="4,4,4,4" Click="Cancel_Click">Odustani</Button>
     </Grid>
 </Window>
