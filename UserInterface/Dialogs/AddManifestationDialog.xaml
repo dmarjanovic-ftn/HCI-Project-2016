@@ -218,10 +218,40 @@
             <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,5"
+        <!--ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,5"
                   ItemsSource="{Binding Path=Types}" 
                   SelectedValue="{Binding Path=Manifestation.Type}">
-        </ComboBox>
+        </ComboBox-->
+        <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="96"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Name="ManifestationTypeLabelField"></TextBox>
+                <Button Grid.Column="1" Margin="2,2,2,2">Odaberi</Button>
+
+                <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
+                    <TextBox Grid.Column="1" IsReadOnly="True" VerticalAlignment="Center">Naziv manifestacije</TextBox>
+                </Grid>
+            </Grid>
+        </Grid>
 
         <!-- Polje za odabir datuma odrzavanja manifestacije -->
         <Label Grid.Row="5" HorizontalAlignment="Right">

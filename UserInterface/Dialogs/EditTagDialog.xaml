@@ -123,7 +123,7 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <xctk:ColorPicker Name="ClrPcker_Background" SelectedColorChanged="ClrPcker_Background_SelectedColorChanged"
+        <xctk:ColorPicker Name="ClrPcker_Background" SelectedColorChanged="ClrPcker_Background_SelectedColorChanged" SelectedColor="{Binding Path=Tag.Color}"
                           Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"></xctk:ColorPicker>
 
         <!-- Polje za unos opisa taga -->
