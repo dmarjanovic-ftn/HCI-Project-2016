@@ -12,16 +12,20 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Grid Grid.Row="0" Grid.Column="0">
-            <StackPanel Orientation="Horizontal" Width="200" HorizontalAlignment="Center" Background="{Binding Path=Tag.Color, UpdateSourceTrigger=PropertyChanged}">
+        <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Width="256" Background="{Binding Path=Tag.Color, UpdateSourceTrigger=PropertyChanged}" Margin="10,10,10,0" Height="44">
                 <Image Source="..\..\Images\Icons\tag.png" Width="24" Margin="8,8,8,8"></Image>
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Padding="8,8,8,8" Foreground="#FFFFFF" TextAlignment="Center" FontSize="11pt" Text="{Binding Path=Tag.Mark, UpdateSourceTrigger=PropertyChanged}">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Padding="8,8,8,8" Foreground="#FFFFFF" FontSize="11pt" Text="{Binding Path=Tag.Mark, UpdateSourceTrigger=PropertyChanged}">
                 </TextBlock>
             </StackPanel>
         </Grid>
 
         <Label Grid.Row="1">
-            <TextBlock Text="{Binding Path=Tag.Description}"/>
+            <StackPanel Orientation="Vertical">
+                <Label FontSize="14" FontWeight="SemiBold">Opis taga:</Label>
+                <TextBlock Text="{Binding Path=Tag.Description}" FontSize="14" TextWrapping="Wrap"
+                           Foreground="#333" Padding="10,10,10,10" HorizontalAlignment="Stretch"/>
+            </StackPanel>
         </Label>
 
     </Grid>

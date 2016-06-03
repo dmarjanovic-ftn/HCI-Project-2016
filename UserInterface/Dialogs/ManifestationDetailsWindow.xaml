@@ -81,7 +81,7 @@
         <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <StackPanel Orientation="Vertical">
                 <Label FontSize="14" FontWeight="SemiBold">Opis manifestacije:</Label>
-                <TextBlock Text="{Binding Path=Manifestation.Description}" FontSize="14"
+                <TextBlock Text="{Binding Path=Manifestation.Description}" FontSize="14" TextWrapping="Wrap"
                            Foreground="#333" Padding="10,10,10,10" HorizontalAlignment="Stretch"/>
             </StackPanel>
         </Grid>
