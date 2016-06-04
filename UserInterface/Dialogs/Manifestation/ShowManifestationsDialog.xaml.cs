@@ -155,7 +155,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         // Try to find ManifestationType by ID
         private void ManifestationTypeLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Console.WriteLine(ManifestationTypeLabel.Text.ToLower());
             foreach (ManifestationType type in AppData.GetInstance().ManifestationTypes)
             {
                 if (type.Label.ToLower() == ManifestationTypeLabel.Text.ToLower())

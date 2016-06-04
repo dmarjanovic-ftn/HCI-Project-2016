@@ -146,5 +146,49 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 HelpProvider.ShowHelp("Manifestation", "#", this);
             }
         }
+
+        // Try to Find ManifestationType on TextChange
+        private void ManifestationTypeLabelField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            foreach (ManifestationType type in AppData.GetInstance().ManifestationTypes)
+            {
+                if (type.Label.ToLower() == ManifestationTypeLabelField.Text.ToLower())
+                {
+                    vm.Manifestation.Type = type;
+
+                    Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
+                    BitmapImage imageBitmap = new BitmapImage(imageUri);
+
+                    ManifestationTypeName.Text = type.Name;
+                    ManifestationTypeImageSrc.Source = imageBitmap;
+                    return;
+                }
+            }
+
+            ManifestationTypeName.Text = null;
+            ManifestationTypeImageSrc.Source = null;
+            vm.Manifestation.Type = null;
+        }
+
+
+        private void ChooseManifestationType_Click(object sender, RoutedEventArgs e)
+        {
+            var allManifestaionTypes = new ShowManifestationsTypeDialog(true);
+            allManifestaionTypes.Show();
+            allManifestaionTypes.OnDataChoose += new ShowManifestationsTypeDialog.ChooseData(GetManifestationType);
+        }
+
+        // Get type
+        private void GetManifestationType(ManifestationType type)
+        {
+            vm.Manifestation.Type = type;
+
+            Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
+            BitmapImage imageBitmap = new BitmapImage(imageUri);
+
+            ManifestationTypeLabelField.Text = type.Label;
+            ManifestationTypeName.Text = type.Name;
+            ManifestationTypeImageSrc.Source = imageBitmap;
+        }
     }
 }

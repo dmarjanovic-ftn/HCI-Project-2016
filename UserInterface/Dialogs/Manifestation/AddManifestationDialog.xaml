@@ -226,10 +226,7 @@
             <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <!--ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,5"
-                  ItemsSource="{Binding Path=Types}" 
-                  SelectedValue="{Binding Path=Manifestation.Type}">
-        </ComboBox-->
+
         <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,5">
             <Grid>
                 <Grid.RowDefinitions>
@@ -243,8 +240,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Name="ManifestationTypeLabelField"
-                         l:HelpProvider.HelpKey="Manifestation" l:HelpProvider.HelpSection="type"></TextBox>
-                <Button Grid.Column="1" Margin="2,2,2,2">Odaberi</Button>
+                         l:HelpProvider.HelpKey="Manifestation" l:HelpProvider.HelpSection="type" TextChanged="ManifestationTypeLabelField_TextChanged"></TextBox>
+                <Button Name="ChooseManifestationType" Grid.Column="1" Margin="2,2,2,2" Click="ChooseManifestationType_Click">Odaberi</Button>
 
                 <Grid Grid.Row="1" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
@@ -256,8 +253,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="..\..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
-                    <TextBox Grid.Column="1" IsReadOnly="True" VerticalAlignment="Center">Naziv manifestacije</TextBox>
+                    <Image Name="ManifestationTypeImageSrc" Source="..\..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
+                    <TextBox Name="ManifestationTypeName" Grid.Column="1" IsReadOnly="True" VerticalAlignment="Center">Naziv manifestacije</TextBox>
                 </Grid>
             </Grid>
         </Grid>
