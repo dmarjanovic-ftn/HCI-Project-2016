@@ -124,7 +124,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
+        <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="Manifestation" l:HelpProvider.HelpSection="name">
             <TextBox.Text>
                 <Binding Path="Manifestation.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -240,7 +241,8 @@
                     <ColumnDefinition Width="96"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBox Name="ManifestationTypeLabelField"></TextBox>
+                <TextBox Name="ManifestationTypeLabelField"
+                         l:HelpProvider.HelpKey="Manifestation" l:HelpProvider.HelpSection="type"></TextBox>
                 <Button Grid.Column="1" Margin="2,2,2,2">Odaberi</Button>
 
                 <Grid Grid.Row="1" Grid.ColumnSpan="2">
@@ -266,7 +268,8 @@
             <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <DatePicker Name="ManifestationDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20" Focusable="False">
+        <DatePicker Name="ManifestationDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20" Focusable="False"
+                    l:HelpProvider.HelpKey="Manifestation" l:HelpProvider.HelpSection="date">
             <DatePicker.Resources>
                 <Style TargetType="DatePickerTextBox">
                     <Setter Property="Text" Value="Odaberite datum manifestacije"/>
@@ -310,7 +313,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
+        <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="Manifestation" l:HelpProvider.HelpSection="guests">
             <TextBox.Text>
                 <Binding Path="Manifestation.GuestsExpected" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

@@ -20,6 +20,17 @@
   margin-left: 240px;
 }
 
-h4 {
+h3 {
   margin-top: 32px;
+}
+
+figure {
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+figcaption {
+  font-size: 10pt;
+  font-weight: bold;
 }
