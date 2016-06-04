@@ -28,6 +28,33 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         public Manifestation SelectedManifestation { get; set; }
         public Boolean ButtonEnabled { get; set; }
 
+        #region Search Parameters
+        public ManifestationType manifestationType { get; set; }
+
+        public string ManifestationLabel { get; set; }
+        public string ManifestationName;
+        // public string ManifestationDescription;
+        public DateTime ManifestationBeg;
+        public DateTime ManifestationEnd;
+        public int GuestsExpectedMin;
+        public int GuestsExpectedMax;
+
+        public bool IsAccessible { get; set; }
+        public bool IsSmokingAllowed;
+        public bool IsOutsideManifestation;
+
+        // Price Category
+        public bool CanFree;
+        public bool CanLowPrice;
+        public bool CanMedPrice;
+        public bool CanHighPrice;
+
+        // Alcohol Status
+        public bool CanNoAlcohol;
+        public bool CanCanBring;
+        public bool CanCanBuy;
+        #endregion
+
         public ShowManifestationsDialog()
         {
             InitializeComponent();
@@ -41,7 +68,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             {
                 Manifestations.Add(m);
             }
-            
         }
 
         private void ManifestationsTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -105,9 +131,56 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             AdvancedSearch.Visibility = (AdvancedSearch.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
         }
 
+        // Choose Manifestation Type
         private void ChooseManifestationType_Click(object sender, RoutedEventArgs e)
         {
+            var allManifestaionTypes = new ShowManifestationsTypeDialog(true);
+            allManifestaionTypes.Show();
+            allManifestaionTypes.OnDataChoose += new ShowManifestationsTypeDialog.ChooseData(GetManifestationType);
+        }
 
+        // Get type
+        private void GetManifestationType(ManifestationType type)
+        {
+            this.manifestationType = type;
+
+            Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
+            BitmapImage imageBitmap = new BitmapImage(imageUri);
+
+            ManifestationTypeLabel.Text = type.Label;
+            ManifestationTypeName.Text = type.Name;
+            ManifestationTypeImageSrc.Source = imageBitmap;
+        }
+
+        // Try to find ManifestationType by ID
+        private void ManifestationTypeLabel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Console.WriteLine(ManifestationTypeLabel.Text.ToLower());
+            foreach (ManifestationType type in AppData.GetInstance().ManifestationTypes)
+            {
+                if (type.Label.ToLower() == ManifestationTypeLabel.Text.ToLower())
+                {
+                    this.manifestationType = type;
+
+                    Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
+                    BitmapImage imageBitmap = new BitmapImage(imageUri);
+
+                    ManifestationTypeName.Text = type.Name;
+                    ManifestationTypeImageSrc.Source = imageBitmap;
+                    return;
+                }
+            }
+
+            ManifestationTypeName.Text = null;
+            ManifestationTypeImageSrc.Source = null;
+            manifestationType = null;
+        }
+
+        // Perform search...
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(this.ManifestationLabel);
+            Console.WriteLine(this.IsAccessible);
         }
 
     }

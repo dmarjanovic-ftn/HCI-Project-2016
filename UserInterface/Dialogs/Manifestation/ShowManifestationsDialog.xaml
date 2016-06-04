@@ -66,7 +66,8 @@
                     </Grid.RowDefinitions>
                 
                     <Label>Oznaka manifestacije:</Label>
-                    <TextBox Grid.Row="1" Name="ManifestationLabelField" Height="22"/>
+                    <TextBox Grid.Row="1" Name="ManifestationLabelField" Height="22"
+                             Text="{Binding Path=ManifestationLabel, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </Border>
 
@@ -99,16 +100,15 @@
 
                     <Label Grid.ColumnSpan="3">Tip manifestacije:</Label>
                     <Label Grid.Row="1" Grid.Column="0">Oznaka:</Label>
-                    <TextBox Grid.Row="1" Grid.Column="1" Name="ManifestationTypeLabelField" Height="22"></TextBox>
-                    <Button Name="ChooseManifestationType" Grid.Row="1" Grid.Column="2" Margin="2,2,2,2">Odaberi</Button>
+                    <TextBox Name="ManifestationTypeLabel" TextChanged="ManifestationTypeLabel_TextChanged" Grid.Row="1" Grid.Column="1" Height="22"></TextBox>
+                    <Button Name="ChooseManifestationType" Grid.Row="1" Grid.Column="2" Margin="2,2,2,2" Click="ChooseManifestationType_Click">Odaberi</Button>
 
-
-                    <Image Grid.Row="2" Source="..\..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
-                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalAlignment="Center">Naziv manifestacije</TextBox>
+                    <Image Grid.Row="2" Name="ManifestationTypeImageSrc" Source="..\..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
+                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Name="ManifestationTypeName" IsReadOnly="True" VerticalAlignment="Center" Text="{Binding Path=manifestationType.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
                 </Grid>
             </Border>
 
-            <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="1" Margin="20,10,20,10">
+            <Button Name="Search" Grid.Row="0" Grid.Column="2" Grid.RowSpan="1" Margin="20,10,20,10" Click="Search_Click">
                 Pretraži
             </Button>
             <Button Name="ShowMore" Grid.Row="2" Grid.Column="2" Grid.RowSpan="1" Margin="20,10,20,10" Click="ShowMore_Click">
@@ -226,7 +226,7 @@
 
                             <Label>Dodatne osobine:</Label>
                             <StackPanel Grid.Row="1" Orientation="Vertical">
-                                <CheckBox>Dostupno za hendikepirane</CheckBox>
+                                <CheckBox IsChecked="{Binding Path=IsAccessible}">Dostupno za hendikepirane</CheckBox>
                                 <CheckBox>Dozvoljeno pušenje</CheckBox>
                                 <CheckBox>Održava se napolju</CheckBox>
                             </StackPanel>

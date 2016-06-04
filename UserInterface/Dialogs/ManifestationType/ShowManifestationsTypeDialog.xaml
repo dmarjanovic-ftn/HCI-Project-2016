@@ -34,8 +34,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="36"/>
-            <RowDefinition />
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -92,5 +93,9 @@
                 <DataGridTextColumn Header="Opis tipa manifestacije"   MinWidth="256" Width="SizeToCells" Binding="{Binding Description}"/>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <Button Grid.Row="2" Name="ChooseType" Click="ChooseType_Click" Visibility="Collapsed">
+            Odaberi
+        </Button>
     </Grid>
 </Window>

@@ -24,15 +24,27 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     public partial class ShowManifestationsTypeDialog : Window
     {
 
+        public delegate void ChooseData(ManifestationType type);
+        public event ChooseData OnDataChoose;
+
+        private void OnSendData()
+        {
+            if (OnDataChoose != null)
+                OnDataChoose(SelectedManifestationType);
+        }
+
         public ObservableCollection<ManifestationType> ManifestationTypes { get; set; }
         public ManifestationType SelectedManifestationType { get; set; }
         public Boolean ButtonEnabled { get; set; }
 
-        public ShowManifestationsTypeDialog()
+        public Boolean ReturnType { get; set; }
+
+        public ShowManifestationsTypeDialog(bool find = false)
         {
             InitializeComponent();
 
             SelectedManifestationType = null;
+            ReturnType = find;
 
             this.DataContext = this;
 
@@ -40,6 +52,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             foreach (ManifestationType mt in AppData.GetInstance().ManifestationTypes)
             {
                 ManifestationTypes.Add(mt);
+            }
+
+            if (ReturnType)
+            {
+                ChooseType.Visibility = Visibility.Visible;
             }
         }
 
@@ -93,6 +110,13 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             EditManifestationType.IsEnabled = ButtonEnabled;
             DeleteManifestationType.IsEnabled = ButtonEnabled;
             ViewDetailsManifestationType.IsEnabled = ButtonEnabled;
+        }
+
+        // Return Selected Type
+        private void ChooseType_Click(object sender, RoutedEventArgs e)
+        {
+            OnSendData();
+            this.Close();
         }
     }
 }
