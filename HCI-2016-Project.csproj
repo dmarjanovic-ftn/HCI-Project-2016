@@ -295,6 +295,7 @@
     <Content Include="HelpHtml\css\bootstrap.min.css" />
     <Content Include="HelpHtml\Manifestation.html" />
     <Content Include="HelpHtml\ManifestationType.html" />
+    <Content Include="HelpHtml\Tag.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HelpHtml\images\" />

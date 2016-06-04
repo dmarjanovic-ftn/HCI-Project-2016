@@ -3,14 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         
+        xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
-        Title="Dodaj tag" Height="480" Width="640">
+        Title="Dodaj tag" Height="480" Width="640" l:HelpProvider.HelpKey="Tag">
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../../Images/Icons/hci_error_icon.png" />
         <binder:LengthToBooleanConverter x:Key="LengthToBoolean"/>
     </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
 
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
@@ -60,7 +65,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Image Source="..\..\Images\Icons\tag.png" Width="24" Margin="8,8,8,8"></Image>
+            <Image Source="..\..\..\Images\Icons\tag.png" Width="24" Margin="8,8,8,8"></Image>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" Padding="8,8,8,8" Foreground="#FFFFFF" TextAlignment="Center" FontSize="11pt" Text="{Binding ElementName=TagName, Path=Text, UpdateSourceTrigger=PropertyChanged}">
             </TextBlock>
         </Grid>
@@ -72,7 +77,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="TagName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
+        <TextBox Name="TagName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="Tag" l:HelpProvider.HelpSection="label">
             <TextBox.Text>
                 <Binding Path="Tag.Mark" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -134,7 +140,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="TagDescription" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,20">
+        <TextBox Name="TagDescription" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="Tag" l:HelpProvider.HelpSection="description">
             <TextBox.Text>
                 <Binding Path="Tag.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

@@ -175,7 +175,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,20">
+        <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="Manifestation" l:HelpProvider.HelpSection="description">
             <TextBox.Text>
                 <Binding Path="Manifestation.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -255,7 +256,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
+                    <Image Source="..\..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
                     <TextBox Grid.Column="1" IsReadOnly="True" VerticalAlignment="Center">Naziv manifestacije</TextBox>
                 </Grid>
             </Grid>

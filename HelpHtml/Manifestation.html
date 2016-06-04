@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Add Manifestation</title>
+    <title>Dodavanje manifestacije</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -13,6 +13,7 @@
     <ul class="nav navbar-nav">
      <li><a href="#label">Oznaka manifestacije</a></li>
      <li><a href="#name">Naziv manifestacije</a></li>
+     <li><a href="#description">Opis manifestacije</a></li>
      <li><a href="#type">Tip manifestacije</a></li>
      <li><a href="#date">Datum manifstacije</a></li>
      <li><a href="#guests">Broj očekivanih gostiju</a></li>
@@ -20,6 +21,7 @@
      <li><a href="#alcohol">Status alkohola</a></li>
      <li><a href="#price">Status cijena</a></li>
      <li><a href="#additional">Dodatne informacije</a></li>
+     <li><a href="#tags">Tagovi manifestacije</a></li>
     </ul>
   </div>
   <div class="container">
@@ -56,6 +58,16 @@
       </div>
       Naziv manifestacije pruža korisniku jasnu predstavu o kojoj se manifestaciji radi. <br/>
       Format poruke koji se prikazuje korisniku kod neispravnog unosa je isti kao i kod oznake manifestacije. (Slika 1)
+    </div>
+    
+    <div id="description">
+      <h3>Opis manifestacije</h3>
+      <div class="alert alert-info" role="alert">
+        Opis manifestacije je <strong>obavezan</strong> i
+        sadrži najviše <strong>160 karaktera</strong>.
+      </div>
+      U ovom polju potrebno je napisati detaljan opis manifestacije. Ograničen je na 160 karaktera, a greška se prikazuje
+      u formatu kao na slici 1.
     </div>
     
     <div id="type">
