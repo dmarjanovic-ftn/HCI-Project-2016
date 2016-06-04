@@ -98,5 +98,17 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             DeleteManifestation.IsEnabled = ButtonEnabled;
             ViewDetailsManifestation.IsEnabled = ButtonEnabled;
         }
+
+        // Show Options for Advanced Search
+        private void ShowMore_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedSearch.Visibility = (AdvancedSearch.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void ChooseManifestationType_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
