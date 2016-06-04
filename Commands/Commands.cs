@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Windows.Input;
 using HCI_2016_Project.DataClasses;
+using HCI_2016_Project.UserInterface.Dialogs;
 
 namespace HCI_2016_Project.Commands
 {
