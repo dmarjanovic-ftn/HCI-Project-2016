@@ -2,15 +2,20 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
+        xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
-        Title="Dodaj tip manifestacije" Height="480" Width="640">
+        Title="Dodaj tip manifestacije" Height="480" Width="640" l:HelpProvider.HelpKey="ManifestationType">
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../../Images/Icons/hci_error_icon.png" />
         <binder:LengthToBooleanConverter x:Key="LengthToBoolean"/>
     </Window.Resources>
-    
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -51,7 +56,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationTypeLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
+        <TextBox Name="ManifestationTypeLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="ManifestationType" l:HelpProvider.HelpSection="label">
             <TextBox.Text>
                 <Binding Path="ManifestationType.Label" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -103,7 +109,8 @@
                 <Run Foreground="#D50000" Text="*"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationTypeName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
+        <TextBox Name="ManifestationTypeName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="ManifestationType" l:HelpProvider.HelpSection="name">
             <TextBox.Text>
                 <Binding Path="ManifestationType.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -164,7 +171,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,10,5" IsReadOnly="True"
-                Text="{Binding Path=ManifestationType.IconSrc, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding Path=ManifestationType.IconSrc, UpdateSourceTrigger=PropertyChanged}" 
+                     l:HelpProvider.HelpKey="ManifestationType" l:HelpProvider.HelpSection="icon"/>
             <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Margin="0,0,5,5" Click="ChooseIcon_Click">
                 Odaberite ikonicu
             </Button>
@@ -177,7 +185,8 @@
                 <Run Foreground="#D50000" Text="*"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationTypeDescription" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,20">
+        <TextBox Name="ManifestationTypeDescription" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="ManifestationType" l:HelpProvider.HelpSection="description">
             <TextBox.Text>
                 <Binding Path="ManifestationType.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
