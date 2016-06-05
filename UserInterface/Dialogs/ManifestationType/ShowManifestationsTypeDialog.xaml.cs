@@ -34,10 +34,17 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         }
 
         public ObservableCollection<ManifestationType> ManifestationTypes { get; set; }
+        public List<ManifestationType> AllManifestationTypes { get; set; }
         public ManifestationType SelectedManifestationType { get; set; }
         public Boolean ButtonEnabled { get; set; }
 
         public Boolean ReturnType { get; set; }
+
+        #region Search Options
+        public string ManifestationTypeLabel { get; set; }
+        public string ManifestationTypeName { get; set; }
+        public string ManifestationTypeDescription { get; set; }
+        #endregion
 
         public ShowManifestationsTypeDialog(bool find = false)
         {
@@ -49,9 +56,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             this.DataContext = this;
 
             ManifestationTypes = new ObservableCollection<ManifestationType>();
+            AllManifestationTypes = new List<ManifestationType>();
             foreach (ManifestationType mt in AppData.GetInstance().ManifestationTypes)
             {
                 ManifestationTypes.Add(mt);
+                AllManifestationTypes.Add(mt);
             }
 
             if (ReturnType)
@@ -117,6 +126,35 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         {
             OnSendData();
             this.Close();
+        }
+
+        // Perform Search
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            ManifestationTypes.Clear();
+
+            foreach (ManifestationType mt in AllManifestationTypes)
+            {
+                if (IfSearchOkay(mt))
+                {
+                    ManifestationTypes.Add(mt);
+                }
+            }
+        }
+
+        private bool IfSearchOkay(ManifestationType mt)
+        {
+
+            if (ManifestationTypeLabel != null && ManifestationTypeLabel != "" && !mt.Label.ToLower().Contains(ManifestationTypeLabel.ToLower()))
+                return false;
+
+            if (ManifestationTypeName != null & ManifestationTypeName != "" && !mt.Name.ToLower().Contains(ManifestationTypeName.ToLower()))
+                return false;
+
+            if (ManifestationTypeDescription != null & ManifestationTypeDescription != "" && !mt.Description.ToLower().Contains(ManifestationTypeDescription.ToLower()))
+                return false;
+
+            return true;
         }
     }
 }
