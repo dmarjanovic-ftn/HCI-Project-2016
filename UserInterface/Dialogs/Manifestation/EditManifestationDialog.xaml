@@ -4,9 +4,14 @@
         xmlns:p="clr-namespace:HCI_2016_Project.Properties"
         xmlns:local="clr-namespace:HCI_2016_Project.UserControls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         
+        xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
-        Title="Izmijeni manifestaciju" Height="580" Width="980">
+        Title="Izmijeni manifestaciju" Height="580" Width="980" l:HelpProvider.HelpKey="ManifestationEdit">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../../Images/Icons/hci_error_icon.png" />
@@ -69,7 +74,8 @@
             </TextBlock>
         </Label>
         <!-- Validaciona pravila za unos oznake manifestacije -->
-        <TextBox Name="ManifestationLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20">
+        <TextBox Name="ManifestationLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="ManifestationEdit" l:HelpProvider.HelpSection="label">
             <TextBox.Text>
                 <Binding Path="Manifestation.Label" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -131,7 +137,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20">
+        <TextBox Name="ManifestationName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="ManifestationEdit" l:HelpProvider.HelpSection="name">
             <TextBox.Text>
                 <Binding Path="Manifestation.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -189,7 +196,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,4">
+        <TextBox Name="ManifestationDescription" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,4"
+                 l:HelpProvider.HelpKey="ManifestationEdit" l:HelpProvider.HelpSection="description">
             <TextBox.Text>
                 <Binding Path="Manifestation.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -261,7 +269,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Name="ManifestationTypeLabelField"
-                         TextChanged="ManifestationTypeLabelField_TextChanged"></TextBox>
+                         TextChanged="ManifestationTypeLabelField_TextChanged"
+                         l:HelpProvider.HelpKey="ManifestationEdit" l:HelpProvider.HelpSection="type"></TextBox>
                 <Button Name="ChooseManifestationType" Grid.Column="1" Margin="2,2,2,2" Click="ChooseManifestationType_Click">Odaberi</Button>
 
                 <Grid Grid.Row="1" Grid.ColumnSpan="2">
@@ -287,7 +296,8 @@
             <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <DatePicker Name="ManifestationDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20" Focusable="False">
+        <DatePicker Name="ManifestationDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20" Focusable="False"
+                    l:HelpProvider.HelpKey="ManifestationEdit" l:HelpProvider.HelpSection="date">
             <DatePicker.Resources>
                 <Style TargetType="DatePickerTextBox">
                     <Setter Property="Text" Value="Odaberite datum manifestacije"/>
@@ -339,7 +349,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20">
+        <TextBox Name="ManifestationGuestsExpected" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="ManifestationEdit" l:HelpProvider.HelpSection="guests">
             <TextBox.Text>
                 <Binding Path="Manifestation.GuestsExpected" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -403,7 +414,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Row="1" Grid.Column="0" Name="IconPath" Margin="0,0,5,5" IsReadOnly="True"
-                Text="{Binding Path=Manifestation.IconSrc, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding Path=Manifestation.IconSrc, UpdateSourceTrigger=PropertyChanged}" 
+                     l:HelpProvider.HelpKey="ManifestationEdit" l:HelpProvider.HelpSection="icon"/>
             <Button  Grid.Row="1" Grid.Column="1" Name="ChooseIcon" Click="ChooseIcon_Click" Margin="0,0,5,5">
                 Odaberite ikonicu
             </Button>

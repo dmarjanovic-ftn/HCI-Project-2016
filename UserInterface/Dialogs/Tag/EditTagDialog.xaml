@@ -3,15 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         
+        xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
-        Title="Izmijeni tag" Height="480" Width="640">
+        Title="Izmijeni tag" Height="480" Width="640" l:HelpProvider.HelpKey="TagEdit">
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../../Images/Icons/hci_error_icon.png" />
         <binder:LengthToBooleanConverter x:Key="LengthToBoolean"/>
     </Window.Resources>
-    
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+
     <Grid Margin="0">
 
         <Grid.ColumnDefinitions>
@@ -71,7 +76,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="TagName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20">
+        <TextBox Name="TagName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"
+                 l:HelpProvider.HelpKey="TagEdit" l:HelpProvider.HelpSection="label">
             <TextBox.Text>
                 <Binding Path="Tag.Mark" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -134,7 +140,8 @@
             </TextBlock>
         </Label>
         <xctk:ColorPicker Name="ClrPcker_Background" SelectedColorChanged="ClrPcker_Background_SelectedColorChanged" SelectedColor="{Binding Path=Tag.Color}"
-                          Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"></xctk:ColorPicker>
+                          Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,5,20"
+                          l:HelpProvider.HelpKey="TagEdit" l:HelpProvider.HelpSection="color"></xctk:ColorPicker>
 
         <!-- Polje za unos opisa taga -->
         <Label Grid.Row="4" HorizontalAlignment="Right">
@@ -143,7 +150,8 @@
                 <Run Text="*" Foreground="#D50000"/>
             </TextBlock>
         </Label>
-        <TextBox Name="TagDescription" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,10">
+        <TextBox Name="TagDescription" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,5,10"
+                 l:HelpProvider.HelpKey="TagEdit" l:HelpProvider.HelpSection="description">
             <TextBox.Text>
                 <Binding Path="Tag.Description" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

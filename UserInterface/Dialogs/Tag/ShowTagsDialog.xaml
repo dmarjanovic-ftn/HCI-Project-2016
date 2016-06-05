@@ -2,9 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
+        xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binders="clr-namespace:HCI_2016_Project.Binders"
-        Title="ShowTagsDialog" Height="480" Width="640">
+        Title="ShowTagsDialog" Height="480" Width="640" l:HelpProvider.HelpKey="SearchTags">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    
     <Window.Resources>
         <binders:NullToBooleanConverter x:Key="MyConverter"/>
 
@@ -63,7 +68,8 @@
 
                     <Label>Oznaka taga:</Label>
                     <TextBox Grid.Row="1" Name="TagLabelField" Height="22"
-                             Text="{Binding Path=TagLabel, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=TagLabel, UpdateSourceTrigger=PropertyChanged}"
+                             l:HelpProvider.HelpKey="SearchTags" l:HelpProvider.HelpSection="label"/>
                 </Grid>
             </Border>
 
@@ -76,7 +82,8 @@
 
                     <Label>Opis taga:</Label>
                     <TextBox Grid.Row="1" Name="TagDescriptionField" Height="22"
-                             Text="{Binding Path=TagDescription, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=TagDescription, UpdateSourceTrigger=PropertyChanged}"
+                             l:HelpProvider.HelpKey="SearchTags" l:HelpProvider.HelpSection="description"/>
                 </Grid>
             </Border>
 

@@ -2,9 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
+        xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binders="clr-namespace:HCI_2016_Project.Binders"
-        Title="ShowManifestationsTypesDialog" Height="480" Width="640">
+        Title="ShowManifestationsTypesDialog" Height="480" Width="640" l:HelpProvider.HelpKey="SearchManifestationTypes">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    
     <Window.Resources>
         <binders:NullToBooleanConverter x:Key="MyConverter"/>
 
@@ -65,7 +70,8 @@
 
                     <Label>Oznaka tipa manifestacije:</Label>
                     <TextBox Grid.Row="1" Name="ManifestationTypeLabelField" Height="22"
-                             Text="{Binding Path=ManifestationTypeLabel, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=ManifestationTypeLabel, UpdateSourceTrigger=PropertyChanged}"
+                             l:HelpProvider.HelpKey="SearchManifestationTypes" l:HelpProvider.HelpSection="label"/>
                 </Grid>
             </Border>
 
@@ -78,7 +84,8 @@
 
                     <Label>Naziv tipa manifestacije:</Label>
                     <TextBox Grid.Row="1" Name="ManifestationTypeNamelField" Height="22"
-                             Text="{Binding Path=ManifestationTypeName, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=ManifestationTypeName, UpdateSourceTrigger=PropertyChanged}"
+                             l:HelpProvider.HelpKey="SearchManifestationTypes" l:HelpProvider.HelpSection="name"/>
                 </Grid>
             </Border>
 
@@ -91,7 +98,8 @@
 
                     <Label>Opis tipa manifestacije:</Label>
                     <TextBox Grid.Row="1" Name="ManifestationTypeDescriptionField" Height="22"
-                             Text="{Binding Path=ManifestationTypeDescription, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=ManifestationTypeDescription, UpdateSourceTrigger=PropertyChanged}"
+                             l:HelpProvider.HelpKey="SearchManifestationTypes" l:HelpProvider.HelpSection="description"/>
                 </Grid>
             </Border>
 

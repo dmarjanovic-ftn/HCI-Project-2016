@@ -2,8 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
+        xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binders="clr-namespace:HCI_2016_Project.Binders"
-        Title="ShowManifestationsDialog" Height="480" Width="640">
+        Title="ShowManifestationsDialog" Height="480" Width="640" l:HelpProvider.HelpKey="SearchManifestations">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
 
     <Window.Resources>
         <binders:NullToBooleanConverter x:Key="MyConverter"/>
@@ -67,7 +72,8 @@
                 
                     <Label>Oznaka manifestacije:</Label>
                     <TextBox Grid.Row="1" Name="ManifestationLabelField" Height="22"
-                             Text="{Binding Path=ManifestationLabel, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=ManifestationLabel, UpdateSourceTrigger=PropertyChanged}"
+                             l:HelpProvider.HelpKey="SearchManifestations" l:HelpProvider.HelpSection="label"/>
                 </Grid>
             </Border>
 
@@ -80,7 +86,8 @@
                     </Grid.RowDefinitions>
                     <Label>Naziv manifestacije:</Label>
                     <TextBox Grid.Row="1" Name="ManifestationNameField"
-                             Text="{Binding Path=ManifestationName, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=ManifestationName, UpdateSourceTrigger=PropertyChanged}"
+                             l:HelpProvider.HelpKey="SearchManifestations" l:HelpProvider.HelpSection="name"/>
                 </Grid>
             </Border>
 
@@ -94,14 +101,15 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48"/>
+                        <ColumnDefinition Width="52"/>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.ColumnSpan="3">Tip manifestacije:</Label>
                     <Label Grid.Row="1" Grid.Column="0">Oznaka:</Label>
-                    <TextBox Name="ManifestationTypeLabel" TextChanged="ManifestationTypeLabel_TextChanged" Grid.Row="1" Grid.Column="1" Height="22"></TextBox>
+                    <TextBox Name="ManifestationTypeLabel" TextChanged="ManifestationTypeLabel_TextChanged" Grid.Row="1" Grid.Column="1" Height="22"
+                             l:HelpProvider.HelpKey="SearchManifestations" l:HelpProvider.HelpSection="type"></TextBox>
                     <Button Name="ChooseManifestationType" Grid.Row="1" Grid.Column="2" Margin="2,2,2,2" Click="ChooseManifestationType_Click">Odaberi</Button>
 
                     <Image Grid.Row="2" Name="ManifestationTypeImageSrc" Source="..\..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
@@ -154,10 +162,12 @@
                                 
                                 <Label>Od</Label>
                                 <DatePicker Grid.Column="1" Height="24"
-                                            SelectedDate="{Binding Path=ManifestationBeg, UpdateSourceTrigger=PropertyChanged}"/>
+                                            SelectedDate="{Binding Path=ManifestationBeg, UpdateSourceTrigger=PropertyChanged}"
+                                            l:HelpProvider.HelpKey="SearchManifestations" l:HelpProvider.HelpSection="date"/>
                                 <Label Grid.Column="2">do</Label>
                                 <DatePicker Grid.Column="3" Height="24"
-                                            SelectedDate="{Binding Path=ManifestationEnd, UpdateSourceTrigger=PropertyChanged}"/>
+                                            SelectedDate="{Binding Path=ManifestationEnd, UpdateSourceTrigger=PropertyChanged}"
+                                            l:HelpProvider.HelpKey="SearchManifestations" l:HelpProvider.HelpSection="date"/>
                             </Grid>
                         </Grid>
                     </Border>
@@ -181,10 +191,12 @@
 
                                 <Label>Od</Label>
                                 <TextBox Grid.Column="1" Height="24"
-                                         Text="{Binding Path=GuestsExpectedMin, UpdateSourceTrigger=PropertyChanged}"/>
+                                         Text="{Binding Path=GuestsExpectedMin, UpdateSourceTrigger=PropertyChanged}"
+                                         l:HelpProvider.HelpKey="SearchManifestations" l:HelpProvider.HelpSection="guests"/>
                                 <Label Grid.Column="2">do</Label>
                                 <TextBox Grid.Column="3" Height="24"
-                                         Text="{Binding Path=GuestsExpectedMax, UpdateSourceTrigger=PropertyChanged}"/>
+                                         Text="{Binding Path=GuestsExpectedMax, UpdateSourceTrigger=PropertyChanged}"
+                                         l:HelpProvider.HelpKey="SearchManifestations" l:HelpProvider.HelpSection="guests"/>
                             </Grid>
                         </Grid>
                     </Border>

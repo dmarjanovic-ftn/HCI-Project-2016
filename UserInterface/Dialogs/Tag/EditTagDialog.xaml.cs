@@ -83,5 +83,26 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             String color = ClrPcker_Background.SelectedColor.ToString().Remove(1, 2);
             vm.Tag.Color = color;
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(this);
+            Console.WriteLine(focusedControl.GetType());
+
+            if (focusedControl.GetType() == typeof(System.Windows.Controls.Primitives.ToggleButton))
+            {
+                HelpProvider.ShowHelp("TagEdit", "color", this);
+            }
+            else if (focusedControl is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                string sec = HelpProvider.GetHelpSection((DependencyObject)focusedControl);
+                HelpProvider.ShowHelp(str, sec, this);
+            }
+            else
+            {
+                HelpProvider.ShowHelp("TagEdit", "#", this);
+            }
+        }
     }
 }
