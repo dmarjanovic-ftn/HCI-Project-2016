@@ -25,8 +25,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     public partial class ShowTagsDialog : Window
     {
         public ObservableCollection<Tag> Tags { get; set; }
+        public List<Tag> AllTags { get; set; }
         public Tag SelectedTag { get; set; }
         public Boolean ButtonEnabled { get; set; }
+
+        #region Search Options
+        public string TagLabel { get; set; }
+        public string TagDescription { get; set; }
+        #endregion
 
         public ShowTagsDialog()
         {
@@ -37,9 +43,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             this.DataContext = this;
 
             Tags = new ObservableCollection<Tag>();
+            AllTags = new List<Tag>();
             foreach (Tag t in AppData.GetInstance().Tags)
             {
                 Tags.Add(t);
+                AllTags.Add(t);
             }
         }
 
@@ -83,6 +91,31 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             EditTag.IsEnabled = ButtonEnabled;
             DeleteTag.IsEnabled = ButtonEnabled;
             ViewDetailsTag.IsEnabled = ButtonEnabled;
+        }
+
+        // Perform search...
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            Tags.Clear();
+
+            foreach (Tag t in AllTags)
+            {
+                if (IfSearchOkay(t))
+                {
+                    Tags.Add(t);
+                }
+            }
+        }
+
+        private bool IfSearchOkay(Tag t)
+        {
+            if (TagLabel != null && TagLabel != "" && !t.Mark.ToLower().Contains(TagLabel.ToLower()))
+                return false;
+
+            if (TagDescription != null & TagDescription != "" && !t.Description.ToLower().Contains(TagDescription.ToLower()))
+                return false;
+
+            return true;
         }
     }
 }

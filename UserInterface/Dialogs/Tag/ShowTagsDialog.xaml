@@ -34,14 +34,58 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="36"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="36"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
+        <!-- Search Form -->
+        <Grid Background="#F5F5F5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="#BBB" BorderThickness="1" Margin="4,4,4,4">
+                <Grid Margin="4,4,4,4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="26"/>
+                    </Grid.RowDefinitions>
+
+                    <Label>Oznaka taga:</Label>
+                    <TextBox Grid.Row="1" Name="TagLabelField" Height="22"
+                             Text="{Binding Path=TagLabel, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="#BBB" BorderThickness="1" Margin="4,4,4,4">
+                <Grid Margin="4,4,4,4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="26"/>
+                    </Grid.RowDefinitions>
+
+                    <Label>Opis taga:</Label>
+                    <TextBox Grid.Row="1" Name="TagDescriptionField" Height="22"
+                             Text="{Binding Path=TagDescription, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </Border>
+
+            <Button Name="Search" Grid.Row="0" Grid.Column="2" Grid.RowSpan="1" Margin="20,10,20,10" Click="Search_Click">
+                Pretraži
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -73,7 +117,7 @@
             </Grid>
         </Grid>
 
-        <DataGrid Grid.Row="1" x:Name="TagsTable" 
+        <DataGrid Grid.Row="2" x:Name="TagsTable" 
                   ItemsSource="{Binding Path=Tags}" 
                   SelectedItem="{Binding Path=SelectedTag, UpdateSourceTrigger=PropertyChanged}"
                   SelectionChanged="TagsTable_SelectionChanged"
