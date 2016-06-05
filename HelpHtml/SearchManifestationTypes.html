@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pretraga tipova manifestacije</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-left">
+    <a class="navbar-brand" href="#">Brand</a>
+    <ul class="nav navbar-nav">
+     <li><a href="#label">Pretraga po oznaci</a></li>
+     <li><a href="#name">Pretraga po nazivu</a></li>
+     <li><a href="#description">Pretraga po opisu</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <h1>Pretraga tipova manifestacije</h1>
+    
+    <div id="label">
+      <h3>Pretraga po oznaci</h3>
+      <div class="alert alert-info" role="alert">
+        Svi tipovi manifestacije koji u svojoj oznaci sadrže uneseni pojam će biti prikazani kao rezultat pretrage.
+      </div>
+      
+      Neka postoje tri tipa manifestacija sa oznakama - <strong>TIPMANIF1</strong>, <strong>TIPMANIF2</strong> i <strong>SERGIORAMOS</strong>. <br/>
+      <ul>
+        <li> Ako je parametar pretrage <strong>TipManif</strong> rezultat su prva dva tipa manifestacija. </li>
+        <li> Ako je parametar pretrage <strong>IF2</strong> rezultat je samo drugi tip manifestacije. </li>
+        <li> Ako je parametar pretrage <strong>a</strong> rezultat su sva tri tipa manifestacije. </li>
+      </ul>
+    </div>
+    
+    <div id="name">
+      <h3>Pretraga po nazivu</h3>
+      <div class="alert alert-info" role="alert">
+        Svi tipovi manifestacija koji u svom nazivu sadrže uneseni pojam će biti prikazani kao rezultat pretrage.
+      </div>
+      
+      Neka postoje tri tipa manifestacija sa nazivom - <strong>Tip manifestacije 1</strong>, <strong>Tip manifestacije 2</strong> i <strong>Sergio Ramos</strong>. <br/>
+      <ul>
+        <li> Ako je parametar pretrage <strong>manifest</strong> rezultat su prva dva tipa manifestacija. </li>
+        <li> Ako je parametar pretrage <strong>2</strong> rezultat je samo drugi tip manifestacije. </li>
+        <li> Ako je parametar pretrage <strong>m</strong> rezultat su sva tri tipa manifestacije. </li>
+      </ul>
+    </div>
+
+    <div id="description">
+      <h3>Pretraga po opisu</h3>
+      <div class="alert alert-info" role="alert">
+        Svi tipovi manifestacija koji u svom opisu sadrže uneseni pojam će biti prikazani kao rezultat pretrage.
+      </div>
+
+      Neka postoje tri tipa manifestacija sa opisima - <strong>Opis prvog tipa</strong>, <strong>Opis drugog tipa</strong> i <strong>Sergio Ramos doktor</strong>. <br/>
+      <ul>
+        <li> Ako je parametar pretrage <strong>opis</strong> rezultat su prva dva tipa manifestacija. </li>
+        <li> Ako je parametar pretrage <strong>drugog</strong> rezultat je samo drugi tip manifestacije. </li>
+        <li> Ako je parametar pretrage <strong>s</strong> rezultat su sva tri tipa manifestacije. </li>
+      </ul>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pretraga tagova</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-left">
+    <a class="navbar-brand" href="#">Brand</a>
+    <ul class="nav navbar-nav">
+     <li><a href="#label">Pretraga po oznaci</a></li>
+     <li><a href="#description">Pretraga po opisu</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <h1>Pretraga tagova</h1>
+    
+    <div id="label">
+      <h3>Pretraga po oznaci</h3>
+      <div class="alert alert-info" role="alert">
+        Svi tagovi koji u svojoj oznaci sadrže uneseni pojam će biti prikazani kao rezultat pretrage.
+      </div>
+      
+      Neka postoje tri taga sa oznakama - <strong>#PrviTag</strong>, <strong>#DrugiTag</strong> i <strong>#TreciTag</strong>. <br/>
+      <ul>
+        <li> Ako je parametar pretrage <strong>ugitag</strong> rezultat je samo drugi tag. </li>
+        <li> Ako je parametar pretrage <strong>Tag</strong> rezultat su sva tri taga. </li>
+      </ul>
+    </div>
+
+    <div id="description">
+      <h3>Pretraga po opisu</h3>
+      <div class="alert alert-info" role="alert">
+        Svi tagovi koji u svom opisu sadrže uneseni pojam će biti prikazani kao rezultat pretrage.
+      </div>
+
+      Neka postoje tri taga sa opisima - <strong>OpisPrviTag</strong>, <strong>OpisDrugiTag</strong> i <strong>OpisTreciTag</strong>. <br/>
+      <ul>
+        <li> Ako je parametar pretrage <strong>ugitag</strong> rezultat je samo drugi tag. </li>
+        <li> Ako je parametar pretrage <strong>opis</strong> rezultat su sva tri taga. </li>
+      </ul>
+
+    </div>
+</body>
+</html>

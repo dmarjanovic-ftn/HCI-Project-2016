@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pretraga manifestacija</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-left">
+    <a class="navbar-brand" href="#">Brand</a>
+    <ul class="nav navbar-nav">
+     <li><a href="#label">Pretraga po oznaci</a></li>
+     <li><a href="#name">Pretraga po nazivu</a></li>
+     <li><a href="#type">Pretraga po tipu manifestacije</a></li>
+     <li><a href="#date">Pretraga po datumu</a></li>
+     <li><a href="#guests">Pretraga po broju očekivanih gostiju</a></li>
+     <li><a href="#alcohol">Pretraga po statusu alkohola</a></li>
+     <li><a href="#price">Pretraga po kategoriji cijena</a></li>
+     <li><a href="#additional">Pretraga po dodatnim informacijama</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <h1>Pretraga manifestacija</h1>
+    
+    <p style="color: #D50000; margin-top: 16px;">
+      <strong>Moguće je kombinovati parametre pretrage.</strong>
+    </p>
+    
+    <p style="color: #D50000; margin-top: 16px;">
+      <strong>NAPOMENA: </strong>
+      Parametri pretrage su neosjetljivi na mala i velika slova.
+    </p>
+    
+    <div id="label">
+      <h3>Pretraga po oznaci</h3>
+      <div class="alert alert-info" role="alert">
+        Sve manifestacije koje u svojoj oznaci sadrže uneseni pojam će biti prikazane kao rezultat pretrage.
+      </div>
+      
+      Neka postoje tri manifestacije sa oznakama - <strong>MANIFEST</strong>, <strong>MANIFEST2</strong> i <strong>ABCDEFGHI</strong>. <br/>
+      <ul>
+        <li> Ako je parametar pretrage <strong>MAN</strong> rezultat su prve dvije manifestacije. </li>
+        <li> Ako je parametar pretrage <strong>St2</strong> rezultat je samo druga manifestacija. </li>
+        <li> Ako je parametar pretrage <strong>A</strong> rezultat su sve tri manifestacije. </li>
+      </ul>
+    
+    </div>
+    
+    <div id="name">
+      <h3>Pretraga po nazivu</h3>
+      <div class="alert alert-info" role="alert">
+        Sve manifestacije koje u svom nazivu sadrže uneseni pojam će biti prikazane kao rezultat pretrage.
+      </div>
+      
+      Neka postoje tri manifestacije sa nazivom - <strong>MANIFEST</strong>, <strong>MANIFEST2</strong> i <strong>ABCDEFGHI</strong>. <br/>
+      <ul>
+        <li> Ako je parametar pretrage <strong>MAN</strong> rezultat su prve dvije manifestacije. </li>
+        <li> Ako je parametar pretrage <strong>St2</strong> rezultat je samo druga manifestacija. </li>
+        <li> Ako je parametar pretrage <strong>A</strong> rezultat su sve tri manifestacije. </li>
+      </ul>
+    </div>
+    
+    <div id="type">
+      <h3>Pretraga po tipu manifestacije</h3>
+      <div class="alert alert-info" role="alert">
+        Samo one manifestacije koje su odabranog tipa će biti prikazane kao rezultat pretrage.
+      </div>
+      
+      Odabir tipa manifestacije možemo vršiti na dva načina.
+      <ul>
+        <li><b>Direktnim unosom oznake tipa manifestacije</b> - u predviđeno polje unosite oznaku tipa manifestacije.
+        Kada je unos ispravan, pojavljuje Vam se ikonica i naziv tipa manifestacije. </li>
+        <li><b>Odabirom tipa manifestacije iz dijaloga.</b></li>
+      </ul>
+      
+      <figure>
+        <img src="images/choose_type.png"/>
+        <figcaption>Slika 1. Izgled komponente za odabir tipa manifestacije</figcaption>
+      </figure>
+      
+      <figure>
+        <img src="images/choosen_type.png"/>
+        <figcaption>Slika 2. Izgled komponente za odabir tipa manifestacije kada je tip manifestacije uspješno odabran</figcaption>
+      </figure>
+    </div>
+    <br/>
+    
+    <div id="date">
+      <h3>Pretraga po datumu</h3>
+      <div class="alert alert-info" role="alert">
+        Kao rezultat pretrage prikazuju se sve manifestacije čiji je datum održavanja u unesenom opsegu.
+      </div>
+      Izbor datuma vršite tako što Vam se klikom na ikonicu <img src="images/calendar.png"/> 
+      u desnoj strani polja za unos datuma prikazuje kalendar na kom birate željeni datum. </br>
+      Prvi datum predstavlja <b>minimalan datum manifestacije</b> dok drugi datum predstavlja <b> maksimalan
+        datum manifestacije</b>.<br/>
+      Datum održavanja manifestacija koje će biti prikazane mora biti između ova dva datuma.
+      <figure>
+        <img src="images/date_search.png"/>
+        <figcaption>Slika 3. Prikaz komponente za pretragu po datumu</figcaption>
+      </figure>
+    </div>
+    
+    <div id="guests">
+      <h3>Pretraga po broju očekivanih gostiju</h3>
+      <div class="alert alert-info" role="alert">
+        Kao rezutat pretrage prikazuju se sve manifestacije čiji je očekivani broj gostiju u unesenom opsegu.
+      </div>
+      Kao što vidite na slici 4, u prvo polje se unosi <b>minimalan broj očekivanih gostiju</b>, a u drugo polje
+      se unosi <b>maksimalan broj očekivanih gostiju</b>.<br/>
+      Broj očekivanih gostiju manifestacija koje će biti prikazane nalazi se između ova dva broja.
+      <figure>
+        <img src="images/search_guest.png"/>
+        <figcaption>Slika 4. Prikaz komponente za pretragu po broju očekivanih gostiju</figcaption>
+      </figure>
+    </div>
+    
+    <div id="alcohol">
+      <h3>Pretraga po statusu alkohola</h3>
+      
+      <div class="alert alert-info" role="alert">
+        Kao rezultat prikazuju se manifestacije čiji je status alkohola jedan od označenih polja.
+      </div>
+      
+      <figure>
+        <img src="images/alcohol_status_search.png"/>
+        <figcaption>Slika 5. Pretraga po statusu alkohola</figcaption>
+      </figure>
+      
+      Dakle, na slici 5. vidite da možete označiti više statusa alkohola, iako manifestacija sadrži samo jednu od ponuđenih vrijednosti.
+      To znači da, ako ste označili opcije <b>Nema alkohola</b> i <b>Može se donijeti</b>, kao rezultat pretrage Vam se prikazuju sve
+      manifestacije kod kojih alkohol nije dozvoljen <b>ILI</b> manifestacije kod kojih se alkohol može donijeti.      
+    </div>
+
+    <div id="price">
+      <h3>Pretraga po kategoriji cijena</h3>
+      
+      <div class="alert alert-info" role="alert">
+        Kao rezultat prikazuju se manifestacije čija je kategorija cijena jedna od označenih polja.
+      </div>
+
+      <figure>
+        <img src="images/price_category_search.png"/>
+        <figcaption>Slika 6. Pretraga po kategoriji cijena</figcaption>
+      </figure>
+    
+      Dakle, na slici 6. vidite da možete označiti više kategorija cijena, iako manifestacija sadrži samo jednu od ponuđenih vrijednosti.
+      To znači da, ako ste označili opcije <b>Besplatno</b> i <b>Niske cijene</b>, kao rezultat pretrage Vam se prikazuju sve
+      manifestacije kod kojih je ulaz besplatan <b>ILI</b> manifestacije kod kojih su cijene troškova niske.   
+    </div>
+    
+    <div id="additional">
+      <h3>Pretraga po dodatnim informacijama</h3>
+      
+      <div class="alert alert-info" role="alert">
+        Kao rezultat prikazuju se manifestacije koje posjeduju označenu osobinu.
+      </div>
+      
+      <figure>
+        <img src="images/search_additional.png"/>
+        <figcaption>Slika 7. Prikaz komponente za pretragu po dodatnim informacijama</figcaption>
+      </figure>
+    </div>
+</body>
+</html>
