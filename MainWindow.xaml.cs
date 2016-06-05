@@ -295,5 +295,13 @@ namespace HCI_2016_Project
             }
             canvas.Children.Remove(remove);
         }
+
+        // Click on Demo Mode
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            var AddManifestationDemoDialog = new AddManifestationDialog();
+            AddManifestationDemoDialog.Show();
+            AddManifestationDemoDialog.StartDemo();
+        }
     }
 }

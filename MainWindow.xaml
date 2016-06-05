@@ -85,7 +85,7 @@
 
             <MenuItem Header="_Pomoć">
                 <!-- Poravnano udesno -->
-                <MenuItem InputGestureText="F5" Header="Demo mod">
+                <MenuItem InputGestureText="F5" Header="Demo mod" Click="MenuItem_Click_1">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_DemoMod}" />
                     </MenuItem.Icon>

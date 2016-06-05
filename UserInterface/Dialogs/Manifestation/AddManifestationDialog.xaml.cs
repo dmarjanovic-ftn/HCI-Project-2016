@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 using HCI_2016_Project.DataClasses;
 using HCI_2016_Project.Utils;
@@ -33,6 +34,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             public List<Tag> AvailableTags       { get; set; }
             public List<CheckBox> AllTags        { get; set; }
         }
+
+        #region DemoModeValues
+        private string demoLabel  =  "MANLABEL_DEMO";
+        private string demoName   =  "Manifestation Name Which is Looooong...+++++++++";
+        private string demoDesc   =  "Manifestation demo description. Write more details about manifestation.";
+        private string demoType   =  "SPORTMANIF++";
+        private string demoGuests =  "-4++456.56+++";
+        #endregion
 
         public AddManifestationDialog()
         {
@@ -189,6 +198,61 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             ManifestationTypeLabelField.Text = type.Label;
             ManifestationTypeName.Text = type.Name;
             ManifestationTypeImageSrc.Source = imageBitmap;
+        }
+
+        public void StartDemo() {
+           
+            Thread label = new Thread(() => TypingThread(ManifestationLabel, demoLabel));
+            label.Start();
+            
+            Thread name = new Thread(() => TypingThread(ManifestationName, demoName));
+            name.Start();
+
+            Thread desc = new Thread(() => TypingThread(ManifestationDescription, demoDesc));
+            desc.Start();
+
+            Thread type = new Thread(() => TypingThread(ManifestationTypeLabelField, demoType));
+            type.Start();
+
+            Thread guests = new Thread(() => TypingThread(ManifestationGuestsExpected, demoGuests));
+            guests.Start();
+        }
+
+        public delegate void UpdateTextCallback(TextBox textbox, string message);
+
+        private void TypingThread(TextBox textBox, String message)
+        {
+            foreach (char s in message)
+            {
+                Thread.Sleep(500);
+
+                if (s == 'D' || s == '+')
+                {
+                    Thread.Sleep(500);
+                    textBox.Dispatcher.Invoke(
+                        new UpdateTextCallback(this.RemoveLastChar),
+                        new object[] { textBox, "" }
+                        );
+                }
+
+                if (s != '+')
+                {
+                    textBox.Dispatcher.Invoke(
+                        new UpdateTextCallback(this.UpdateText),
+                        new object[] { textBox, s.ToString() }
+                        );
+                }
+            }
+        }
+
+        private void UpdateText(TextBox textbox, string message)
+        {
+            textbox.AppendText(message);
+        }
+
+        private void RemoveLastChar(TextBox textbox, string message)
+        {
+            textbox.Text = textbox.Text.Substring(0, textbox.Text.Count() - 1);
         }
     }
 }
