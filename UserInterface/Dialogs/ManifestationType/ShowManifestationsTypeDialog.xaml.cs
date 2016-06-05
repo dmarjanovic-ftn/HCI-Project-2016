@@ -33,6 +33,8 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 OnDataChoose(SelectedManifestationType);
         }
 
+        public ManifestationType DeleteType { get; set; }
+
         public ObservableCollection<ManifestationType> ManifestationTypes { get; set; }
         public List<ManifestationType> AllManifestationTypes { get; set; }
         public ManifestationType SelectedManifestationType { get; set; }
@@ -93,12 +95,21 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         private void DeleteManifestationType_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBox = System.Windows.MessageBox.Show(
-                "Da li ste sigurni da želite da obrišete odabrani tip manifestacije ("
-                + SelectedManifestationType.Label + " " + SelectedManifestationType.Name + ")?",
-                "Potvrda brisanja", System.Windows.MessageBoxButton.YesNo);
+            List<Manifestation> mans = new List<Manifestation>();
+            foreach (Manifestation m in AppData.GetInstance().Manifestations)
+            {
+                if (m.Type.Label == SelectedManifestationType.Label)
+                {
+                    mans.Add(m);
+                }
+            }
 
-            if (messageBox == MessageBoxResult.Yes)
+            AreYouSureDialog dialog = new AreYouSureDialog(mans);
+            dialog.Show();
+            dialog.OnDataChoose += new AreYouSureDialog.ChooseData(GetManifestationType);
+
+            // Null znaci da smo odustali od brisanja
+            if (DeleteType != null)
             {
                 ManifestationTypes.Remove(SelectedManifestationType);
 
@@ -109,7 +120,45 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 }
                 AppData.GetInstance().ManifestationTypes = manifestationTypes;
                 Serialization.SerializeManifestationTypes();
+
+                // Znaci da brisemo i manifestacije
+                if (DeleteType.Label == SelectedManifestationType.Label)
+                {
+                    List<Manifestation> NewManifestations = new List<Manifestation>();
+                    foreach (Manifestation m in AppData.GetInstance().Manifestations)
+                    {
+                        if (m.Type.Label != SelectedManifestationType.Label)
+                        {
+                            NewManifestations.Add(m);
+                        }
+                    }
+
+                    AppData.GetInstance().Manifestations = NewManifestations;
+                    Serialization.SerializeManifestations();
+                }
+                // Prevezujemo manifestacije
+                else
+                {
+                    List<Manifestation> NewManifestations = new List<Manifestation>();
+                    foreach (Manifestation m in AppData.GetInstance().Manifestations)
+                    {
+                        if (m.Type.Label == SelectedManifestationType.Label)
+                        {
+                            m.Type = DeleteType;
+                            NewManifestations.Add(m);
+                        }
+                    }
+
+                    AppData.GetInstance().Manifestations = NewManifestations;
+                    Serialization.SerializeManifestations();
+                }
             }
+        }
+
+        // Get type
+        private void GetManifestationType(ManifestationType type)
+        {
+            DeleteType = type;
         }
 
         private void ManifestationTypesTable_SelectionChanged(object sender, SelectionChangedEventArgs e)

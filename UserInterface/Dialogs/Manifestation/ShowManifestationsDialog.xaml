@@ -116,7 +116,7 @@
                 Prikaži više opcija
             </Button>
             
-            <Grid Name="AdvancedSearch" Grid.Row="4" Grid.ColumnSpan="3" >
+            <Grid Name="AdvancedSearch" Grid.Row="4" Grid.ColumnSpan="3" Visibility="Collapsed">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

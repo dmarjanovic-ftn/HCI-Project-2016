@@ -79,6 +79,12 @@
     <Compile Include="Binders\StringToImageConverter.cs" />
     <Compile Include="Commands\Commands.cs" />
     <Compile Include="DataClasses\AppData.cs" />
+    <Compile Include="UserInterface\Dialogs\ManifestationType\AreYouSureDialog.xaml.cs">
+      <DependentUpon>AreYouSureDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Dialogs\ManifestationType\ChooseNewManifestationType.xaml.cs">
+      <DependentUpon>ChooseNewManifestationType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Dialogs\Manifestation\AddManifestationDialog.xaml.cs">
       <DependentUpon>AddManifestationDialog.xaml</DependentUpon>
     </Compile>
@@ -143,6 +149,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserInterface\Dialogs\ManifestationType\AreYouSureDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Dialogs\ManifestationType\ChooseNewManifestationType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserInterface\Dialogs\Manifestation\AddManifestationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
