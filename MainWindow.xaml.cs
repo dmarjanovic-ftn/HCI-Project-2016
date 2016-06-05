@@ -91,6 +91,8 @@ namespace HCI_2016_Project
                         Source = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute)),
                     };
 
+                    ManifestationIcon.ToolTip = GetTooltip(manifestation);
+
                     canvas.Children.Add(ManifestationIcon);
 
                     Canvas.SetLeft(ManifestationIcon, manifestation.X);
@@ -185,6 +187,8 @@ namespace HCI_2016_Project
                     Source = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute)),
                 };
 
+                ManifestationIcon.ToolTip = GetTooltip(manifestation);
+
                 canvas.Children.Add(ManifestationIcon);
 
                 Canvas.SetLeft(ManifestationIcon, manifestation.X);
@@ -223,6 +227,8 @@ namespace HCI_2016_Project
                     Uid    = manifestation.Label,
                     Source = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute)),
                 };
+
+                ManifestationIcon.ToolTip = GetTooltip(manifestation);
 
                 canvas.Children.Add(ManifestationIcon);
 
@@ -302,6 +308,43 @@ namespace HCI_2016_Project
             var AddManifestationDemoDialog = new AddManifestationDialog();
             AddManifestationDemoDialog.Show();
             AddManifestationDemoDialog.StartDemo();
+        }
+
+        private StackPanel GetTooltip(Manifestation manifestation)
+        {
+            StackPanel complex = new StackPanel();
+            System.Drawing.Color color = System.Drawing.ColorTranslator.FromHtml("#EEEEEE");
+            complex.Background = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
+            complex.Orientation = Orientation.Vertical;
+            complex.MaxWidth = 200;
+
+            TextBlock category = new TextBlock();
+            category.Text = manifestation.Type.Name;
+            category.Padding = new Thickness(4, 2, 4, 2);
+            TextBlock title = new TextBlock();
+            title.Text = manifestation.Name;
+            title.Padding = new Thickness(4, 2, 4, 2);
+
+            complex.Children.Add(category);
+            complex.Children.Add(title);
+
+            WrapPanel panel = new WrapPanel();
+            panel.Margin = new Thickness(4, 2, 4, 2);
+            foreach (Tag tag in manifestation.Tags)
+            {
+                Label lbl = new Label();
+                lbl.Content = tag.Mark;
+                System.Drawing.Color BackColor = System.Drawing.ColorTranslator.FromHtml(tag.Color);
+                lbl.Background = new SolidColorBrush(Color.FromArgb(BackColor.A, BackColor.R, BackColor.G, BackColor.B));
+                lbl.Foreground = Brushes.White;
+                lbl.Padding = new Thickness(4, 2, 4, 2);
+                lbl.Margin = new Thickness(1, 1, 1, 1);
+                panel.Children.Add(lbl);
+            }
+
+            complex.Children.Add(panel);
+
+            return complex;
         }
     }
 }
