@@ -25,6 +25,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     public partial class ShowManifestationsDialog : Window
     {
         public ObservableCollection<Manifestation> Manifestations { get; set; }
+        public List<Manifestation> AllManifestations { get; set; }
         public Manifestation SelectedManifestation { get; set; }
         public Boolean ButtonEnabled { get; set; }
 
@@ -32,27 +33,27 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         public ManifestationType manifestationType { get; set; }
 
         public string ManifestationLabel { get; set; }
-        public string ManifestationName;
+        public string ManifestationName { get; set; }
         // public string ManifestationDescription;
-        public DateTime ManifestationBeg;
-        public DateTime ManifestationEnd;
-        public int GuestsExpectedMin;
-        public int GuestsExpectedMax;
+        public DateTime ManifestationBeg { get; set; }
+        public DateTime ManifestationEnd { get; set; }
+        public int GuestsExpectedMin { get; set; }
+        public int GuestsExpectedMax { get; set; }
 
         public bool IsAccessible { get; set; }
-        public bool IsSmokingAllowed;
-        public bool IsOutsideManifestation;
+        public bool IsSmokingAllowed { get; set; }
+        public bool IsOutsideManifestation { get; set; }
 
         // Price Category
-        public bool CanFree;
-        public bool CanLowPrice;
-        public bool CanMedPrice;
-        public bool CanHighPrice;
+        public bool IsFree { get; set; }
+        public bool IsLowPrice { get; set; }
+        public bool IsMedPrice { get; set; }
+        public bool IsHighPrice { get; set; }
 
         // Alcohol Status
-        public bool CanNoAlcohol;
-        public bool CanCanBring;
-        public bool CanCanBuy;
+        public bool CanNoAlcohol { get; set; }
+        public bool CanCanBring { get; set; }
+        public bool CanCanBuy { get; set; }
         #endregion
 
         public ShowManifestationsDialog()
@@ -64,9 +65,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             this.DataContext = this;
 
             Manifestations = new ObservableCollection<Manifestation>();
+            AllManifestations = new List<Manifestation>();
             foreach (Manifestation m in AppData.GetInstance().Manifestations)
             {
                 Manifestations.Add(m);
+                AllManifestations.Add(m);
             }
         }
 
@@ -178,8 +181,63 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         // Perform search...
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(this.ManifestationLabel);
-            Console.WriteLine(this.IsAccessible);
+            Manifestations.Clear();
+
+            foreach (Manifestation m in AllManifestations)
+            {
+                if (IfSearchOkay(m))
+                {
+                    Manifestations.Add(m);
+                }
+            }
+        }
+
+        private bool IfSearchOkay(Manifestation m) {
+
+            if (ManifestationLabel != null && ManifestationLabel != "" && !m.Label.ToLower().Contains(ManifestationLabel.ToLower()))
+                return false;
+            
+            if (ManifestationName != null & ManifestationName != "" && !m.Name.ToLower().Contains(ManifestationName.ToLower()))
+                return false;
+
+            if (GuestsExpectedMin > 0 && GuestsExpectedMin > m.GuestsExpected)
+                return false;
+
+            if (GuestsExpectedMax > 0 && GuestsExpectedMax < m.GuestsExpected)
+                return false;
+
+            if (manifestationType != null && manifestationType.Label != m.Type.Label)
+                return false;
+
+            /*if (ManifestationBeg.CompareTo(m.Date) > 0)
+                return false;
+
+            if (ManifestationEnd.CompareTo(m.Date) < 0)
+                return false;*/
+
+            if (IsAccessible && !m.Accessible)
+                return false;
+
+            if (IsSmokingAllowed && !m.SmokingAllowed)
+                return false;
+
+            if (IsOutsideManifestation && !m.OutsideManifestation)
+                return false;
+
+            if (!((CanNoAlcohol && m.AlcoholStatus == AlcoholStatusEnum.NO_ALCOHOL)
+                || (CanCanBring && m.AlcoholStatus == AlcoholStatusEnum.CAN_BRING)
+                || (CanCanBuy && m.AlcoholStatus == AlcoholStatusEnum.CAN_BUY))
+                && (CanNoAlcohol || CanCanBring || CanCanBuy))
+                return false;
+
+            if (!((IsFree && m.PriceCategory == PriceCategoryEnum.FREE)
+                || (IsLowPrice && m.PriceCategory == PriceCategoryEnum.LOW_PRICE)
+                || (IsMedPrice && m.PriceCategory == PriceCategoryEnum.MEDIUM_PRICE)
+                || (IsHighPrice && m.PriceCategory == PriceCategoryEnum.HIGH_PRICE))
+                && (IsFree || IsLowPrice || IsMedPrice || IsHighPrice))
+                return false;
+
+            return true;
         }
 
     }
