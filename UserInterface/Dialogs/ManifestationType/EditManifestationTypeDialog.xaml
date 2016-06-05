@@ -76,7 +76,17 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0">
+                                <Image.ToolTip>
+                                    <TextBlock>
+                                        Oznaka tipa manifestacije mora da ima između 8 i 20 karaktera.
+                                        <LineBreak/>
+                                        Sadrži samo slova i brojeve i jedinstvena je.
+                                        <LineBreak/>
+                                        F1 za detaljniju pomoć.
+                                    </TextBlock>
+                                </Image.ToolTip>
+                            </Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
@@ -126,7 +136,15 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0">
+                                <Image.ToolTip>
+                                    <TextBlock>
+                                        Polje sadrži najviše 30 karaktera.
+                                        <LineBreak/>
+                                        F1 za detaljniju pomoć.
+                                    </TextBlock>
+                                </Image.ToolTip>
+                            </Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
@@ -200,7 +218,15 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0">
+                                <Image.ToolTip>
+                                    <TextBlock>
+                                        Polje sadrži najviše 160 karaktera.
+                                        <LineBreak/>
+                                        F1 za detaljniju pomoć.
+                                    </TextBlock>
+                                </Image.ToolTip>
+                            </Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>

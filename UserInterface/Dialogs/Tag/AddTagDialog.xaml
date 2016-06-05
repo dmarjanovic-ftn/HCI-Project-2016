@@ -103,7 +103,17 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0">
+                                <Image.ToolTip>
+                                    <TextBlock>
+                                        Oznaka taga sadrži između 8 i 20 karaktera.
+                                        <LineBreak/>
+                                        Sadrži samo slova, brojeve i znak '#'.
+                                        <LineBreak/>
+                                        F1 za detaljniju pomoć.
+                                    </TextBlock>
+                                </Image.ToolTip>
+                            </Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
@@ -164,7 +174,15 @@
                             </Grid.ColumnDefinitions>
 
                             <AdornedElementPlaceholder x:Name="textBox"/>
-                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0"></Image>
+                            <Image Grid.Column="1" Source="{StaticResource ErrorIcon}" Width="24" Margin="5,0,0,0">
+                                <Image.ToolTip>
+                                    <TextBlock>
+                                        Maskimalan broj karaktera je 160.
+                                        <LineBreak/>
+                                        F1 za detaljniju pomoć.
+                                    </TextBlock>
+                                </Image.ToolTip>
+                            </Image>
                             <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="#D50000"/>
                         </Grid>
                     </StackPanel>
