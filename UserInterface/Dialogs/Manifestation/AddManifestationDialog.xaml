@@ -430,8 +430,8 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <RadioButton Grid.Column="0" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=NO_ALCOHOL}">Nema alkohola</RadioButton>
-                <RadioButton Grid.Column="1" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BRING}">Može se donijeti</RadioButton>
+                <RadioButton Name="rbNoAlc" Grid.Column="0" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=NO_ALCOHOL}">Nema alkohola</RadioButton>
+                <RadioButton Name="rbCanBringAlc" Grid.Column="1" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BRING}">Može se donijeti</RadioButton>
                 <RadioButton Grid.Column="2" GroupName="AlcoholStatus" IsChecked="{Binding Path=Manifestation.AlcoholStatus, Converter={StaticResource enumBinder}, ConverterParameter=CAN_BUY}">Može se kupiti</RadioButton>
             </Grid>
         </GroupBox>
@@ -451,10 +451,10 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <RadioButton Grid.Column="0" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=FREE}">Besplatno</RadioButton>
-                <RadioButton Grid.Column="1" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=LOW_PRICE}">Niske cijene</RadioButton>
+                <RadioButton Name="rb1" Grid.Column="0" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=FREE}">Besplatno</RadioButton>
+                <RadioButton Name="rb2" Grid.Column="1" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=LOW_PRICE}">Niske cijene</RadioButton>
                 <RadioButton Grid.Column="2" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=MEDIUM_PRICE}">Srednje cijene</RadioButton>
-                <RadioButton Grid.Column="3" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=HIGH_PRICE}">Visoke cijene</RadioButton>
+                <RadioButton Name="rb4" Grid.Column="3" GroupName="PriceCategory" IsChecked="{Binding Path=Manifestation.PriceCategory, Converter={StaticResource enumBinder}, ConverterParameter=HIGH_PRICE}">Visoke cijene</RadioButton>
             </Grid>
         </GroupBox>
 
@@ -471,9 +471,9 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <CheckBox Grid.Column="0" IsChecked="{Binding Path=Manifestation.Accessible}">Dostupno za hendikepirane</CheckBox>
+                <CheckBox Name="Acc" Grid.Column="0" IsChecked="{Binding Path=Manifestation.Accessible}">Dostupno za hendikepirane</CheckBox>
                 <CheckBox Grid.Column="1" IsChecked="{Binding Path=Manifestation.SmokingAllowed}">Dozvoljeno pušenje</CheckBox>
-                <CheckBox Grid.Column="2" IsChecked="{Binding Path=Manifestation.OutsideManifestation}">Manifestacija se održava napolju</CheckBox>
+                <CheckBox Name="Out" Grid.Column="2" IsChecked="{Binding Path=Manifestation.OutsideManifestation}">Manifestacija se održava napolju</CheckBox>
             </Grid>
         </GroupBox>
 

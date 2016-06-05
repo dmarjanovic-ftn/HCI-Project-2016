@@ -35,12 +35,21 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             public List<CheckBox> AllTags        { get; set; }
         }
 
+        private static int SLEEP_TIME = 150;
+
         #region DemoModeValues
-        private string demoLabel  =  "MANLABEL_DEMO";
-        private string demoName   =  "Manifestation Name Which is Looooong...+++++++++";
-        private string demoDesc   =  "Manifestation demo description. Write more details about manifestation.";
-        private string demoType   =  "SPORTMANIF++";
-        private string demoGuests =  "-4++456.56+++";
+        private List<String> fields =
+            new List<String>()
+            {
+                "MANLABEL_DEMO",
+                "Manifestation Name Which is Looooong...+++++++++",
+                "Manifestation demo description. Write more details about manifestation.",
+                "SPORTMANIF++",
+                "-4++456.56+++"
+            };
+
+        private List<TextBox> boxes = new List<TextBox>();
+
         #endregion
 
         public AddManifestationDialog()
@@ -201,45 +210,92 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         }
 
         public void StartDemo() {
-           
-            Thread label = new Thread(() => TypingThread(ManifestationLabel, demoLabel));
-            label.Start();
-            
-            Thread name = new Thread(() => TypingThread(ManifestationName, demoName));
-            name.Start();
 
-            Thread desc = new Thread(() => TypingThread(ManifestationDescription, demoDesc));
-            desc.Start();
+            boxes.Add(ManifestationLabel);
+            boxes.Add(ManifestationName);
+            boxes.Add(ManifestationDescription);
+            boxes.Add(ManifestationTypeLabelField);
+            boxes.Add(ManifestationGuestsExpected);
 
-            Thread type = new Thread(() => TypingThread(ManifestationTypeLabelField, demoType));
-            type.Start();
+            List<RadioButton> radiobuttons = new List<RadioButton>();
+            List<CheckBox> checkboxes = new List<CheckBox>();
 
-            Thread guests = new Thread(() => TypingThread(ManifestationGuestsExpected, demoGuests));
-            guests.Start();
+            radiobuttons.Add(rbCanBringAlc);
+            radiobuttons.Add(rbNoAlc);
+            radiobuttons.Add(rb2);
+            radiobuttons.Add(rb1);
+            radiobuttons.Add(rb4);
+
+            checkboxes.Add(Acc);
+            checkboxes.Add(Out);
+            checkboxes.Add(Out);
+            checkboxes.Add(Out);
+
+            Thread thread = new Thread(() => TypingThread(boxes, fields, radiobuttons, checkboxes, vm.AllTags));
+            thread.Start();
         }
 
         public delegate void UpdateTextCallback(TextBox textbox, string message);
+        public delegate void RadioButtonChecker(RadioButton rb);
+        public delegate void CheckBoxChecker(CheckBox cb);
 
-        private void TypingThread(TextBox textBox, String message)
+        private void TypingThread(List<TextBox> boxes, List<String> messages, 
+            List<RadioButton> radiobuttons, List<CheckBox> checkboxes, List<CheckBox> tags)
         {
-            foreach (char s in message)
+            for (int i = 0; i < boxes.Count; ++i)
             {
-                Thread.Sleep(500);
+                String message = messages[i];
+                TextBox textBox = boxes[i];
 
-                if (s == 'D' || s == '+')
+                foreach (char s in message)
                 {
-                    Thread.Sleep(500);
-                    textBox.Dispatcher.Invoke(
-                        new UpdateTextCallback(this.RemoveLastChar),
-                        new object[] { textBox, "" }
-                        );
+                    Thread.Sleep(SLEEP_TIME);
+
+                    if (s == 'D' || s == '+')
+                    {
+                        Thread.Sleep(SLEEP_TIME);
+                        textBox.Dispatcher.Invoke(
+                            new UpdateTextCallback(this.RemoveLastChar),
+                            new object[] { textBox, "" }
+                            );
+                    }
+
+                    if (s != '+')
+                    {
+                        textBox.Dispatcher.Invoke(
+                            new UpdateTextCallback(this.UpdateText),
+                            new object[] { textBox, s.ToString() }
+                            );
+                    }
                 }
+            }
 
-                if (s != '+')
+            foreach (RadioButton rb in radiobuttons)
+            {
+                Thread.Sleep(9 * SLEEP_TIME);
+                rb.Dispatcher.Invoke(
+                    new RadioButtonChecker(this.CheckRadioButton),
+                    new object[] { rb }
+                    );
+            }
+
+            foreach (CheckBox cb in checkboxes)
+            {
+                Thread.Sleep(9 * SLEEP_TIME);
+                cb.Dispatcher.Invoke(
+                    new CheckBoxChecker(this.CheckCheckBox),
+                    new object[] { cb }
+                    );
+            }
+
+            for (int i = 0; i < tags.Count; ++i)
+            {
+                if (i % 3 == 1)
                 {
-                    textBox.Dispatcher.Invoke(
-                        new UpdateTextCallback(this.UpdateText),
-                        new object[] { textBox, s.ToString() }
+                    Thread.Sleep(9 * SLEEP_TIME);
+                    tags[i].Dispatcher.Invoke(
+                        new CheckBoxChecker(this.CheckCheckBox),
+                        new object[] { tags[i] }
                         );
                 }
             }
@@ -253,6 +309,16 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         private void RemoveLastChar(TextBox textbox, string message)
         {
             textbox.Text = textbox.Text.Substring(0, textbox.Text.Count() - 1);
+        }
+
+        private void CheckRadioButton(RadioButton btn)
+        {
+            btn.IsChecked = true;
+        }
+
+        private void CheckCheckBox(CheckBox cb)
+        {
+            cb.IsChecked = !cb.IsChecked;
         }
     }
 }
