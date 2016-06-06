@@ -20,11 +20,9 @@ namespace HCI_2016_Project.Binders
 
             String path = (String)value;
 
-            if (path.EndsWith(".png"))
+            if (path.EndsWith(".png") || path.EndsWith(".jpg"))
             {
                 ImageSource result = new BitmapImage(new Uri(path));
-                // Bitmap image = (Bitmap)Image.FromFile(path, true);
-                Console.WriteLine("SIIII");
                 return result;
             }
             else

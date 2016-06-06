@@ -17,7 +17,6 @@ namespace HCI_2016_Project.Binders
             Manifestation m = (Manifestation)value;
             if (m != null)
             {
-                Console.WriteLine(m.Label);
             }
             return value != null;
         }

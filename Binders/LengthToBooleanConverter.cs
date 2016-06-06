@@ -13,7 +13,6 @@ namespace HCI_2016_Project.Binders
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Int32 length = (Int32)value;
-            Console.WriteLine(length);
             if (length == 0)
             {
                 return true;

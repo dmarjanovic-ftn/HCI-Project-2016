@@ -158,7 +158,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             IInputElement focusedControl = FocusManager.GetFocusedElement(this);
-            Console.WriteLine(focusedControl);
+
             if (focusedControl is DependencyObject)
             {
                 string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);

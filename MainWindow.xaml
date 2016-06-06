@@ -30,7 +30,22 @@
             <Setter Property="Padding" Value="4"/>
         </Style>
     </Window.Resources>
-    
+
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Control" Key="M" 
+                Command="commands:Commands.AddManifestation"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="M" 
+                Command="commands:Commands.ShowAllManifestations"/>
+        <KeyBinding Modifiers="Control" Key="T" 
+                Command="commands:Commands.AddTag"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="T" 
+                Command="commands:Commands.ShowAllTags"/>
+        <KeyBinding Modifiers="Control" Key="C" 
+                Command="commands:Commands.AddManifestationType"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="C" 
+                Command="commands:Commands.ShowAllManifestationTypes"/>
+    </Window.InputBindings>
+
     <DockPanel>
         <Menu DockPanel.Dock ="Top" Background="#ddd">
             <Menu.ItemsPanel>
@@ -107,14 +122,14 @@
                             <Label Background="#eee">Manifestacije</Label>
                             <StackPanel Orientation="Horizontal" Height="32">
                                 <!-- Toolbar manifestacija dugmad -->
-                                <Button ToolTip="Dodaj novu manifestaciju" Style="{StaticResource ToolbarButton}"
+                                <Button ToolTip="Dodaj novu manifestaciju (Ctrl+M)" Style="{StaticResource ToolbarButton}"
                                         Command="commands:Commands.AddManifestation">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=Add}"/>
                                         <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button ToolTip="Pregled detalja o manifestacijama" Style="{StaticResource ToolbarButton}"
+                                <Button ToolTip="Pregled detalja o manifestacijama (Ctrl+Shift+M)" Style="{StaticResource ToolbarButton}"
                                         Command="commands:Commands.ShowAllManifestations">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=View}"/>
@@ -130,14 +145,14 @@
                             <Label Background="#eee">Tagovi</Label>
                             <StackPanel Orientation="Horizontal" Height="32">
                                 <!-- Toolbar tagovi dugmad -->
-                                <Button ToolTip="Dodaj novi tag za manifestaciju" Style="{StaticResource ToolbarButton}"
+                                <Button ToolTip="Dodaj novi tag za manifestaciju (Ctrl+T)" Style="{StaticResource ToolbarButton}"
                                         Command="commands:Commands.AddTag">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=Add}"/>
                                         <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button ToolTip="Pregled detalja o svim tagovima" Style="{StaticResource ToolbarButton}"
+                                <Button ToolTip="Pregled detalja o svim tagovima (Ctrl+Shift+T)" Style="{StaticResource ToolbarButton}"
                                         Command="commands:Commands.ShowAllTags">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=View}"/>
@@ -153,14 +168,14 @@
                             <Label Background="#eee">Tipovi manifestacije</Label>
                             <StackPanel Orientation="Horizontal" Height="32">
                                 <!-- Toolbar tipova manifestacija dugmad -->
-                                <Button ToolTip="Dodaj novi tip manifestacije" Style="{StaticResource ToolbarButton}"
+                                <Button ToolTip="Dodaj novi tip manifestacije (Ctrl+C)" Style="{StaticResource ToolbarButton}"
                                         Command="commands:Commands.AddManifestationType">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=Add}"/>
                                         <TextBlock VerticalAlignment="Center" Margin="6,0,2,0">Dodaj</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button ToolTip="Pregled detalja o tipovima manifestacija" Style="{StaticResource ToolbarButton}"
+                                <Button ToolTip="Pregled detalja o tipovima manifestacija (Ctrl+Shift+C)" Style="{StaticResource ToolbarButton}"
                                         Command="commands:Commands.ShowAllManifestationTypes">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource ResourceKey=View}"/>

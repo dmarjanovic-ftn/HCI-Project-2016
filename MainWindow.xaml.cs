@@ -103,6 +103,21 @@ namespace HCI_2016_Project
             }
 
             this.DataContext = vm;
+
+            this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
+        }
+
+        void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                MenuItem_Click_1(null, null);
+            }
+            else if (e.Key == Key.F1)
+            {
+                IInputElement focusedControl = FocusManager.GetFocusedElement(this);
+                HelpProvider.ShowHelp("Manifestation", "#", this);
+            }
         }
 
         // Return clicked Manifestation on canvas. Otherwise return null.

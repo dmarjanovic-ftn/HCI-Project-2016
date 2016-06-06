@@ -51,9 +51,7 @@ namespace HCI_2016_Project.Commands
 
         public void Execute(object parameter)
         {
-            // Console.WriteLine(parameter);
-            // Console.WriteLine("Remove from Map");
-            // Console.Beep();
+
         }
     }
 
