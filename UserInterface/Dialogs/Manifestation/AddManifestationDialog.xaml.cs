@@ -158,15 +158,29 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            IInputElement focusedControl = FocusManager.GetFocusedElement(this);
-
-            if (focusedControl is DependencyObject)
+            try
             {
-                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
-                string sec = HelpProvider.GetHelpSection((DependencyObject)focusedControl);
-                HelpProvider.ShowHelp(str, sec, this);
+                IInputElement focusedControl = FocusManager.GetFocusedElement(this);
+
+                if (focusedControl is DependencyObject)
+                {
+                    string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                    string sec = HelpProvider.GetHelpSection((DependencyObject)focusedControl);
+
+                    if (str == "index")
+                    {
+                        HelpProvider.ShowHelp("Manifestation", "#", this);
+                        return;
+                    }
+
+                    HelpProvider.ShowHelp(str, sec, this);
+                }
+                else
+                {
+                    HelpProvider.ShowHelp("Manifestation", "#", this);
+                }
             }
-            else
+            catch
             {
                 HelpProvider.ShowHelp("Manifestation", "#", this);
             }
@@ -381,7 +395,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.F5)
+            if (e.Key == Key.F5 && vm.IsDemoMode)
             {
                 if (IsRunning == 1)
                 {

@@ -253,15 +253,29 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            IInputElement focusedControl = FocusManager.GetFocusedElement(this);
-            Console.WriteLine(focusedControl);
-            if (focusedControl is DependencyObject)
+            try
             {
-                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
-                string sec = HelpProvider.GetHelpSection((DependencyObject)focusedControl);
-                HelpProvider.ShowHelp(str, sec, this);
+                IInputElement focusedControl = FocusManager.GetFocusedElement(this);
+                Console.WriteLine(focusedControl);
+                if (focusedControl is DependencyObject)
+                {
+                    string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                    string sec = HelpProvider.GetHelpSection((DependencyObject)focusedControl);
+
+                    if (str == "index")
+                    {
+                        HelpProvider.ShowHelp("SearchManifestations", "#", this);
+                        return;
+                    }
+
+                    HelpProvider.ShowHelp(str, sec, this);
+                }
+                else
+                {
+                    HelpProvider.ShowHelp("SearchManifestations", "#", this);
+                }
             }
-            else
+            catch
             {
                 HelpProvider.ShowHelp("SearchManifestations", "#", this);
             }

@@ -97,6 +97,13 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             {
                 string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
                 string sec = HelpProvider.GetHelpSection((DependencyObject)focusedControl);
+
+                if (str == "index")
+                {
+                    HelpProvider.ShowHelp("TagEdit", "#", this);
+                    return;
+                }
+
                 HelpProvider.ShowHelp(str, sec, this);
             }
             else
