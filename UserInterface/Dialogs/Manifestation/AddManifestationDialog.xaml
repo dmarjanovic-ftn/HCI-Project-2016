@@ -11,7 +11,7 @@
         Title="Dodaj manifestaciju" l:HelpProvider.HelpKey="Manifestation"
         Width="800" Height="600" Icon="../../../Images/favicon.ico"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" Closing="Window_Closing">
 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>

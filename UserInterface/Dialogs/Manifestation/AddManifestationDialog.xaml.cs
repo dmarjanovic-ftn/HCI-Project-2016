@@ -409,5 +409,10 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 IsRunning = (IsRunning + 1) % 2;
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (vm.IsDemoMode) thread.Abort();
+        }
     }
 }
