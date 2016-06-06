@@ -366,5 +366,50 @@ namespace HCI_2016_Project
 
             return complex;
         }
+
+        private void GetNotification(String s)
+        {
+            if (s == "CHANGED")
+            {
+                vm.Manifestations.Clear();
+                vm.DroppedManifestations = new ObservableCollection<Manifestation>();
+
+                foreach (Manifestation manifestation in AppData.GetInstance().Manifestations)
+                {
+                    if (manifestation.X == -1 && manifestation.Y == -1)
+                    {
+                        vm.Manifestations.Add(manifestation);
+                    }
+                    else
+                    {
+                        Canvas canvas = ManifestationsMap;
+
+                        canvas.Children.Clear();
+
+                        Image ManifestationIcon = new Image
+                        {
+                            Width = ICON_SIZE,
+                            Height = ICON_SIZE,
+                            Uid = manifestation.Label,
+                            Source = new BitmapImage(new Uri(manifestation.IconSrc, UriKind.Absolute)),
+                        };
+
+                        ManifestationIcon.ToolTip = GetTooltip(manifestation);
+
+                        canvas.Children.Add(ManifestationIcon);
+
+                        Canvas.SetLeft(ManifestationIcon, manifestation.X);
+                        Canvas.SetTop(ManifestationIcon, manifestation.Y);
+
+                        vm.DroppedManifestations.Add(manifestation);
+                    }
+                }
+            }
+        }
+
+        private void Window_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Serialization.OnManifestationsChange += new Serialization.SendMessageToMainWindow(GetNotification);
+        }
     }
 }

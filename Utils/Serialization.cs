@@ -18,13 +18,15 @@ namespace HCI_2016_Project.Utils
         private const String TAGS_FILENAME = "data.tags.xml";
 
         #region Method for Manifestations serialization
-        public static void SerializeManifestations()
+        public static void SerializeManifestations(bool sendMessage = true)
         {
             var serializer = new XmlSerializer(typeof(List<Manifestation>));
             using (var stream = File.Open(MANIFESTATIONS_FILENAME, FileMode.Create))
             {
                 serializer.Serialize(stream, AppData.GetInstance().Manifestations);
             }
+
+            if (sendMessage) OnSendMessage();
         }
         #endregion
 
@@ -85,5 +87,15 @@ namespace HCI_2016_Project.Utils
             }
         }
         #endregion
+
+
+        public delegate void SendMessageToMainWindow(String notice);
+        public static event SendMessageToMainWindow OnManifestationsChange;
+
+        private static void OnSendMessage()
+        {
+            if (OnManifestationsChange != null)
+                OnManifestationsChange("CHANGED");
+        }
     }
 }

@@ -52,14 +52,14 @@ namespace HCI_2016_Project.DataClasses
                 }
             }
 
-            Serialization.SerializeManifestations();
+            Serialization.SerializeManifestations(false);
         }
 
         public static void MakeFiles()
         {
             Serialization.SerializeManifestationTypes();
             Serialization.SerializeTags();
-            Serialization.SerializeManifestations();
+            Serialization.SerializeManifestations(false);
         }
 
         #region Manifestations Getter and Setter

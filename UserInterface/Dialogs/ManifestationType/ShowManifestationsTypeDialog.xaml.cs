@@ -95,7 +95,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             }
 
             AreYouSureDialog dialog = new AreYouSureDialog(mans);
-            dialog.ShowDialog();
+            dialog.Show();
             dialog.OnAreYouSureDataChoose += new AreYouSureDialog.ChooseAreYouSureData(GetAnswerManifestationType);
         }
 
