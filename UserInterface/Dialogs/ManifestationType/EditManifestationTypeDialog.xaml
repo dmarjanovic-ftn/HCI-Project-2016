@@ -265,14 +265,12 @@
                     <Style.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationLabel}" Value="False"/>
-                                <Condition Binding="{Binding ElementName=ManifestationLabel, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationName}" Value="False"/>
-                                <Condition Binding="{Binding ElementName=ManifestationName, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationDescription}" Value="False"/>
-                                <Condition Binding="{Binding ElementName=ManifestationDescription, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationGuestsExpected}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationDate}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationTypeLabel}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=ManifestationTypeLabel, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationTypeName}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=ManifestationTypeName, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationTypeDescription}" Value="False"/>
+                                <Condition Binding="{Binding ElementName=ManifestationTypeDescription, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="IsEnabled" Value="True"/>
                         </MultiDataTrigger>

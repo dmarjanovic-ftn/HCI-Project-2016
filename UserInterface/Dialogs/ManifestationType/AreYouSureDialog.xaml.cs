@@ -35,35 +35,40 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         // Choose Another Manifestation Type
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var choose = new ChooseNewManifestationType();
-            choose.Show();
-            choose.OnDataChoose += new ChooseNewManifestationType.ChooseData(GetManifestationType);
+            if (ManifestationsForDelete != null && ManifestationsForDelete.Count > 0)
+            {
+                var choose = new ChooseNewManifestationType(ManifestationsForDelete[0].Type);
+                choose.Show();
+                choose.OnNewTypeDataChoose += new ChooseNewManifestationType.NewTypeChooseData(GetAreYouSureManifestationType);
+            }
         }
 
-        public delegate void ChooseData(ManifestationType type);
-        public event ChooseData OnDataChoose;
+        public delegate void ChooseAreYouSureData(ManifestationType type);
+        public event ChooseAreYouSureData OnAreYouSureDataChoose;
 
-        private void OnSendData()
+        private void OnAreYouSureSendData()
         {
-            if (OnDataChoose != null)
-                OnDataChoose(result);
+            if (OnAreYouSureDataChoose != null)
+                OnAreYouSureDataChoose(this.result);
         }
 
         // Get type
-        private void GetManifestationType(ManifestationType type)
+        private void GetAreYouSureManifestationType(ManifestationType type)
         {
             this.result = type;
+            Console.WriteLine(type.Label);
 
             Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
             BitmapImage imageBitmap = new BitmapImage(imageUri);
+            OnAreYouSureSendData();
 
-            OnSendData();
+            this.Close();
         }
 
         // Delete anyway
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (ManifestationsForDelete.Count > 0)
+            if (ManifestationsForDelete != null && ManifestationsForDelete.Count > 0)
             {
                 this.result = ManifestationsForDelete[0].Type;
             }
@@ -72,14 +77,20 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 this.result = null;
             }
 
-            OnSendData();
+            Console.WriteLine("AAAAAA");
+            Console.WriteLine(this.result.Label);
+            OnAreYouSureSendData();
+
+            this.Close();
         }
 
         // Cancel
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             this.result = null;
-            OnSendData();
+            OnAreYouSureSendData();
+
+            this.Close();
         }
     }
 }

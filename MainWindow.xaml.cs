@@ -116,7 +116,7 @@ namespace HCI_2016_Project
             else if (e.Key == Key.F1)
             {
                 IInputElement focusedControl = FocusManager.GetFocusedElement(this);
-                HelpProvider.ShowHelp("Manifestation", "#", this);
+                HelpProvider.ShowHelp("Index", "#", this);
             }
         }
 

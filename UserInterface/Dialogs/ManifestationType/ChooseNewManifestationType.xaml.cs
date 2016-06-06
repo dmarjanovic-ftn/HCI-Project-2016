@@ -23,24 +23,25 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     {
 
         public ManifestationType type { get; set; }
+        private ManifestationType cantBeSelected;
 
-        public ChooseNewManifestationType()
+        public ChooseNewManifestationType(ManifestationType t)
         {
             InitializeComponent();
             this.DataContext = this;
+            this.cantBeSelected = t;
         }
 
         private void ManifestationTypeLabelField_TextChanged(object sender, TextChangedEventArgs e)
         {
             foreach (ManifestationType type in AppData.GetInstance().ManifestationTypes)
             {
-                if (type.Label.ToLower() == ManifestationTypeLabelField.Text.ToLower())
+                if (type.Label.ToLower() == ManifestationTypeLabelField.Text.ToLower() && type.Label != cantBeSelected.Label)
                 {
                     this.type = type;
 
                     Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
                     BitmapImage imageBitmap = new BitmapImage(imageUri);
-
                     ManifestationTypeName.Text = type.Name;
                     ManifestationTypeImageSrc.Source = imageBitmap;
                     return;
@@ -56,12 +57,18 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         {
             var allManifestaionTypes = new ShowManifestationsTypeDialog(true);
             allManifestaionTypes.Show();
-            allManifestaionTypes.OnDataChoose += new ShowManifestationsTypeDialog.ChooseData(GetManifestationType);
+            allManifestaionTypes.OnDataChoose += new ShowManifestationsTypeDialog.ChooseData(GetMyManifestationType);
         }
 
         // Get type
-        private void GetManifestationType(ManifestationType type)
+        private void GetMyManifestationType(ManifestationType type)
         {
+
+            if (type.Label == cantBeSelected.Label)
+            {
+                return;
+            }
+
             this.type = type;
 
             Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
@@ -74,16 +81,24 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         private void ReturnType_Click(object sender, RoutedEventArgs e)
         {
-            OnSendData();
+            OnNewTypeSendData();
+            this.Close();
         }
 
-        public delegate void ChooseData(ManifestationType type);
-        public event ChooseData OnDataChoose;
+        public delegate void NewTypeChooseData(ManifestationType type);
+        public event NewTypeChooseData OnNewTypeDataChoose;
 
-        private void OnSendData()
+        private void OnNewTypeSendData()
         {
-            if (OnDataChoose != null)
-                OnDataChoose(this.type);
+            Console.WriteLine("Saljem...");
+            Console.WriteLine(this.type.Label);
+            if (OnNewTypeDataChoose != null)
+                OnNewTypeDataChoose(this.type);
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

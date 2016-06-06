@@ -71,16 +71,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             }
         }
 
-        /*private void ManifestationsTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            DataGridTextColumn dgtc = e.Column as DataGridTextColumn;
-            if (dgtc != null)
-            {
-                StringToImageConverter con = new StringToImageConverter();
-                (dgtc.Binding as Binding).Converter = con;
-            }
-        }*/
-
         private void ViewDetailsManifestationType_Click(object sender, RoutedEventArgs e)
         {
             var showDetailDialog = new HCI_2016_Project.UserInterface.Dialogs.ManifestationTypeDetailsWindow(SelectedManifestationType);
@@ -106,21 +96,19 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
             AreYouSureDialog dialog = new AreYouSureDialog(mans);
             dialog.Show();
-            dialog.OnDataChoose += new AreYouSureDialog.ChooseData(GetManifestationType);
+            dialog.OnAreYouSureDataChoose += new AreYouSureDialog.ChooseAreYouSureData(GetAnswerManifestationType);
 
+            Console.WriteLine(DeleteType);
+        }
+
+        // Get type
+        private void GetAnswerManifestationType(ManifestationType type)
+        {
+            DeleteType = type;
+            Console.WriteLine("On answer.");
             // Null znaci da smo odustali od brisanja
             if (DeleteType != null)
             {
-                ManifestationTypes.Remove(SelectedManifestationType);
-
-                List<ManifestationType> manifestationTypes = new List<ManifestationType>();
-                foreach (ManifestationType manifestationType in ManifestationTypes)
-                {
-                    manifestationTypes.Add(manifestationType);
-                }
-                AppData.GetInstance().ManifestationTypes = manifestationTypes;
-                Serialization.SerializeManifestationTypes();
-
                 // Znaci da brisemo i manifestacije
                 if (DeleteType.Label == SelectedManifestationType.Label)
                 {
@@ -147,18 +135,27 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                             m.Type = DeleteType;
                             NewManifestations.Add(m);
                         }
+                        else
+                        {
+                            NewManifestations.Add(m);
+                        }
                     }
 
                     AppData.GetInstance().Manifestations = NewManifestations;
                     Serialization.SerializeManifestations();
                 }
-            }
-        }
 
-        // Get type
-        private void GetManifestationType(ManifestationType type)
-        {
-            DeleteType = type;
+                ManifestationTypes.Remove(SelectedManifestationType);
+
+                List<ManifestationType> manifestationTypes = new List<ManifestationType>();
+                foreach (ManifestationType manifestationType in ManifestationTypes)
+                {
+                    manifestationTypes.Add(manifestationType);
+                }
+                AppData.GetInstance().ManifestationTypes = manifestationTypes;
+                Serialization.SerializeManifestationTypes();
+            }
+            
         }
 
         private void ManifestationTypesTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
