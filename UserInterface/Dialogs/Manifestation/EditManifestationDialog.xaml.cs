@@ -163,15 +163,16 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
                     Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
                     BitmapImage imageBitmap = new BitmapImage(imageUri);
-
+                    ManifestationTypeError.Visibility = Visibility.Hidden;
                     ManifestationTypeName.Text = type.Name;
                     ManifestationTypeImageSrc.Source = imageBitmap;
                     return;
                 }
             }
 
-            ManifestationTypeName.Text = null;
+            ManifestationTypeName.Text = "";
             ManifestationTypeImageSrc.Source = null;
+            ManifestationTypeError.Visibility = Visibility.Visible;
             vm.Manifestation.Type = null;
         }
 
@@ -210,6 +211,17 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             {
                 HelpProvider.ShowHelp("ManifestationEdit", "#", this);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Uri imageUri = new Uri(vm.Manifestation.Type.IconSrc, UriKind.Absolute);
+            BitmapImage imageBitmap = new BitmapImage(imageUri);
+            ManifestationTypeLabelField.Text = vm.Manifestation.Type.Label;
+            ManifestationTypeError.Visibility = Visibility.Hidden;
+            ManifestationTypeName.Text = vm.Manifestation.Type.Name;
+            ManifestationTypeImageSrc.Source = imageBitmap;
+            return;
         }
 
     }

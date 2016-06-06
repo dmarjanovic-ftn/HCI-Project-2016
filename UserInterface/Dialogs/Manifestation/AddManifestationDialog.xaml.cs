@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using System.IO;
 
 using HCI_2016_Project.DataClasses;
 using HCI_2016_Project.Utils;
@@ -182,15 +183,16 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
                     Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
                     BitmapImage imageBitmap = new BitmapImage(imageUri);
-
+                    ManifestationTypeError.Visibility = Visibility.Hidden;
                     ManifestationTypeName.Text = type.Name;
                     ManifestationTypeImageSrc.Source = imageBitmap;
                     return;
                 }
             }
 
-            ManifestationTypeName.Text = null;
+            ManifestationTypeName.Text = "";
             ManifestationTypeImageSrc.Source = null;
+            ManifestationTypeError.Visibility = Visibility.Visible;
             vm.Manifestation.Type = null;
         }
 

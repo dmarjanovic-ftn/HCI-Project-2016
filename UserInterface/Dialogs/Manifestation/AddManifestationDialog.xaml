@@ -265,8 +265,8 @@
                     </Grid.RowDefinitions>
                 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="96"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="96" MaxWidth="96" MinWidth="96"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBox Name="ManifestationTypeLabelField"
@@ -276,15 +276,18 @@
                     <Grid Grid.Row="1" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48"/>
+                            <ColumnDefinition Width="48" MinWidth="48" MaxWidth="48"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Name="ManifestationTypeImageSrc" Source="..\..\..\Images\Icons\info.png" Width="32" Margin="8,8,8,8"></Image>
-                        <TextBox Name="ManifestationTypeName" Grid.Column="1" IsReadOnly="True" VerticalAlignment="Center">Naziv manifestacije</TextBox>
+                        <Image Name="ManifestationTypeImageSrc" Width="32" Height="32" MinHeight="32" MinWidth="32" Margin="8,8,8,8"></Image>
+                        <TextBox Name="ManifestationTypeName" Grid.Column="1" IsReadOnly="True" VerticalAlignment="Center"/>
+
+                        <TextBlock Name="ManifestationTypeError" Grid.Row="1" Grid.ColumnSpan="2" Text="Tip manifestacije je obavezan." Visibility="Hidden" Foreground="#D50000"/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -520,6 +523,7 @@
                                     <Condition Binding="{Binding ElementName=ManifestationDescription, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
                                     <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationGuestsExpected}" Value="False"/>
                                     <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ManifestationDate}" Value="False"/>
+                                    <Condition Binding="{Binding ElementName=ManifestationTypeName, Converter={StaticResource LengthToBoolean}, Path=Text.Length}" Value="False" />
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="IsEnabled" Value="True"/>
                             </MultiDataTrigger>
