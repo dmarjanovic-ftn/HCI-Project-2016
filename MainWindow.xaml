@@ -105,7 +105,7 @@
                         <Image Source="{StaticResource ResourceKey=Menu_DemoMod}" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem InputGestureText="F1" Header="Online pomoć">
+                <MenuItem InputGestureText="F1" Header="Online pomoć" Click="MenuItem_Click_2">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_Help}" />
                     </MenuItem.Icon>

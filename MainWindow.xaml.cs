@@ -372,7 +372,11 @@ namespace HCI_2016_Project
             if (s == "CHANGED")
             {
                 vm.Manifestations.Clear();
-                vm.DroppedManifestations = new ObservableCollection<Manifestation>();
+                vm.DroppedManifestations.Clear();
+
+                Canvas canvas = ManifestationsMap;
+
+                canvas.Children.Clear();
 
                 foreach (Manifestation manifestation in AppData.GetInstance().Manifestations)
                 {
@@ -382,10 +386,6 @@ namespace HCI_2016_Project
                     }
                     else
                     {
-                        Canvas canvas = ManifestationsMap;
-
-                        canvas.Children.Clear();
-
                         Image ManifestationIcon = new Image
                         {
                             Width = ICON_SIZE,
@@ -410,6 +410,11 @@ namespace HCI_2016_Project
         private void Window_MouseEnter(object sender, MouseEventArgs e)
         {
             Serialization.OnManifestationsChange += new Serialization.SendMessageToMainWindow(GetNotification);
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("Index", "#", this);
         }
     }
 }
