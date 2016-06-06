@@ -38,7 +38,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             if (ManifestationsForDelete != null && ManifestationsForDelete.Count > 0)
             {
                 var choose = new ChooseNewManifestationType(ManifestationsForDelete[0].Type);
-                choose.Show();
+                choose.ShowDialog();
                 choose.OnNewTypeDataChoose += new ChooseNewManifestationType.NewTypeChooseData(GetAreYouSureManifestationType);
             }
         }
@@ -56,7 +56,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         private void GetAreYouSureManifestationType(ManifestationType type)
         {
             this.result = type;
-            Console.WriteLine(type.Label);
 
             Uri imageUri = new Uri(type.IconSrc, UriKind.Absolute);
             BitmapImage imageBitmap = new BitmapImage(imageUri);
@@ -77,8 +76,6 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 this.result = null;
             }
 
-            Console.WriteLine("AAAAAA");
-            Console.WriteLine(this.result.Label);
             OnAreYouSureSendData();
 
             this.Close();

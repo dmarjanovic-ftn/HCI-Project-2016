@@ -55,11 +55,27 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         {
             MessageBoxResult messageBox = System.Windows.MessageBox.Show(
                 "Da li ste sigurni da želite da obrišete odabrani tag ("
-                + SelectedTag.Mark + ")?",
+                + SelectedTag.Mark + ")? Biće obrisani tagovi u svim manifestacijama u kojima je dodat!",
                 "Potvrda brisanja", System.Windows.MessageBoxButton.YesNo);
 
             if (messageBox == MessageBoxResult.Yes)
             {
+                List<Manifestation> manifestations = new List<Manifestation>();
+                List<Tag> tgs;
+                foreach (Manifestation m in AppData.GetInstance().Manifestations)
+                {
+                    tgs = new List<Tag>();
+                    foreach (Tag t in m.Tags)
+                    {
+                        if (t.Mark != SelectedTag.Mark) tgs.Add(t);
+                    }
+                    m.Tags = tgs;
+                    manifestations.Add(m);
+                }
+
+                AppData.GetInstance().Manifestations = manifestations;
+                Serialization.SerializeManifestations();
+
                 Tags.Remove(SelectedTag);
 
                 List<Tag> tags = new List<Tag>();

@@ -71,6 +71,9 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 Manifestations.Add(m);
                 AllManifestations.Add(m);
             }
+
+            ManifestationBeg = DateTime.Now;
+            ManifestationEnd = DateTime.Now;
         }
 
         private void ManifestationsTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -217,11 +220,11 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             if (manifestationType != null && manifestationType.Label != m.Type.Label)
                 return false;
 
-            /*if (ManifestationBeg.CompareTo(m.Date) > 0)
+            if (ManifestationBeg.CompareTo(ManifestationEnd) < 0 && ManifestationBeg.CompareTo(m.Date) > 0)
                 return false;
 
-            if (ManifestationEnd.CompareTo(m.Date) < 0)
-                return false;*/
+            if (ManifestationBeg.CompareTo(ManifestationEnd) < 0 && ManifestationEnd.CompareTo(m.Date) < 0)
+                return false;
 
             if (IsAccessible && !m.Accessible)
                 return false;

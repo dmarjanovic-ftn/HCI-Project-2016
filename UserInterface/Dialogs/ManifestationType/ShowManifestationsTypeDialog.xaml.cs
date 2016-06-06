@@ -95,17 +95,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             }
 
             AreYouSureDialog dialog = new AreYouSureDialog(mans);
-            dialog.Show();
+            dialog.ShowDialog();
             dialog.OnAreYouSureDataChoose += new AreYouSureDialog.ChooseAreYouSureData(GetAnswerManifestationType);
-
-            Console.WriteLine(DeleteType);
         }
 
         // Get type
         private void GetAnswerManifestationType(ManifestationType type)
         {
             DeleteType = type;
-            Console.WriteLine("On answer.");
             // Null znaci da smo odustali od brisanja
             if (DeleteType != null)
             {
