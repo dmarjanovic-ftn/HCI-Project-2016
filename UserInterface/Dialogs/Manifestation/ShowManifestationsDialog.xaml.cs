@@ -281,6 +281,15 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             }
         }
 
+        private void ManifestationsTable_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectedManifestation != null)
+            {
+                var manifestationEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationDialog(SelectedManifestation);
+                manifestationEditDialog.Show();
+            }
+        }
+
 
     }
 }

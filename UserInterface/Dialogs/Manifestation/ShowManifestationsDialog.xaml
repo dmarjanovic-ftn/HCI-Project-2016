@@ -295,6 +295,7 @@
                   ItemsSource="{Binding Path=Manifestations}" 
                   SelectedItem="{Binding Path=SelectedManifestation, UpdateSourceTrigger=PropertyChanged}"
                   SelectionChanged="ManifestationsTable_SelectionChanged"
+                  MouseDoubleClick="ManifestationsTable_MouseDoubleClick"
                   AutoGenerateColumns="False"
                   CellStyle="{StaticResource DataGridCellStyle}"
                   IsReadOnly="True">
@@ -306,10 +307,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Oznaka manifestacije" MinWidth="128" Width="SizeToCells" Binding="{Binding Label}"/>
-                <DataGridTextColumn Header="Naziv manifestacije"  MinWidth="128" Width="SizeToCells" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Tip manifestacije"    MinWidth="128" Width="SizeToCells" Binding="{Binding Type}"/>
-                <DataGridTextColumn Header="Opis manifestacije"   MinWidth="256" Width="SizeToCells" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Oznaka manifestacije" MinWidth="128" Width="*" Binding="{Binding Label}"/>
+                <DataGridTextColumn Header="Naziv manifestacije"  MinWidth="128" Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Tip manifestacije"    MinWidth="128" Width="*" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Opis manifestacije"   MinWidth="256" Width="*" Binding="{Binding Description}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

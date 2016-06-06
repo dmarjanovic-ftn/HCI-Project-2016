@@ -161,5 +161,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 HelpProvider.ShowHelp("SearchTags", "#", this);
             }
         }
+
+        private void TagsTable_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectedTag != null)
+            {
+                var tagEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditTagDialog(SelectedTag);
+                tagEditDialog.Show();
+            }
+        }
     }
 }

@@ -131,20 +131,20 @@
                   ItemsSource="{Binding Path=Tags}" 
                   SelectedItem="{Binding Path=SelectedTag, UpdateSourceTrigger=PropertyChanged}"
                   SelectionChanged="TagsTable_SelectionChanged"
+                  MouseDoubleClick="TagsTable_MouseDoubleClick"
                   AutoGenerateColumns="False"
                   CellStyle="{StaticResource DataGridCellStyle}"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <!--DataGridTemplateColumn Header="Ikonica" MinWidth="48" MaxWidth="48">
+                <DataGridTemplateColumn Header="Boja">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding IconSrc}" Height="32" Width="32" />
+                            <TextBlock Background="{Binding Path=Color}" MinWidth="64" Margin="4"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn-->
-                <DataGridTextColumn Header="Boja" MinWidth="64" Width="SizeToCells" Binding="{Binding Color}"/>
-                <DataGridTextColumn Header="Oznaka taga"  MinWidth="128" Width="SizeToCells" Binding="{Binding Mark}"/>
-                <DataGridTextColumn Header="Opis taga"    MinWidth="128" Width="SizeToCells" Binding="{Binding Description}"/>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Oznaka taga"  MinWidth="128" Width="*" Binding="{Binding Mark}"/>
+                <DataGridTextColumn Header="Opis taga"    MinWidth="128" Width="*" Binding="{Binding Description}"/>
              </DataGrid.Columns>
         </DataGrid>
     </Grid>

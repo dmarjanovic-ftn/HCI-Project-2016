@@ -222,5 +222,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 HelpProvider.ShowHelp("SearchManifestationTypes", "#", this);
             }
         }
+
+        private void ManifestationsTypeTable_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectedManifestationType != null)
+            {
+                var manifestationTypeEditDialog = new HCI_2016_Project.UserInterface.Dialogs.EditManifestationTypeDialog(SelectedManifestationType);
+                manifestationTypeEditDialog.Show();
+            }
+        }
     }
 }
