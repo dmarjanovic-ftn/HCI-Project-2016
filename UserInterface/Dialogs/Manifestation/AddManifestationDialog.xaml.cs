@@ -26,6 +26,8 @@ namespace HCI_2016_Project.UserInterface.Dialogs
     public partial class AddManifestationDialog : Window
     {
         private ViewModel vm;
+        private Thread thread;
+        private int IsRunning;
 
         public class ViewModel
         {
@@ -33,6 +35,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             public List<ManifestationType> Types { get; set; }
             public List<Tag> AvailableTags       { get; set; }
             public List<CheckBox> AllTags        { get; set; }
+            public Boolean IsDemoMode            { get; set; }
         }
 
         private static int SLEEP_TIME = 150;
@@ -57,6 +60,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             InitializeComponent();
 
             vm = new ViewModel();
+            vm.IsDemoMode = false;
 
             vm.Types = AppData.GetInstance().ManifestationTypes;
             vm.Manifestation = new Manifestation();
@@ -94,6 +98,8 @@ namespace HCI_2016_Project.UserInterface.Dialogs
                 ListOfTags.Children.Add(sp);
                 ++tagNo;
             }
+
+            IsRunning = 1;
         }
 
         // Save Manifestation Button
@@ -211,6 +217,8 @@ namespace HCI_2016_Project.UserInterface.Dialogs
 
         public void StartDemo() {
 
+            vm.IsDemoMode = true;
+
             boxes.Add(ManifestationLabel);
             boxes.Add(ManifestationName);
             boxes.Add(ManifestationDescription);
@@ -231,7 +239,7 @@ namespace HCI_2016_Project.UserInterface.Dialogs
             checkboxes.Add(Out);
             checkboxes.Add(Out);
 
-            Thread thread = new Thread(() => TypingThread(boxes, fields, radiobuttons, checkboxes, vm.AllTags));
+            thread = new Thread(() => TypingThread(boxes, fields, radiobuttons, checkboxes, vm.AllTags));
             thread.Start();
         }
 
@@ -242,68 +250,111 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         private void TypingThread(List<TextBox> boxes, List<String> messages, 
             List<RadioButton> radiobuttons, List<CheckBox> checkboxes, List<CheckBox> tags)
         {
-            for (int i = 0; i < boxes.Count; ++i)
+            while (true)
             {
-                String message = messages[i];
-                TextBox textBox = boxes[i];
-
-                foreach (char s in message)
+                for (int i = 0; i < boxes.Count; ++i)
                 {
-                    Thread.Sleep(SLEEP_TIME);
+                    String message = messages[i];
+                    TextBox textBox = boxes[i];
 
-                    if (s == 'D' || s == '+')
+                    foreach (char s in message)
                     {
                         Thread.Sleep(SLEEP_TIME);
-                        textBox.Dispatcher.Invoke(
-                            new UpdateTextCallback(this.RemoveLastChar),
-                            new object[] { textBox, "" }
-                            );
-                    }
 
-                    if (s != '+')
-                    {
-                        textBox.Dispatcher.Invoke(
-                            new UpdateTextCallback(this.UpdateText),
-                            new object[] { textBox, s.ToString() }
-                            );
+                        if (s == 'D' || s == '+')
+                        {
+                            Thread.Sleep(SLEEP_TIME);
+                            textBox.Dispatcher.Invoke(
+                                new UpdateTextCallback(this.RemoveLastChar),
+                                new object[] { textBox, "" }
+                                );
+                        }
+
+                        if (s != '+')
+                        {
+                            textBox.Dispatcher.Invoke(
+                                new UpdateTextCallback(this.UpdateText),
+                                new object[] { textBox, s.ToString() }
+                                );
+                        }
                     }
                 }
-            }
 
-            foreach (RadioButton rb in radiobuttons)
-            {
-                Thread.Sleep(9 * SLEEP_TIME);
-                rb.Dispatcher.Invoke(
-                    new RadioButtonChecker(this.CheckRadioButton),
-                    new object[] { rb }
-                    );
-            }
-
-            foreach (CheckBox cb in checkboxes)
-            {
-                Thread.Sleep(9 * SLEEP_TIME);
-                cb.Dispatcher.Invoke(
-                    new CheckBoxChecker(this.CheckCheckBox),
-                    new object[] { cb }
-                    );
-            }
-
-            for (int i = 0; i < tags.Count; ++i)
-            {
-                if (i % 3 == 1)
+                foreach (RadioButton rb in radiobuttons)
                 {
                     Thread.Sleep(9 * SLEEP_TIME);
-                    tags[i].Dispatcher.Invoke(
-                        new CheckBoxChecker(this.CheckCheckBox),
-                        new object[] { tags[i] }
+                    rb.Dispatcher.Invoke(
+                        new RadioButtonChecker(this.CheckRadioButton),
+                        new object[] { rb }
                         );
                 }
+
+                foreach (CheckBox cb in checkboxes)
+                {
+                    Thread.Sleep(9 * SLEEP_TIME);
+                    cb.Dispatcher.Invoke(
+                        new CheckBoxChecker(this.CheckCheckBox),
+                        new object[] { cb }
+                        );
+                }
+
+                for (int i = 0; i < tags.Count; ++i)
+                {
+                    if (i % 3 == 1)
+                    {
+                        Thread.Sleep(9 * SLEEP_TIME);
+                        tags[i].Dispatcher.Invoke(
+                            new CheckBoxChecker(this.CheckCheckBox),
+                            new object[] { tags[i] }
+                            );
+                    }
+                }
+                Thread.Sleep(18 * SLEEP_TIME);
+
+                foreach (TextBox t in boxes)
+                {
+                    t.Dispatcher.Invoke(
+                        new UpdateTextCallback(this.ClearTextBox),
+                               new object[] { t, "" }
+                               );
+                }
+
+                for (int i = 0; i < tags.Count; ++i)
+                {
+                    if (i % 3 == 1)
+                    {
+                        tags[i].Dispatcher.Invoke(
+                            new CheckBoxChecker(this.CheckCheckBox),
+                            new object[] { tags[i] }
+                            );
+                    }
+                }
+
+                checkboxes[0].Dispatcher.Invoke(
+                            new CheckBoxChecker(this.CheckCheckBox),
+                            new object[] { checkboxes[0] }
+                            );
+
+                checkboxes[1].Dispatcher.Invoke(
+                            new CheckBoxChecker(this.CheckCheckBox),
+                            new object[] { checkboxes[1] }
+                            );
+
+                radiobuttons[3].Dispatcher.Invoke(
+                        new RadioButtonChecker(this.CheckRadioButton),
+                        new object[] { radiobuttons[3] }
+                        );
             }
         }
 
         private void UpdateText(TextBox textbox, string message)
         {
             textbox.AppendText(message);
+        }
+
+        private void ClearTextBox(TextBox textbox, string message)
+        {
+            textbox.Text = "";
         }
 
         private void RemoveLastChar(TextBox textbox, string message)
@@ -319,6 +370,28 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         private void CheckCheckBox(CheckBox cb)
         {
             cb.IsChecked = !cb.IsChecked;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
+        }
+
+        void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                if (IsRunning == 1)
+                {
+                    thread.Suspend();
+                }
+                else
+                {
+                    thread.Resume();
+                }
+
+                IsRunning = (IsRunning + 1) % 2;
+            }
         }
     }
 }

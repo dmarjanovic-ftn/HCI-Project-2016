@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
         xmlns:binders="clr-namespace:HCI_2016_Project.Binders"
-        Title="Detalji o manifestaciji" Height="480" Width="640" Background="#FAFAFA">
+        Title="Detalji o manifestaciji" Background="#FAFAFA"
+        Width="800" Height="600" Icon="../../../Images/favicon.ico"
+        WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <BitmapImage x:Key="Man_Date"   UriSource="/Images/Icons/date.png"/>

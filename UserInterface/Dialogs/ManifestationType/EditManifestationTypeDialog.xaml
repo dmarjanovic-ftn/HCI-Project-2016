@@ -5,7 +5,9 @@
         xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
-        Title="Izmijeni tip manifestacije" Height="480" Width="640" l:HelpProvider.HelpKey="ManifestationTypeEdit">
+        Title="Izmijeni tip manifestacije" l:HelpProvider.HelpKey="ManifestationTypeEdit"
+        Width="800" Height="600" Icon="../../../Images/favicon.ico"
+        WindowStartupLocation="CenterScreen">
 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>

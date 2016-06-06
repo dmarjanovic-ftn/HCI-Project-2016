@@ -310,6 +310,7 @@
     <Content Include="HelpHtml\Manifestation.html" />
     <Content Include="HelpHtml\ManifestationType.html" />
     <Content Include="HelpHtml\Tag.html" />
+    <Resource Include="Images\help.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HelpHtml\images\" />

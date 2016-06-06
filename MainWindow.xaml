@@ -4,7 +4,8 @@
         xmlns:commands="clr-namespace:HCI_2016_Project.Commands"
         
         Icon="Images/favicon.ico"
-        Title="MainWindow" Height="480" Width="640"
+        Title="MainWindow" Width="800" Height="600" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Loaded="Window_Loaded">
     
     <Window.Resources>
@@ -28,13 +29,6 @@
             <Setter Property="Margin" Value="1,2,1,2"/>
             <Setter Property="Padding" Value="4"/>
         </Style>
-
-        <Style x:Key="{x:Type ToolTip}"
-            TargetType="{x:Type ToolTip}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="HasDropShadow" Value="False"/>
-        </Style>
     </Window.Resources>
     
     <DockPanel>
@@ -43,18 +37,18 @@
                 <!--Podkontrola koja određuje kako se item-i prikazuju.-->
                 <ItemsPanelTemplate>
                     <!-- Specificiramo ne šta je u kontroli nego template koji je formira-->
-                    <DockPanel HorizontalAlignment="Stretch"></DockPanel>
+                    <DockPanel HorizontalAlignment="Left"></DockPanel>
                     <!-- Prikazujemo preko Dock Panela koji preuzme sav prostor -->
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="_Manifestacija">
-                <MenuItem Header="_Dodaj manifestaciju"
+                <MenuItem InputGestureText="Ctrl+M" Header="_Dodaj manifestaciju"
                           Command="commands:Commands.AddManifestation">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource Menu_AddMan}"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Prikaži manifestacije"
+                <MenuItem InputGestureText="Ctrl+Shift+M" Header="_Prikaži manifestacije"
                           Command="commands:Commands.ShowAllManifestations">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_ViewMan}" />
@@ -62,13 +56,13 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Tag">
-                <MenuItem Header="_Dodaj tag"
+                <MenuItem InputGestureText="Ctrl+T" Header="_Dodaj tag"
                           Command="commands:Commands.AddTag">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_AddTag}" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Prikaži tagove"
+                <MenuItem InputGestureText="Ctrl+Shift+T" Header="_Prikaži tagove"
                           Command="commands:Commands.ShowAllTags">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_ViewTag}" />
@@ -76,13 +70,13 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Tip manifestacije">
-                <MenuItem Header="_Dodaj tip manifestacije"
+                <MenuItem InputGestureText="Ctrl+C" Header="_Dodaj tip manifestacije"
                           Command="commands:Commands.AddManifestationType">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_AddTyp}" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Prikaži tipove manifestacija"
+                <MenuItem InputGestureText="Ctrl+Shift+C" Header="_Prikaži tipove manifestacija"
                           Command="commands:Commands.ShowAllManifestationTypes">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_ViewTyp}" />
@@ -91,7 +85,6 @@
             </MenuItem>
 
             <MenuItem Header="_Pomoć">
-                <!-- Poravnano udesno -->
                 <MenuItem InputGestureText="F5" Header="Demo mod" Click="MenuItem_Click_1">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource ResourceKey=Menu_DemoMod}" />
@@ -179,6 +172,7 @@
                     </Border>
                 </ToolBar>
             </ToolBarTray>
+            
             <Grid DockPanel.Dock="Bottom">
                 <Grid Name="MainWindowGrid" Background="LightSteelBlue">
                     <Grid.ColumnDefinitions>
@@ -214,8 +208,15 @@
                     <Canvas Name="ManifestationsMap" Grid.Column="1" AllowDrop="True" ContextMenuService.IsEnabled="False"
                             PreviewMouseLeftButtonDown="ManifestationsMap_PreviewMouseLeftButtonDown" MouseMove="ManifestationsMap_MouseMove"
                             DragEnter="ManifestationsMap_DragEnter" Drop="ManifestationsMap_Drop" MouseRightButtonDown="ManifestationsMap_MouseRightButtonDown">
+                        <Canvas.Resources>
+                            <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
+                                <Setter Property="Background" Value="#EEEEEE"/>
+                                <Setter Property="BorderBrush" Value="#666666"/>
+                                <Setter Property="HasDropShadow" Value="False"/>
+                            </Style>
+                        </Canvas.Resources>
                         <Canvas.Background>
-                            <ImageBrush ImageSource="Images\bn-map.png" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="Images\bn-map.png" AlignmentX="Left" AlignmentY="Top" Stretch="None"/>
                         </Canvas.Background>
                         <Canvas.ContextMenu>
                             <ContextMenu Name="ManifestationContextMenu">

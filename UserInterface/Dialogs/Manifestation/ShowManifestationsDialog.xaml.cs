@@ -132,6 +132,14 @@ namespace HCI_2016_Project.UserInterface.Dialogs
         private void ShowMore_Click(object sender, RoutedEventArgs e)
         {
             AdvancedSearch.Visibility = (AdvancedSearch.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
+            if (AdvancedSearch.Visibility == Visibility.Visible)
+            {
+                ShowMore.Content = "Sakrij opcije";
+            }
+            else
+            {
+                ShowMore.Content = "Prikaži više opcija";
+            }
         }
 
         // Choose Manifestation Type

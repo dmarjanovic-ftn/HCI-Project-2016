@@ -25,7 +25,7 @@ namespace HCI_2016_Project
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int ICON_SIZE = 20;
+        private const int ICON_SIZE = 32;
         private const int OFFSET    = ICON_SIZE / 2;
 
         private const string FROM_SIDEBAR = "ManifestationDraggedFromSidebar";
@@ -320,9 +320,14 @@ namespace HCI_2016_Project
 
             TextBlock category = new TextBlock();
             category.Text = manifestation.Type.Name;
+            System.Drawing.Color cc = System.Drawing.ColorTranslator.FromHtml("#666666");
+            category.Foreground = new SolidColorBrush(Color.FromArgb(cc.A, cc.R, cc.G, cc.B));
+            category.FontSize = 12;
             category.Padding = new Thickness(4, 2, 4, 2);
             TextBlock title = new TextBlock();
             title.Text = manifestation.Name;
+            title.FontSize = 14;
+            title.FontWeight = FontWeights.Bold;
             title.Padding = new Thickness(4, 2, 4, 2);
 
             complex.Children.Add(category);

@@ -6,7 +6,9 @@
         xmlns:l="clr-namespace:HCI_2016_Project.Utils"
         xmlns:binder="clr-namespace:HCI_2016_Project.Binders"
         xmlns:validation="clr-namespace:HCI_2016_Project.ValidationRules"
-        Title="Dodaj tag" Height="480" Width="640" l:HelpProvider.HelpKey="Tag">
+        Title="Dodaj tag" l:HelpProvider.HelpKey="Tag"
+        Width="800" Height="600" Icon="../../../Images/favicon.ico"
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <BitmapImage x:Key="ErrorIcon" UriSource="../../../Images/Icons/hci_error_icon.png" />
